@@ -6,6 +6,6 @@ class Hello extends BaseController
 {
     public function index()
     {
-        return "Hello, World!";
+        return view('hello_world');
     }
 }
