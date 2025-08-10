@@ -1,0 +1,77 @@
+body {
+    background-color: #0f2027;
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    color: #333;
+}
+
+.hero-section {
+    background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+    padding: 100px 0;
+    text-align: center;
+    color: #ffffff;
+}
+
+.hero-section h1 {
+    font-size: 48px;
+    font-weight: bold;
+}
+
+.hero-section p {
+    font-size: 18px;
+}
+
+.featured-section {
+    background-color: #f4f7f8;
+    padding: 60px 0;
+}
+
+.custom-block {
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 30px;
+    text-align: left;
+    transition: transform 0.3s ease;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+    height: 100%;
+}
+
+.custom-block:hover {
+    transform: translateY(-5px);
+}
+
+.custom-block h5 {
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.custom-block p {
+    color: #666;
+}
+
+.custom-block-image {
+    width: 100%;
+    height: 150px;
+    object-fit: contain;
+    margin-top: 15px;
+}
+
+.badge {
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 6px 12px;
+    color: white;
+}
+
+.bg-primary-badge {
+    background-color: #00c9a7;
+}
+
+.bg-secondary-badge {
+    background-color: #f9ca24;
+}
+
+.bg-accent-badge {
+    background-color: #e056fd;
+}

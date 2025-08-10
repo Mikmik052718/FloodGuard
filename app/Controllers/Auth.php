@@ -29,7 +29,7 @@ public function attemptLogin()
         ]);
 
                 if ($user['role'] === 'admin') {
-                    return redirect()->to('/admin/posts');
+                    return redirect()->to('/admin/admin_dashboard');
                 } else {
                     return redirect()->to('/forum');
                 }
