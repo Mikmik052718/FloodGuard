@@ -44,3 +44,6 @@ $routes->get('flood/river-status', 'FloodPredictor::riverStatus');
 $routes->get('/landing', 'Home::index'); //ito landing mark, yung controller niya Home pangalan tas yung view na kakalikutin welcome_message.php
 
 //http://localhost/FloodGuard/public/index.php/flood/predict
+
+// Admin dashboard route (the correct route)
+$routes->get('/admin/admin_dashboard', 'Admin::dashboard');

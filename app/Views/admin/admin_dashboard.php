@@ -1,4 +1,6 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+<?php 
+// app/Views/admin/admin_dashboard.php
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -9,7 +11,10 @@
     <!-- Bootstrap & Icons -->
     <link rel="stylesheet" href="<?= base_url('assets/css/bootstrap.min.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/css/bootstrap-icons.css') ?>">
+    
+    <!-- Custom Admin Dashboard CSS -->
     <link rel="stylesheet" href="<?= base_url('assets/css/admin_dashboard.css') ?>">
+    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 </head>
 <body>
@@ -35,14 +40,14 @@
                     <a class="nav-link text-white" href="#"><i class="bi bi-bar-chart-fill me-2"></i> Reports</a>
                 </li>
                 <li class="nav-item mt-5">
-                    <a class="btn btn-outline-light w-75" href="<?= site_url('status/admin_login') ?>">
+                    <a class="btn btn-outline-light w-75" href="<?= site_url('auth/logout') ?>">
                     <i class="bi bi-box-arrow-right me-2"></i> Logout
                     </a>
                 </li>
             </ul>
         </nav>
 
-        <!-- Main -->
+        <!-- Main Content -->
         <main class="col-md-10 ms-sm-auto px-4">
             <section class="hero-section">
                 <h1><i class="bi bi-speedometer2 me-2"></i>Welcome, Admin</h1>
@@ -66,18 +71,20 @@
                             </div>
                         </div>
 
-                        <!-- POSTS CARD -->
+                        <!-- POSTS CARD (Linking to another page) -->
                         <div class="col-md-4">
-                            <div class="custom-block">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div>
-                                        <h5><i class="bi bi-card-text me-2"></i>Posts</h5>
-                                        <p>Review and moderate news feed posts.</p>
+                            <a href="<?= site_url('admin/posts') ?>" class="text-decoration-none"> <!-- Link to Posts Page -->
+                                <div class="custom-block">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h5><i class="bi bi-card-text me-2"></i>Posts</h5>
+                                            <p>Review and moderate news feed posts.</p>
+                                        </div>
+                                        <span class="badge bg-secondary-badge">128</span>
                                     </div>
-                                    <span class="badge bg-secondary-badge">128</span>
+                                    <img src="<?= base_url('assets/images/posts.png') ?>" class="custom-block-image" alt="Posts">
                                 </div>
-                                <img src="<?= base_url('assets/images/posts.png') ?>" class="custom-block-image" alt="Posts">
-                            </div>
+                            </a>
                         </div>
 
                         <!-- REPORTS CARD -->
@@ -100,7 +107,7 @@
     </div>
 </div>
 
-<!-- JS --
+<!-- JS -->
 <script src="<?= base_url('assets/js/bootstrap.bundle.min.js') ?>"></script>
 </body>
 </html>
