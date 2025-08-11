@@ -37,7 +37,7 @@
 </head>
 <body>
   <div class="container">
-    <h1>Water Levels at Sto Nino</h1>
+    <h1>Sto Nino Water Level</h1>
 
     <?php
     $curl = curl_init();
