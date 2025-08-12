@@ -41,7 +41,10 @@ $routes->get('flood/predict', 'FloodPredictor::predict');
 //new sto nino info
 $routes->get('flood/river-status', 'FloodPredictor::riverStatus');
 
-$routes->get('/landing', 'Home::index'); //ito landing mark, yung controller niya Home pangalan tas yung view na kakalikutin welcome_message.php
+$routes->get('/landing', 'Home::index');
+//Landing - for the url 
+//Home - to fetch the controller
+//index - to find the method 
 
 //http://localhost/FloodGuard/public/index.php/flood/predict
 
