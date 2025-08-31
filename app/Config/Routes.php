@@ -36,7 +36,9 @@ $routes->post('admin/update/(:num)', 'Admin::update/$1');
 $routes->get('/weather', 'Forum::weather');
 $routes->get('/weather-daily', 'Forum::weatherDaily');
 //predictor
-$routes->get('flood/predict', 'FloodPredictor::predict');
+$routes->get('flood/predict', 'FloodPredictor::predict');       // daily
+$routes->get('flood/predict_hourly', 'FloodPredictor::predict_hourly'); // hourly  08/24/25 18:30
+
 
 //new sto nino info
 $routes->get('flood/river-status', 'FloodPredictor::riverStatus');
@@ -50,3 +52,7 @@ $routes->get('/landing', 'Home::index');
 
 // Admin dashboard route (the correct route)
 $routes->get('/admin/admin_dashboard', 'Admin::dashboard');
+
+// trial hourly 08/24/25 18:30
+$routes->get('flood/daily', 'FloodPredictor::predict');
+$routes->get('flood/hourly', 'FloodPredictor::predict_hourly');

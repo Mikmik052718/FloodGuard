@@ -1,0 +1,168 @@
+CRITICAL - 2025-08-24 12:25:24 --> CodeIgniter\HTTP\Exceptions\HTTPException: 22 : The requested URL returned error: 400
+[Method: GET, Route: flood/hourly]
+in SYSTEMPATH\HTTP\CURLRequest.php on line 711.
+ 1 SYSTEMPATH\HTTP\CURLRequest.php(711): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('22', 'The requested URL returned error: 400')
+ 2 SYSTEMPATH\HTTP\CURLRequest.php(381): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH\HTTP\CURLRequest.php(150): CodeIgniter\HTTP\CURLRequest->send('GET', 'https://flood-api.open-meteo.com/v1/flood?latitude=14.657293&longitude=121.11524&hourly=river_discharge&timezone=auto&start_date=2025-08-23&end_date=2025-08-25')
+ 4 SYSTEMPATH\HTTP\CURLRequest.php(185): CodeIgniter\HTTP\CURLRequest->request('GET', 'https://flood-api.open-meteo.com/v1/flood?latitude=14.657293&longitude=121.11524&hourly=river_discharge&timezone=auto&start_date=2025-08-23&end_date=2025-08-25', [])
+ 5 APPPATH\Controllers\FloodPredictor.php(106): CodeIgniter\HTTP\CURLRequest->get('https://flood-api.open-meteo.com/v1/flood?latitude=14.657293&longitude=121.11524&hourly=river_discharge&timezone=auto&start_date=2025-08-23&end_date=2025-08-25')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\FloodPredictor->predict_hourly()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FloodPredictor))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-08-24 12:28:31 --> CodeIgniter\HTTP\Exceptions\HTTPException: 22 : The requested URL returned error: 400
+[Method: GET, Route: flood/hourly]
+in SYSTEMPATH\HTTP\CURLRequest.php on line 711.
+ 1 SYSTEMPATH\HTTP\CURLRequest.php(711): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('22', 'The requested URL returned error: 400')
+ 2 SYSTEMPATH\HTTP\CURLRequest.php(381): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH\HTTP\CURLRequest.php(150): CodeIgniter\HTTP\CURLRequest->send('GET', 'https://flood-api.open-meteo.com/v1/flood?latitude=14.657293&longitude=121.11524&hourly=river_discharge&timezone=auto&start_date=2025-08-23&end_date=2025-08-25')
+ 4 SYSTEMPATH\HTTP\CURLRequest.php(185): CodeIgniter\HTTP\CURLRequest->request('GET', 'https://flood-api.open-meteo.com/v1/flood?latitude=14.657293&longitude=121.11524&hourly=river_discharge&timezone=auto&start_date=2025-08-23&end_date=2025-08-25', [])
+ 5 APPPATH\Controllers\FloodPredictor.php(106): CodeIgniter\HTTP\CURLRequest->get('https://flood-api.open-meteo.com/v1/flood?latitude=14.657293&longitude=121.11524&hourly=river_discharge&timezone=auto&start_date=2025-08-23&end_date=2025-08-25')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\FloodPredictor->predict_hourly()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FloodPredictor))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-08-24 12:35:48 --> CodeIgniter\HTTP\Exceptions\HTTPException: 22 : The requested URL returned error: 400
+[Method: GET, Route: flood/hourly]
+in SYSTEMPATH\HTTP\CURLRequest.php on line 711.
+ 1 SYSTEMPATH\HTTP\CURLRequest.php(711): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('22', 'The requested URL returned error: 400')
+ 2 SYSTEMPATH\HTTP\CURLRequest.php(381): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH\HTTP\CURLRequest.php(150): CodeIgniter\HTTP\CURLRequest->send('GET', 'https://flood-api.open-meteo.com/v1/flood?latitude=14.657293&longitude=121.11524&hourly=river_discharge&timezone=auto&start_date=2025-08-23&end_date=2025-08-25')
+ 4 SYSTEMPATH\HTTP\CURLRequest.php(185): CodeIgniter\HTTP\CURLRequest->request('GET', 'https://flood-api.open-meteo.com/v1/flood?latitude=14.657293&longitude=121.11524&hourly=river_discharge&timezone=auto&start_date=2025-08-23&end_date=2025-08-25', [])
+ 5 APPPATH\Controllers\FloodPredictor.php(106): CodeIgniter\HTTP\CURLRequest->get('https://flood-api.open-meteo.com/v1/flood?latitude=14.657293&longitude=121.11524&hourly=river_discharge&timezone=auto&start_date=2025-08-23&end_date=2025-08-25')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\FloodPredictor->predict_hourly()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FloodPredictor))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-08-24 12:39:12 --> CodeIgniter\HTTP\Exceptions\HTTPException: 22 : The requested URL returned error: 400
+[Method: GET, Route: flood/hourly]
+in SYSTEMPATH\HTTP\CURLRequest.php on line 711.
+ 1 SYSTEMPATH\HTTP\CURLRequest.php(711): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('22', 'The requested URL returned error: 400')
+ 2 SYSTEMPATH\HTTP\CURLRequest.php(381): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH\HTTP\CURLRequest.php(150): CodeIgniter\HTTP\CURLRequest->send('GET', 'https://flood-api.open-meteo.com/v1/flood?latitude=14.657293&longitude=121.11524&hourly=river_discharge&timezone=auto&start_date=2025-08-23&end_date=2025-08-25')
+ 4 SYSTEMPATH\HTTP\CURLRequest.php(185): CodeIgniter\HTTP\CURLRequest->request('GET', 'https://flood-api.open-meteo.com/v1/flood?latitude=14.657293&longitude=121.11524&hourly=river_discharge&timezone=auto&start_date=2025-08-23&end_date=2025-08-25', [])
+ 5 APPPATH\Controllers\FloodPredictor.php(106): CodeIgniter\HTTP\CURLRequest->get('https://flood-api.open-meteo.com/v1/flood?latitude=14.657293&longitude=121.11524&hourly=river_discharge&timezone=auto&start_date=2025-08-23&end_date=2025-08-25')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\FloodPredictor->predict_hourly()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FloodPredictor))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-08-24 12:39:52 --> CodeIgniter\HTTP\Exceptions\HTTPException: 22 : The requested URL returned error: 400
+[Method: GET, Route: flood/predict_hourly]
+in SYSTEMPATH\HTTP\CURLRequest.php on line 711.
+ 1 SYSTEMPATH\HTTP\CURLRequest.php(711): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('22', 'The requested URL returned error: 400')
+ 2 SYSTEMPATH\HTTP\CURLRequest.php(381): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH\HTTP\CURLRequest.php(150): CodeIgniter\HTTP\CURLRequest->send('GET', 'https://flood-api.open-meteo.com/v1/flood?latitude=14.657293&longitude=121.11524&hourly=river_discharge&timezone=auto&start_date=2025-08-23&end_date=2025-08-25')
+ 4 SYSTEMPATH\HTTP\CURLRequest.php(185): CodeIgniter\HTTP\CURLRequest->request('GET', 'https://flood-api.open-meteo.com/v1/flood?latitude=14.657293&longitude=121.11524&hourly=river_discharge&timezone=auto&start_date=2025-08-23&end_date=2025-08-25', [])
+ 5 APPPATH\Controllers\FloodPredictor.php(106): CodeIgniter\HTTP\CURLRequest->get('https://flood-api.open-meteo.com/v1/flood?latitude=14.657293&longitude=121.11524&hourly=river_discharge&timezone=auto&start_date=2025-08-23&end_date=2025-08-25')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\FloodPredictor->predict_hourly()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FloodPredictor))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-08-24 12:42:33 --> CodeIgniter\HTTP\Exceptions\HTTPException: 22 : The requested URL returned error: 400
+[Method: GET, Route: flood/predict_hourly]
+in SYSTEMPATH\HTTP\CURLRequest.php on line 711.
+ 1 SYSTEMPATH\HTTP\CURLRequest.php(711): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('22', 'The requested URL returned error: 400')
+ 2 SYSTEMPATH\HTTP\CURLRequest.php(381): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH\HTTP\CURLRequest.php(150): CodeIgniter\HTTP\CURLRequest->send('GET', 'https://flood-api.open-meteo.com/v1/flood?latitude=14.657293&longitude=121.11524&hourly=river_discharge&timezone=auto&start_date=2025-08-23&end_date=2025-08-25')
+ 4 SYSTEMPATH\HTTP\CURLRequest.php(185): CodeIgniter\HTTP\CURLRequest->request('GET', 'https://flood-api.open-meteo.com/v1/flood?latitude=14.657293&longitude=121.11524&hourly=river_discharge&timezone=auto&start_date=2025-08-23&end_date=2025-08-25', [])
+ 5 APPPATH\Controllers\FloodPredictor.php(106): CodeIgniter\HTTP\CURLRequest->get('https://flood-api.open-meteo.com/v1/flood?latitude=14.657293&longitude=121.11524&hourly=river_discharge&timezone=auto&start_date=2025-08-23&end_date=2025-08-25')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\FloodPredictor->predict_hourly()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FloodPredictor))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-08-24 12:43:03 --> CodeIgniter\HTTP\Exceptions\HTTPException: 22 : The requested URL returned error: 400
+[Method: GET, Route: flood/predict_hourly]
+in SYSTEMPATH\HTTP\CURLRequest.php on line 711.
+ 1 SYSTEMPATH\HTTP\CURLRequest.php(711): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('22', 'The requested URL returned error: 400')
+ 2 SYSTEMPATH\HTTP\CURLRequest.php(381): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH\HTTP\CURLRequest.php(150): CodeIgniter\HTTP\CURLRequest->send('GET', 'https://flood-api.open-meteo.com/v1/flood?latitude=14.657293&longitude=121.11524&hourly=river_discharge&timezone=auto&start_date=2025-08-23&end_date=2025-08-25')
+ 4 SYSTEMPATH\HTTP\CURLRequest.php(185): CodeIgniter\HTTP\CURLRequest->request('GET', 'https://flood-api.open-meteo.com/v1/flood?latitude=14.657293&longitude=121.11524&hourly=river_discharge&timezone=auto&start_date=2025-08-23&end_date=2025-08-25', [])
+ 5 APPPATH\Controllers\FloodPredictor.php(107): CodeIgniter\HTTP\CURLRequest->get('https://flood-api.open-meteo.com/v1/flood?latitude=14.657293&longitude=121.11524&hourly=river_discharge&timezone=auto&start_date=2025-08-23&end_date=2025-08-25')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\FloodPredictor->predict_hourly()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FloodPredictor))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-08-24 12:50:48 --> CodeIgniter\HTTP\Exceptions\HTTPException: 22 : The requested URL returned error: 400
+[Method: GET, Route: flood/predict_hourly]
+in SYSTEMPATH\HTTP\CURLRequest.php on line 711.
+ 1 SYSTEMPATH\HTTP\CURLRequest.php(711): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('22', 'The requested URL returned error: 400')
+ 2 SYSTEMPATH\HTTP\CURLRequest.php(381): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH\HTTP\CURLRequest.php(150): CodeIgniter\HTTP\CURLRequest->send('GET', 'https://flood-api.open-meteo.com/v1/flood?latitude=14.657293&longitude=121.11524&hourly=river_discharge&timezone=auto&start_date=2025-08-23&end_date=2025-08-25')
+ 4 SYSTEMPATH\HTTP\CURLRequest.php(185): CodeIgniter\HTTP\CURLRequest->request('GET', 'https://flood-api.open-meteo.com/v1/flood?latitude=14.657293&longitude=121.11524&hourly=river_discharge&timezone=auto&start_date=2025-08-23&end_date=2025-08-25', [])
+ 5 APPPATH\Controllers\FloodPredictor.php(120): CodeIgniter\HTTP\CURLRequest->get('https://flood-api.open-meteo.com/v1/flood?latitude=14.657293&longitude=121.11524&hourly=river_discharge&timezone=auto&start_date=2025-08-23&end_date=2025-08-25')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\FloodPredictor->predict_hourly()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FloodPredictor))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-08-24 12:52:41 --> CodeIgniter\HTTP\Exceptions\HTTPException: 22 : The requested URL returned error: 400
+[Method: GET, Route: flood/hourly]
+in SYSTEMPATH\HTTP\CURLRequest.php on line 711.
+ 1 SYSTEMPATH\HTTP\CURLRequest.php(711): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('22', 'The requested URL returned error: 400')
+ 2 SYSTEMPATH\HTTP\CURLRequest.php(381): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH\HTTP\CURLRequest.php(150): CodeIgniter\HTTP\CURLRequest->send('GET', 'https://flood-api.open-meteo.com/v1/flood?latitude=14.657293&longitude=121.11524&hourly=river_discharge&timezone=auto&start_date=2025-08-23&end_date=2025-08-25')
+ 4 SYSTEMPATH\HTTP\CURLRequest.php(185): CodeIgniter\HTTP\CURLRequest->request('GET', 'https://flood-api.open-meteo.com/v1/flood?latitude=14.657293&longitude=121.11524&hourly=river_discharge&timezone=auto&start_date=2025-08-23&end_date=2025-08-25', [])
+ 5 APPPATH\Controllers\FloodPredictor.php(120): CodeIgniter\HTTP\CURLRequest->get('https://flood-api.open-meteo.com/v1/flood?latitude=14.657293&longitude=121.11524&hourly=river_discharge&timezone=auto&start_date=2025-08-23&end_date=2025-08-25')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\FloodPredictor->predict_hourly()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FloodPredictor))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-08-24 13:03:11 --> CodeIgniter\HTTP\Exceptions\HTTPException: 22 : The requested URL returned error: 400
+[Method: GET, Route: flood/hourly]
+in SYSTEMPATH\HTTP\CURLRequest.php on line 711.
+ 1 SYSTEMPATH\HTTP\CURLRequest.php(711): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('22', 'The requested URL returned error: 400')
+ 2 SYSTEMPATH\HTTP\CURLRequest.php(381): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH\HTTP\CURLRequest.php(150): CodeIgniter\HTTP\CURLRequest->send('GET', 'https://api.open-meteo.com/v1/forecast?latitude=14.657293&longitude=121.11524&hourly=cloud_cover,precipitation,pressure_msl,relative_humidity_2m,surface_pressure,temperature_2m_max,temperature_2m_min,wind_speed_10m_max,wind_gusts_10m_max,shortwave_radiation_sum&timezone=auto&start_date=2025-08-23&end_date=2025-08-25')
+ 4 SYSTEMPATH\HTTP\CURLRequest.php(185): CodeIgniter\HTTP\CURLRequest->request('GET', 'https://api.open-meteo.com/v1/forecast?latitude=14.657293&longitude=121.11524&hourly=cloud_cover,precipitation,pressure_msl,relative_humidity_2m,surface_pressure,temperature_2m_max,temperature_2m_min,wind_speed_10m_max,wind_gusts_10m_max,shortwave_radiation_sum&timezone=auto&start_date=2025-08-23&end_date=2025-08-25', [])
+ 5 APPPATH\Controllers\FloodPredictor.php(122): CodeIgniter\HTTP\CURLRequest->get('https://api.open-meteo.com/v1/forecast?latitude=14.657293&longitude=121.11524&hourly=cloud_cover,precipitation,pressure_msl,relative_humidity_2m,surface_pressure,temperature_2m_max,temperature_2m_min,wind_speed_10m_max,wind_gusts_10m_max,shortwave_radiation_sum&timezone=auto&start_date=2025-08-23&end_date=2025-08-25')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\FloodPredictor->predict_hourly()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FloodPredictor))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-08-24 13:06:28 --> CodeIgniter\HTTP\Exceptions\HTTPException: 22 : The requested URL returned error: 400
+[Method: GET, Route: flood/hourly]
+in SYSTEMPATH\HTTP\CURLRequest.php on line 711.
+ 1 SYSTEMPATH\HTTP\CURLRequest.php(711): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('22', 'The requested URL returned error: 400')
+ 2 SYSTEMPATH\HTTP\CURLRequest.php(381): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH\HTTP\CURLRequest.php(150): CodeIgniter\HTTP\CURLRequest->send('GET', 'https://api.open-meteo.com/v1/forecast?latitude=14.657293&longitude=121.11524&hourly=cloud_cover,precipitation,pressure_msl,relative_humidity_2m,surface_pressure,temperature_2m_max,temperature_2m_min,wind_speed_10m_max,wind_gusts_10m_max,shortwave_radiation_sum&timezone=auto&start_date=2025-08-23&end_date=2025-08-25')
+ 4 SYSTEMPATH\HTTP\CURLRequest.php(185): CodeIgniter\HTTP\CURLRequest->request('GET', 'https://api.open-meteo.com/v1/forecast?latitude=14.657293&longitude=121.11524&hourly=cloud_cover,precipitation,pressure_msl,relative_humidity_2m,surface_pressure,temperature_2m_max,temperature_2m_min,wind_speed_10m_max,wind_gusts_10m_max,shortwave_radiation_sum&timezone=auto&start_date=2025-08-23&end_date=2025-08-25', [])
+ 5 APPPATH\Controllers\FloodPredictor.php(122): CodeIgniter\HTTP\CURLRequest->get('https://api.open-meteo.com/v1/forecast?latitude=14.657293&longitude=121.11524&hourly=cloud_cover,precipitation,pressure_msl,relative_humidity_2m,surface_pressure,temperature_2m_max,temperature_2m_min,wind_speed_10m_max,wind_gusts_10m_max,shortwave_radiation_sum&timezone=auto&start_date=2025-08-23&end_date=2025-08-25')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\FloodPredictor->predict_hourly()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FloodPredictor))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-08-24 13:06:32 --> CodeIgniter\HTTP\Exceptions\HTTPException: 22 : The requested URL returned error: 400
+[Method: GET, Route: flood/hourly]
+in SYSTEMPATH\HTTP\CURLRequest.php on line 711.
+ 1 SYSTEMPATH\HTTP\CURLRequest.php(711): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('22', 'The requested URL returned error: 400')
+ 2 SYSTEMPATH\HTTP\CURLRequest.php(381): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH\HTTP\CURLRequest.php(150): CodeIgniter\HTTP\CURLRequest->send('GET', 'https://api.open-meteo.com/v1/forecast?latitude=14.657293&longitude=121.11524&hourly=cloud_cover,precipitation,pressure_msl,relative_humidity_2m,surface_pressure,temperature_2m_max,temperature_2m_min,wind_speed_10m_max,wind_gusts_10m_max,shortwave_radiation_sum&timezone=auto&start_date=2025-08-23&end_date=2025-08-25')
+ 4 SYSTEMPATH\HTTP\CURLRequest.php(185): CodeIgniter\HTTP\CURLRequest->request('GET', 'https://api.open-meteo.com/v1/forecast?latitude=14.657293&longitude=121.11524&hourly=cloud_cover,precipitation,pressure_msl,relative_humidity_2m,surface_pressure,temperature_2m_max,temperature_2m_min,wind_speed_10m_max,wind_gusts_10m_max,shortwave_radiation_sum&timezone=auto&start_date=2025-08-23&end_date=2025-08-25', [])
+ 5 APPPATH\Controllers\FloodPredictor.php(122): CodeIgniter\HTTP\CURLRequest->get('https://api.open-meteo.com/v1/forecast?latitude=14.657293&longitude=121.11524&hourly=cloud_cover,precipitation,pressure_msl,relative_humidity_2m,surface_pressure,temperature_2m_max,temperature_2m_min,wind_speed_10m_max,wind_gusts_10m_max,shortwave_radiation_sum&timezone=auto&start_date=2025-08-23&end_date=2025-08-25')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\FloodPredictor->predict_hourly()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FloodPredictor))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

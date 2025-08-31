@@ -6,7 +6,7 @@ use CodeIgniter\HTTP\CURLRequest;
 
 class FloodPredictor extends BaseController
 {
-   public function predict()
+   public function predict() //daily
 {
     $lat = 14.657293;
     $lon = 121.11524;
@@ -83,5 +83,111 @@ public function riverStatus()
 {
     return view('flood/riverstatus');
 }
+
+public function predict_hourly()
+{
+    $lat = 14.657293;
+    $lon = 121.11524;
+    $start = date('Y-m-d', strtotime('-1 day'));
+    $end   = date('Y-m-d', strtotime('+1 day'));
+
+    // --- hourly weather + wind gusts ---
+    $hourly_params = [
+        'weather_code',
+        'rain',
+        'temperature_2m',
+        'soil_moisture_0_to_7cm',
+        'wind_gusts_10m'
+    ];
+    $hourly_list = implode(',', $hourly_params);
+
+    $wxURL = "https://api.open-meteo.com/v1/forecast?"
+           . "latitude={$lat}&longitude={$lon}"
+           . "&hourly={$hourly_list}"
+           . "&timezone=auto&start_date={$start}&end_date={$end}";
+
+    // --- daily river discharge ---
+    $rvURL = "https://flood-api.open-meteo.com/v1/flood?"
+           . "latitude={$lat}&longitude={$lon}"
+           . "&daily=river_discharge"
+           . "&timezone=auto&start_date={$start}&end_date={$end}";
+
+    $cli = \Config\Services::curlrequest();
+    $wx = json_decode($cli->get($wxURL)->getBody(), true)['hourly'];
+    $rv_daily = json_decode($cli->get($rvURL)->getBody(), true)['daily'];
+
+    // --- map daily river discharge by date ---
+    $discharge_by_date = [];
+    foreach ($rv_daily['time'] as $i => $date) {
+        $discharge_by_date[$date] = $rv_daily['river_discharge'][$i] ?? 0;
+    }
+
+    // --- build hourly payload with discharge + wind gusts ---
+    $batch = [];
+    $count = count($wx['time']);
+    for ($i = 0; $i < $count; $i++) {
+        $dt = $wx['time'][$i];
+        $date_only = substr($dt, 0, 10);
+        $hour_only = (int) substr($dt, 11, 2);
+
+        if ($hour_only % 3 !== 0) continue;
+
+        $batch[] = [
+            'datetime'                        => $dt,
+            'weather_code (wmo code)'         => $wx['weather_code'][$i] ?? 0,
+            'rain (mm)'                       => $wx['rain'][$i] ?? 0,
+            'temp (?C)'                       => $wx['temperature_2m'][$i] ?? 0,
+            'soil_moisture_0_to_7cm (m?/m?)'  => $wx['soil_moisture_0_to_7cm'][$i] ?? 0,
+            'river_discharge (m?/s)'          => $discharge_by_date[$date_only] ?? 0,
+            'wind_gusts_10m (km/h)'           => $wx['wind_gusts_10m'][$i] ?? 0,
+        ];
+    }
+
+    // --- call Python predictor ---
+    $cmd = 'D:/Anaconda/python.exe ../python/predict_hourly.py';
+    $pipes = [];
+    $proc = proc_open(
+        $cmd,
+        [0 => ['pipe', 'r'], 1 => ['pipe', 'w'], 2 => ['pipe', 'w']],
+        $pipes
+    );
+
+    fwrite($pipes[0], json_encode($batch));
+    fclose($pipes[0]);
+
+    $out = stream_get_contents($pipes[1]);
+    fclose($pipes[1]);
+
+    $err = stream_get_contents($pipes[2]);
+    fclose($pipes[2]);
+
+    proc_close($proc);
+
+    if ($err) {
+        return $this->response->setJSON(['error' => $err]);
+    }
+
+    $preds = json_decode($out, true);
+   // --- merge for view ---
+    $hours = [];
+    foreach ($batch as $i => $row) {
+        $hours[] = [
+            'datetime'        => $row['datetime'],
+            'probability'     => $preds[$i]['probability'],
+            'prediction'      => $preds[$i]['prediction'],
+            'weather_code'    => $row['weather_code (wmo code)'],
+            'rain'            => $row['rain (mm)'],
+            'temp'            => $row['temp (?C)'],
+            'soil_0_7'        => $row['soil_moisture_0_to_7cm (m?/m?)'],
+            'discharge'       => $row['river_discharge (m?/s)'],
+            'wind_gusts'      => $row['wind_gusts_10m (km/h)'],
+        ];
+    }
+
+    return view('flood/predict_result_hourly', ['hours' => $hours]);
+}
+
+
+
 
 }
