@@ -2,17 +2,32 @@
 <html>
 <head>
     <title>Hourly Flood Prediction</title>
-        <meta http-equiv="refresh" content="1800">
+    <meta http-equiv="refresh" content="1800">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 40px;
-        }
-        .flood { background-color: #ffe5e5; color: #b30000; }
-        .no-flood { background-color: #e6f7ff; color: #0077b6; }
-        table { border-collapse: collapse; margin: auto; width: 95%; }
-        table th, table td { padding: 8px 12px; border: 1px solid #ccc; text-align: center; }
-        h2 { text-align: center; margin-bottom: 20px; }
+body {
+    font-family: Arial, sans-serif;
+    margin: 40px;
+}
+.flood { background-color: #ffe5e5; color: #b30000; }
+.no-flood { background-color: #e6f7ff; color: #0077b6; }
+table { border-collapse: collapse; margin: auto; width: 95%; }
+table th, table td { padding: 8px 12px; border: 1px solid #ccc; text-align: center; }
+h2 { text-align: center; margin-bottom: 20px; }
+
+/* ✅ New style for Probability column */
+.probability {
+    background-color: #ccffcc; /* light green */
+    color: #006600;            /* dark green text */
+    font-weight: bold;
+}
+
+/* ✅ New style for Prediction column */
+.prediction {
+    background-color: #ffffcc; /* light yellow */
+    color: #333300;            /* dark text */
+    font-weight: bold;
+}
+
     </style>
 </head>
 <body>
@@ -33,8 +48,9 @@
   <?php foreach ($hours as $h): ?>
     <tr class="<?= $h['prediction']==='FLOOD'?'flood':'no-flood' ?>">
       <td><?= esc($h['datetime']) ?></td>
-      <td><?= number_format($h['probability']*100,2) ?></td>
-      <td><?= esc($h['prediction']) ?></td>
+<td class="probability"><?= number_format($h['probability']*100,4) ?></td>
+<td class="prediction"><?= esc($h['prediction']) ?></td>
+
       <td><?= esc($h['weather_code']) ?></td>
       <td><?= esc($h['rain']) ?></td>
       <td><?= esc($h['temp']) ?></td>
