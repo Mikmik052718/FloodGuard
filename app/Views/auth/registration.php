@@ -1,70 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Registration - AlertoMarikeno</title>
-    <link rel="stylesheet" href="<?= base_url('assets/css/register.css') ?>">  <!-- Add your CSS file link -->
+    <title>User Registration - FloodGuard</title>
 </head>
 <body>
+    <h1>Register</h1>
 
-<!-- Home button -->
-<a href="<?= site_url('home') ?>" class="home-button">Home</a>
+    <?php if (session()->getFlashdata('error')): ?>
+        <p style="color:red"><?= session()->getFlashdata('error') ?></p>
+    <?php endif; ?>
 
-<div class="container">
-    <!-- Left section (Form) -->
-    <div class="left-section">
-        <!-- Logo -->
-        <div class="logo">
-            <span class="logo-text">AlertoMarikeno</span>
-        </div>
-        
-        <h3>Create Your Account</h3>
+    <?php if (session()->getFlashdata('success')): ?>
+        <p style="color:green"><?= session()->getFlashdata('success') ?></p>
+    <?php endif; ?>
 
-        <!-- Validation Errors (If any) -->
-        <?php if (isset($validation)): ?>
-            <div style="color:red;">
-                <?= $validation->listErrors() ?>
-            </div>
-        <?php endif; ?>
+    <form method="post" action="<?= site_url('auth/register') ?>">
+        <label>Username:</label><br>
+        <input type="text" name="username" required><br><br>
 
-        <!-- Flash Messages -->
-        <?php if (session()->getFlashdata('error')): ?>
-            <p style="color:red"><?= session()->getFlashdata('error') ?></p>
-        <?php endif; ?>
+        <label>Email:</label><br>
+        <input type="email" name="email" required><br><br>
 
-        <?php if (session()->getFlashdata('success')): ?>
-            <p style="color:green"><?= session()->getFlashdata('success') ?></p>
-        <?php endif; ?>
+        <label>Password:</label><br>
+        <input type="password" name="password" required><br><br>
 
-        <!-- Registration Form -->
-        <form method="post" action="<?= site_url('auth/register') ?>">
-            <?= csrf_field() ?> <!-- CSRF protection -->
+        <label>Confirm Password:</label><br>
+        <input type="password" name="confirm_password" required><br><br>
 
-            <input type="text" name="username" placeholder="Username" required>
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <input type="password" name="confirm_password" placeholder="Confirm Password" required>
-            
-            <button type="submit" class="btn-register">Register</button>
-        </form>
+        <button type="submit">Register</button>
+    </form>
 
+    <br>
+    <a href="<?= site_url('auth/login') ?>">Back to Login</a>
 
-        <!-- Custom Buttons -->
-        <div class="link-actions">
-                <a href="<?= site_url('auth/login') ?>" class="action-chip">Back to login</a>
-                <a href="<?= site_url('flood/predict') ?>" class="action-chip">Flood Prediction</a>
-                <a href="<?= site_url('flood/river-status') ?>" class="action-chip">River Status</a>
-        </div>
-    </div>
-
-    <!-- Right section (Welcome message & social login) -->
-    <div class="right-section">
-        <h2>Welcome Back!</h2>
-        <p>Already have an account? Sign in and continue your journey!</p>
-        <a href="<?= site_url('auth/login') ?>" class="btn-signin">Sign In</a>
-    </div>
-</div>
-
+    <a href="<?= site_url('flood/predict') ?>">Go to Flood Prediction Page</a><br>
+<a href="<?= site_url('flood/river-status') ?>">View River Status</a>
 </body>
 </html>
