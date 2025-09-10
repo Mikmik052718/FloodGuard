@@ -1,0 +1,42 @@
+CRITICAL - 2025-08-13 02:12:10 --> ErrorException: foreach() argument must be of type array|object, null given
+[Method: GET, Route: flood/river-status]
+in APPPATH\Views\flood\riverstatus.php on line 64.
+ 1 APPPATH\Views\flood\riverstatus.php(64): CodeIgniter\Debug\Exceptions->errorHandler(2, 'foreach() argument must be of type array|object, null given', 'D:\\xampp\\htdocs\\FloodGuard\\app\\Views\\flood\\riverstatus.php', 64)
+ 2 SYSTEMPATH\View\View.php(224): include('D:\\xampp\\htdocs\\FloodGuard\\app\\Views\\flood\\riverstatus.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('flood/riverstatus', [], true)
+ 5 APPPATH\Controllers\FloodPredictor.php(84): view('flood/riverstatus')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\FloodPredictor->riverStatus()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FloodPredictor))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-08-13 06:21:02 --> ErrorException: foreach() argument must be of type array|object, null given
+[Method: GET, Route: flood/river-status]
+in APPPATH\Views\flood\riverstatus.php on line 64.
+ 1 APPPATH\Views\flood\riverstatus.php(64): CodeIgniter\Debug\Exceptions->errorHandler(2, 'foreach() argument must be of type array|object, null given', 'D:\\xampp\\htdocs\\FloodGuard\\app\\Views\\flood\\riverstatus.php', 64)
+ 2 SYSTEMPATH\View\View.php(224): include('D:\\xampp\\htdocs\\FloodGuard\\app\\Views\\flood\\riverstatus.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('flood/riverstatus', [], true)
+ 5 APPPATH\Controllers\FloodPredictor.php(84): view('flood/riverstatus')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\FloodPredictor->riverStatus()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FloodPredictor))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-08-13 07:53:54 --> ErrorException: foreach() argument must be of type array|object, null given
+[Method: GET, Route: flood/river-status]
+in APPPATH\Views\flood\riverstatus.php on line 64.
+ 1 APPPATH\Views\flood\riverstatus.php(64): CodeIgniter\Debug\Exceptions->errorHandler(2, 'foreach() argument must be of type array|object, null given', 'D:\\xampp\\htdocs\\FloodGuard\\app\\Views\\flood\\riverstatus.php', 64)
+ 2 SYSTEMPATH\View\View.php(224): include('D:\\xampp\\htdocs\\FloodGuard\\app\\Views\\flood\\riverstatus.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('flood/riverstatus', [], true)
+ 5 APPPATH\Controllers\FloodPredictor.php(84): view('flood/riverstatus')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\FloodPredictor->riverStatus()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FloodPredictor))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
