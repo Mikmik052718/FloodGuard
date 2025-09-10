@@ -90,23 +90,32 @@ input[type="text"], input[type="email"], input[type="password"] {
     background: #17a2b8;
 }
 
+/* Custom Buttons Styling */
 .link-actions {
-    margin-top: 20px;
+    display: flex;
+    justify-content: center;  /* Center buttons horizontally */
+    gap: 15px;  /* Space between buttons */
+    margin-top: 20px;  /* Add space above buttons */
+    flex-wrap: wrap;  /* Allows buttons to wrap to the next line if needed */
 }
 
 .action-chip {
     color: #1cc7a0;
     text-decoration: none;
-    padding: 10px;
-    border: 1px solid #1cc7a0;
-    border-radius: 25px;
+    padding: 10px 25px;
+    border: 1px solid #1cc7a0;  /* Green border */
+    border-radius: 25px;  /* Rounded corners */
     font-weight: bold;
+    background-color: transparent;  /* Transparent background */
+    display: inline-block;  /* Keeps buttons inline */
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .action-chip:hover {
-    background-color: #1cc7a0;
-    color: white;
+    background-color: #1cc7a0;  /* Green background on hover */
+    color: white;  /* White text on hover */
 }
+
 
 .btn-signin {
     background: white;
