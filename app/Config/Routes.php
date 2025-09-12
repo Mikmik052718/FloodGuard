@@ -32,11 +32,12 @@ $routes->post('forum/update/(:num)', 'Forum::update/$1');
 //admin edit
 $routes->get('admin/edit/(:num)', 'Admin::edit/$1');
 $routes->post('admin/update/(:num)', 'Admin::update/$1');
+
 // open meteo 
 $routes->get('/weather', 'Forum::weather');
 $routes->get('/weather-daily', 'Forum::weatherDaily');
-//predictor
-$routes->get('flood/predict', 'FloodPredictor::predict');       // daily
+
+
 $routes->get('flood/predict_hourly', 'FloodPredictor::predict_hourly'); // hourly  08/24/25 18:30
 
 
@@ -47,13 +48,11 @@ $routes->get('/home', 'Home::index');
 //Landing - for the url 
 //Home - to fetch the controller
 //index - to find the method 
-
-//http://localhost/FloodGuard/public/index.php/flood/predict
-
+                                                            //http://localhost/FloodGuard/public/index.php/flood/predict
 // Admin dashboard route (the correct route)
 $routes->get('/admin/admin_dashboard', 'Admin::dashboard');
 
-// trial hourly 08/24/25 18:30
+// predicts
 $routes->get('flood/daily', 'FloodPredictor::predict');
 $routes->get('flood/hourly', 'FloodPredictor::predict_hourly');
 
