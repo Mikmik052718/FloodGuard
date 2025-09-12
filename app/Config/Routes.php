@@ -43,7 +43,7 @@ $routes->get('flood/predict_hourly', 'FloodPredictor::predict_hourly'); // hourl
 //new sto nino info
 $routes->get('flood/river-status', 'FloodPredictor::riverStatus');
 
-$routes->get('/landing', 'Home::index');
+$routes->get('/home', 'Home::index');
 //Landing - for the url 
 //Home - to fetch the controller
 //index - to find the method 
@@ -56,3 +56,5 @@ $routes->get('/admin/admin_dashboard', 'Admin::dashboard');
 // trial hourly 08/24/25 18:30
 $routes->get('flood/daily', 'FloodPredictor::predict');
 $routes->get('flood/hourly', 'FloodPredictor::predict_hourly');
+
+$routes->get('/landing', 'Landingpagecontroller::landing');
