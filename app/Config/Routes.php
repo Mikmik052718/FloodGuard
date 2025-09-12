@@ -57,4 +57,14 @@ $routes->get('/admin/admin_dashboard', 'Admin::dashboard');
 $routes->get('flood/daily', 'FloodPredictor::predict');
 $routes->get('flood/hourly', 'FloodPredictor::predict_hourly');
 
+//09/09/25
+$routes->get('emailtest', 'Email_cont::index');
+
+$routes->get('emailtest', 'Email_cont::index');        // single test
+$routes->get('send-emails', 'Email_cont::sendToUsers'); // send to users
+
+$routes->get('email', 'Email_cont::form');        // show form
+$routes->post('email/send', 'Email_cont::sendEmail'); // process form
+
+
 $routes->get('/landing', 'Landingpagecontroller::landing');
