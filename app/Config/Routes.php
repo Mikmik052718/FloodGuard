@@ -52,8 +52,9 @@ $routes->get('/home', 'Home::index');
 // Admin dashboard route (the correct route)
 $routes->get('/admin/admin_dashboard', 'Admin::dashboard');
 
-// predicts
-$routes->get('flood/predict', 'FloodPredictor::predict');
+// trial hourly 08/24/25 18:30
+$routes->get('flood/daily', 'FloodPredictor::predict');
+$routes->get('flood/hourly', 'FloodPredictor::predict_hourly');
 
 //09/09/25
 $routes->get('emailtest', 'Email_cont::index');
