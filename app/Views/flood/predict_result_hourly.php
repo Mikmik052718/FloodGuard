@@ -27,39 +27,63 @@ h2 { text-align: center; margin-bottom: 20px; }
     color: #333300;            /* dark text */
     font-weight: bold;
 }
-
     </style>
 </head>
 <body>
 <h2> Hourly Flood Prediction</h2>
 
-<table>
-  <tr>
-    <th>Datetime</th>
-    <th>Prob&nbsp;%</th>
-    <th>Prediction</th>
-    <th>W-code</th>
-    <th>Rain&nbsp;mm</th>
-    <th>Temp&nbsp;°C</th>
-    <th>Soil 0-7cm</th>
-    <th>Discharge m³/s</th>
-    <th>Wind Gusts km/h</th>
-  </tr>
-  <?php foreach ($hours as $h): ?>
-    <tr class="<?= $h['prediction']==='FLOOD'?'flood':'no-flood' ?>">
-      <td><?= esc($h['datetime']) ?></td>
-<td class="probability"><?= number_format($h['probability']*100,4) ?></td>
-<td class="prediction"><?= esc($h['prediction']) ?></td>
-
-      <td><?= esc($h['weather_code']) ?></td>
-      <td><?= esc($h['rain']) ?></td>
-      <td><?= esc($h['temp']) ?></td>
-      <td><?= esc($h['soil_0_7']) ?></td>
-      <td><?= esc($h['discharge']) ?></td>
-      <td><?= esc($h['wind_gusts']) ?></td>
+<table id="hourlyTable">
+  <thead>
+    <tr>
+      <th>Datetime</th>
+      <th>Prob&nbsp;%</th>
+      <th>Prediction</th>
+      <th>W-code</th>
+      <th>Rain&nbsp;mm</th>
+      <th>Temp&nbsp;°C</th>
+      <th>Soil 0-7cm</th>
+      <th>Discharge m³/s</th>
+      <th>Wind Gusts km/h</th>
     </tr>
-  <?php endforeach; ?>
+  </thead>
+  <tbody>
+    <tr><td colspan="9" style="text-align:center;">Loading predictions...</td></tr>
+  </tbody>
 </table>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    fetch("<?= site_url('flood/hourly/data') ?>")
+      .then(res => res.json())
+      .then(data => {
+          const tbody = document.querySelector("#hourlyTable tbody");
+          tbody.innerHTML = "";
+          if (data.error) {
+              tbody.innerHTML = `<tr><td colspan="9" style="color:red;text-align:center;">Error: ${data.error}</td></tr>`;
+              return;
+          }
+          data.hours.forEach(h => {
+              const row = document.createElement("tr");
+              row.className = (h.prediction === "FLOOD") ? "flood" : "no-flood";
+              row.innerHTML = `
+                <td>${h.datetime}</td>
+                <td class="probability">${(h.probability*100).toFixed(4)}</td>
+                <td class="prediction">${h.prediction}</td>
+                <td>${h.weather_code}</td>
+                <td>${h.rain}</td>
+                <td>${h.temp}</td>
+                <td>${h.soil_0_7}</td>
+                <td>${h.discharge}</td>
+                <td>${h.wind_gusts}</td>`;
+              tbody.appendChild(row);
+          });
+      })
+      .catch(err => {
+          document.querySelector("#hourlyTable tbody").innerHTML = `<tr><td colspan="9" style="color:red;text-align:center;">Failed to load data.</td></tr>`;
+          console.error(err);
+      });
+});
+</script>
 
 </body>
 </html>
