@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use CodeIgniter\HTTP\CURLRequest;
+use App\Models\UserLocationModel;
 
 class FloodPredictor extends BaseController
 {
@@ -11,6 +12,13 @@ class FloodPredictor extends BaseController
     public function index()
     {
         return view('flood/predict_page');
+    }
+
+    // New method for predict result with session support
+    public function predictWithSession()
+    {
+        // Page loads immediately, data is fetched asynchronously via AJAX
+        return view('flood/predict_result_with_session');
     }
 
  public function predictAjax()
@@ -249,6 +257,72 @@ public function riverStatus()
         }
 
         return $this->response->setJSON(['hours' => $hours]);
+    }
+
+    // Save user location
+    public function saveUserLocation()
+    {
+        // Check if user is logged in
+        if (!session()->get('logged_in')) {
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'User not logged in'
+            ]);
+        }
+
+        $lat = $this->request->getPost('lat');
+        $lon = $this->request->getPost('lon');
+        $hazardLevel = $this->request->getPost('hazard_level');
+        $userId = session()->get('user_id');
+
+        if (!$lat || !$lon) {
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'Latitude and longitude are required'
+            ]);
+        }
+
+        $locationModel = new UserLocationModel();
+        $result = $locationModel->updateOrCreateUserLocation($userId, $lat, $lon, $hazardLevel);
+
+        if ($result) {
+            return $this->response->setJSON([
+                'status' => 'success',
+                'message' => 'Location saved successfully'
+            ]);
+        } else {
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'Failed to save location'
+            ]);
+        }
+    }
+
+    // Get user's saved location
+    public function getUserLocation()
+    {
+        if (!session()->get('logged_in')) {
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'User not logged in'
+            ]);
+        }
+
+        $userId = session()->get('user_id');
+        $locationModel = new UserLocationModel();
+        $location = $locationModel->getUserLocation($userId);
+
+        if ($location) {
+            return $this->response->setJSON([
+                'status' => 'success',
+                'location' => $location
+            ]);
+        } else {
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'No saved location found'
+            ]);
+        }
     }
 }    
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 14, 2025 at 09:16 AM
+-- Generation Time: Jul 27, 2025 at 07:35 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -72,43 +72,22 @@ INSERT INTO `posts` (`id`, `author_name`, `title`, `content`, `created_at`) VALU
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `email_verified_at` datetime DEFAULT NULL,
+  `email` varchar(100) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `role` varchar(50) NOT NULL DEFAULT 'user',
+  `role` enum('admin','user') DEFAULT 'user',
   `created_at` datetime DEFAULT current_timestamp(),
-  `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `is_active` tinyint(1) NOT NULL DEFAULT 1,
-  `alert_email_enabled` tinyint(1) NOT NULL DEFAULT 1,
-  `alert_min_probability` decimal(5,2) NOT NULL DEFAULT 50.00,
-  `alert_restrict_to_red` tinyint(1) NOT NULL DEFAULT 1,
-  `last_login_at` datetime DEFAULT NULL
+  `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `email`, `email_verified_at`, `password`, `role`, `created_at`, `updated_at`, `is_active`, `alert_email_enabled`, `alert_min_probability`, `alert_restrict_to_red`, `last_login_at`) VALUES
-(1, 'admin', 'atest@gmail.com', NULL, '$2y$10$hUFpZcCHSO8H6A89v.6RIu0kmuNKoMcGhT1CqU3e0Xg0LuWRO47wa', 'admin', '2025-07-26 13:41:59', '2025-09-13 17:45:48', 1, 1, 50.00, 1, NULL),
-(3, 'admin1', 'btest@gmail.com', NULL, '$2y$10$5g8iShR49bYfoVmwEavu7ukHxX/UX4jDpuarhSD5hbFgj8ZKNvjPW', 'admin', '2025-07-26 13:41:59', '2025-09-13 17:45:56', 1, 1, 50.00, 1, NULL),
-(4, 'user123', 'thethe642@gmail.com', NULL, '$2y$10$5ig/CvJwwR8f2m7ckuDoBOb4Ci0AH7Bc.FfeuBu/kTDPFL5rQOanO', 'user', '2025-07-26 13:41:59', '2025-09-12 17:40:14', 1, 1, 50.00, 1, NULL),
-(5, '0726251343', 'spiderman2099@gmail.com', NULL, '$2y$10$EKjvzoNYBX3TltYb7vBLF.dm/PdY/Z8zRL660kpNZi46hpYJKssxi', 'user', '2025-07-26 05:43:42', '2025-09-09 21:16:53', 1, 1, 50.00, 1, NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `user_locations`
---
-
-CREATE TABLE `user_locations` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `lat` decimal(9,6) NOT NULL,
-  `lon` decimal(9,6) NOT NULL,
-  `hazard_level` enum('RED','ORANGE','YELLOW','GREEN') DEFAULT NULL,
-  `last_checked_at` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+INSERT INTO `users` (`id`, `username`, `email`, `password`, `role`, `created_at`, `updated_at`) VALUES
+(1, 'admin', '', '$2y$10$hUFpZcCHSO8H6A89v.6RIu0kmuNKoMcGhT1CqU3e0Xg0LuWRO47wa', 'admin', '2025-07-26 13:41:59', '2025-07-26 13:41:59'),
+(3, 'admin1', '', '$2y$10$5g8iShR49bYfoVmwEavu7ukHxX/UX4jDpuarhSD5hbFgj8ZKNvjPW', 'admin', '2025-07-26 13:41:59', '2025-07-26 13:41:59'),
+(4, 'user123', '', '$2y$10$5ig/CvJwwR8f2m7ckuDoBOb4Ci0AH7Bc.FfeuBu/kTDPFL5rQOanO', 'user', '2025-07-26 13:41:59', '2025-07-26 13:41:59'),
+(5, '0726251343', '0726251343@gmail.com', '$2y$10$EKjvzoNYBX3TltYb7vBLF.dm/PdY/Z8zRL660kpNZi46hpYJKssxi', 'user', '2025-07-26 05:43:42', '2025-07-26 05:43:42');
 
 -- --------------------------------------------------------
 
@@ -166,15 +145,7 @@ ALTER TABLE `posts`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `username` (`username`),
-  ADD UNIQUE KEY `uq_users_email` (`email`);
-
---
--- Indexes for table `user_locations`
---
-ALTER TABLE `user_locations`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `idx_ul_user` (`user_id`);
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- Indexes for table `weather_daily`
@@ -206,26 +177,10 @@ ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `user_locations`
---
-ALTER TABLE `user_locations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `weather_daily`
 --
 ALTER TABLE `weather_daily`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `user_locations`
---
-ALTER TABLE `user_locations`
-  ADD CONSTRAINT `fk_ul_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

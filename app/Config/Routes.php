@@ -17,9 +17,15 @@ $routes->get('/auth/register', 'Auth::register');
 $routes->post('/auth/register', 'Auth::handleRegister');
 
 
-$routes->get('/auth/login', 'Auth::login');
+$routes->get('/auth/adlogin', 'Auth::adlogin');                                 //admin login
+$routes->get('/auth/uslogin', 'Auth::uslogin');                                 //user login
+
 $routes->post('/auth/attemptLogin', 'Auth::attemptLogin');
 $routes->get('/auth/logout', 'Auth::logout');
+
+// Google OAuth routes
+$routes->get('/auth/google', 'Auth::googleLogin');
+$routes->get('/auth/google/callback', 'Auth::googleCallback');
 
 // old $routes->get('/admin/posts', 'Forum::adminPosts'); 
 
@@ -53,8 +59,8 @@ $routes->get('/home', 'Home::index');
 $routes->get('/admin/admin_dashboard', 'Admin::dashboard');
 
 // trial hourly 08/24/25 18:30
-$routes->get('flood/daily', 'FloodPredictor::predict');
-$routes->get('flood/hourly', 'FloodPredictor::predict_hourly');
+//$routes->get('flood/daily', 'FloodPredictor::predict');
+//$routes->get('flood/hourly', 'FloodPredictor::predict_hourly');
 
 //09/09/25
 $routes->get('emailtest', 'Email_cont::index');
@@ -69,7 +75,12 @@ $routes->get('/landing', 'Landingpagecontroller::landing'); //landing
 //091325 DAILY
 $routes->get('flood/daily', 'FloodPredictor::index');
 $routes->get('flood/predict-ajax', 'FloodPredictor::predictAjax');
+$routes->get('flood/predict-with-session', 'FloodPredictor::predictWithSession');
 
 $routes->get('flood/hourly', 'FloodPredictor::hourly');
 $routes->get('flood/hourly/data', 'FloodPredictor::predict_hourly_ajax');
+
+// User location routes
+$routes->post('flood/save-location', 'FloodPredictor::saveUserLocation');
+$routes->get('flood/get-location', 'FloodPredictor::getUserLocation');
 

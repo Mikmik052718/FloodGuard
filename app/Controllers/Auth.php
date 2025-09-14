@@ -3,13 +3,20 @@
 namespace App\Controllers;
 
 use App\Models\UserModel;
+use Google\Client;
+use Google\Service\Oauth2;
 
 class Auth extends BaseController
 {
     // Login page
-    public function login()
+    public function adlogin()
     {
-        return view('auth/login');
+        return view('auth/adlogin');
+    }
+
+    public function uslogin()
+    {
+        return view('auth/uslogin');
     }
 
     // Attempt login
@@ -36,8 +43,10 @@ class Auth extends BaseController
             // Redirect to the admin dashboard if the user is an admin
             if ($user['role'] === 'admin') {
                 return redirect()->to('/admin/admin_dashboard');  // Redirect to admin dashboard route
+            } elseif ($user['role'] === 'user') {
+            return redirect()->to('/home');
             } else {
-                return redirect()->to('/forum');  // Redirect to the forum for non-admin users
+                return redirect()->to('/landing');  // Redirect to the forum for non-admin users
             }
         } else {
             // Invalid login credentials
@@ -49,7 +58,7 @@ class Auth extends BaseController
     public function logout()
     {
         session()->destroy();
-        return redirect()->to('/auth/login');
+        return redirect()->to('/auth/uslogin');
     }
 
     // Registration page
@@ -93,6 +102,148 @@ class Auth extends BaseController
             'role' => 'user'  // Default role is 'user'
         ]);
 
-        return redirect()->to('auth/login')->with('success', 'Registration successful! You can now login.');
+        return redirect()->to('auth/uslogin')->with('success', 'Registration successful! You can now login.');
+    }
+
+    // Google OAuth Login
+    public function googleLogin()
+    {
+        $googleConfig = config('Google');
+
+        $client = new Client();
+        $client->setClientId($googleConfig->clientId);
+        $client->setClientSecret($googleConfig->clientSecret);
+        $client->setRedirectUri($googleConfig->redirectUri);
+        $client->addScope($googleConfig->scopes);
+
+        // Generate and store state for CSRF protection
+        $state = bin2hex(random_bytes(16));
+        session()->set('oauth_state', $state);
+        $client->setState($state);
+
+        // Get authorization URL
+        $authUrl = $client->createAuthUrl();
+
+        return redirect()->to($authUrl);
+    }
+
+    // Google OAuth Callback
+    public function googleCallback()
+    {
+        $googleConfig = config('Google');
+        $model = new UserModel();
+
+        // Verify state parameter for CSRF protection
+        $state = $this->request->getGet('state');
+        if ($state !== session()->get('oauth_state')) {
+            return redirect()->to('/auth/uslogin')->with('error', 'Invalid OAuth state');
+        }
+
+        // Check for error
+        if ($this->request->getGet('error')) {
+            return redirect()->to('/auth/uslogin')->with('error', 'Google login failed');
+        }
+
+        // Get authorization code
+        $code = $this->request->getGet('code');
+        if (!$code) {
+            return redirect()->to('/auth/uslogin')->with('error', 'Authorization code missing');
+        }
+
+        try {
+            // Exchange code for access token
+            $client = new Client();
+            $client->setClientId($googleConfig->clientId);
+            $client->setClientSecret($googleConfig->clientSecret);
+            $client->setRedirectUri($googleConfig->redirectUri);
+
+            $token = $client->fetchAccessTokenWithAuthCode($code);
+
+            if (isset($token['error'])) {
+                return redirect()->to('/auth/uslogin')->with('error', 'Failed to get access token');
+            }
+
+            $client->setAccessToken($token);
+
+            // Get user info from Google
+            $oauth2 = new Oauth2($client);
+            $googleUser = $oauth2->userinfo->get();
+
+            // Check if user already exists by Google ID
+            $existingUser = $model->findByGoogleId($googleUser->id);
+
+            if ($existingUser) {
+                // User exists, log them in
+                $user = $existingUser;
+            } else {
+                // Check if user exists by email
+                $existingUserByEmail = $model->findByEmail($googleUser->email);
+
+                if ($existingUserByEmail) {
+                    // Link Google account to existing user
+                    $model->update($existingUserByEmail['id'], [
+                        'google_id' => $googleUser->id,
+                        'google_name' => $googleUser->name,
+                        'google_picture' => $googleUser->picture
+                    ]);
+                    $user = $model->find($existingUserByEmail['id']);
+                } else {
+                    // Create new user
+                    $userData = [
+                        'username' => $this->generateUniqueUsername($googleUser->email),
+                        'email' => $googleUser->email,
+                        'google_id' => $googleUser->id,
+                        'google_name' => $googleUser->name,
+                        'google_picture' => $googleUser->picture,
+                        'role' => 'user'
+                    ];
+
+                    $model->save($userData);
+                    $user = $model->findByGoogleId($googleUser->id);
+                }
+            }
+
+            // Set session data
+            session()->set([
+                'user_id' => $user['id'],
+                'username' => $user['username'],
+                'email' => $user['email'],
+                'role' => $user['role'],
+                'google_id' => $user['google_id'],
+                'google_name' => $user['google_name'],
+                'google_picture' => $user['google_picture'],
+                'logged_in' => true,
+            ]);
+
+            // Clear OAuth state
+            session()->remove('oauth_state');
+
+            // Redirect based on role
+            if ($user['role'] === 'admin') {
+                return redirect()->to('/admin/admin_dashboard');
+            } else {
+                return redirect()->to('/home');
+            }
+
+        } catch (\Exception $e) {
+            log_message('error', 'Google OAuth error: ' . $e->getMessage());
+            return redirect()->to('/auth/uslogin')->with('error', 'Google login failed');
+        }
+    }
+
+    // Generate unique username from email
+    private function generateUniqueUsername(string $email): string
+    {
+        $baseUsername = explode('@', $email)[0];
+        $username = $baseUsername;
+        $counter = 1;
+
+        $model = new UserModel();
+        while ($model->where('username', $username)->first()) {
+            $username = $baseUsername . $counter;
+            $counter++;
+        }
+
+        return $username;
     }
 }
