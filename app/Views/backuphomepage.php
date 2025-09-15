@@ -30,7 +30,7 @@
                     <!-- PALINK NGA TO JE SA newlanding -->
                     <a class="navbar-brand" href="<?= base_url('status/newlanding') ?>">
                         <i class="bi-back"></i>
-                        <span>AlertoMarikeno</span>
+                        <span>Flood</span>
                     </a>
 
                     <div class="d-lg-none ms-auto me-4">
@@ -67,10 +67,9 @@
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Pages</a>
 
                                 <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
-                                    <li><a class="dropdown-item" href="<?= site_url('forum') ?>">NEWS FEED</a></li>
-                                    <li><a class="dropdown-item" href="<?= site_url('flood/predict-with-session') ?>">FLOOD HAZARD MAPS</a></li>
+                                    <li><a class="dropdown-item" href="http://localhost/bit3_ci/index.php/Status">NEWS FEED</a></li>
 
-
+                                    <li><a class="dropdown-item" href="https://noah.up.edu.ph/know-your-hazards">FLOOD HAZARD MAPS</a></li>
                                 </ul>
                             </li>
                         </ul>

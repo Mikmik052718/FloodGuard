@@ -12,7 +12,7 @@
         </p>
     <?php endif; ?>
 
-    <a href="<?= site_url('forum/create') ?>">Create New Post</a>
+    <a href="<?= site_url('forum/create') ?>">Create New Post </a>
     <hr>
 
     <?php foreach ($posts as $post): ?>

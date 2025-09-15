@@ -63,9 +63,10 @@ class FloodPredictor extends BaseController
         }
 
         // Call Python model
-        $cmd = 'D:/Anaconda/python.exe ../python/predict.py';
+        // Mikmik (Jer dito yung pinalitang ko) V
+        $cmd = 'C:\\Users\\Mikmik\\AppData\\Local\\Programs\\Python\\Python313\\python.exe C:\\xampp\\htdocs\\FloodGuard\\python\\predict.py';
         $pipes = [];
-        $proc = proc_open($cmd, [0=>['pipe','r'],1=>['pipe','w'],2=>['pipe','w']], $pipes);
+   w     $proc = proc_open($cmd, [0=>['pipe','r'],1=>['pipe','w'],2=>['pipe','w']], $pipes);
         fwrite($pipes[0], json_encode($batch)); fclose($pipes[0]);
         $out = stream_get_contents($pipes[1]);    fclose($pipes[1]);
         $err = stream_get_contents($pipes[2]);    fclose($pipes[2]);
@@ -220,8 +221,8 @@ public function riverStatus()
                 'wind_gusts_10m (km/h)'           => $wx['wind_gusts_10m'][$i] ?? 0,
             ];
         }
-
-        $cmd = 'D:/Anaconda/python.exe ../python/predict_hourly.py';
+        //Mikmik (Jer)
+        $cmd = 'C:\\Users\\Mikmik\\AppData\\Local\\Programs\\Python\\Python313\\python.exe C:\\xampp\\htdocs\\FloodGuard\\python\\predict_hourly.py';
         $pipes = [];
         $proc = proc_open($cmd, [0 => ['pipe','r'], 1 => ['pipe','w'], 2 => ['pipe','w']], $pipes);
 
