@@ -92,13 +92,7 @@
 
                             <h6 class="text-center">platform for flood alert</h6>
 
-                            <form id="mapSearchForm" class="custom-form mt-4 pt-2 mb-lg-0 mb-5" role="search" onsubmit="return findNearestCenter();">
-                                <div class="input-group input-group-lg">
-                                    <span class="input-group-text">📍</span>
-                                    <input name="keyword" type="search" class="form-control" id="keyword" placeholder="Getting your current location..." aria-label="Search for your location">
-                                    <button type="submit" class="btn btn-primary">Search</button>
-                                </div>
-                            </form>
+                            <button type="button" class="btn btn-primary btn-lg mt-4" onclick="findNearestCenter()">Find Nearest Evacuation Center</button>
                         </div>
 
                     </div>
@@ -821,44 +815,40 @@ Anyone with a stable internet connection and a device with a web browser can use
 
     // Predefined evacuation centers
 const landmarks = [
-  { name: "MALANDAY ELEMENTARY SCHOOL",        lat: 14.65028, lon: 121.09441 },
-  { name: "H. BAUTISTA ELEMENTARY SCHOOL",      lat: 14.65778, lon: 121.10417 },
-  { name: "NANGKA ELEMENTARY SCHOOL",           lat: 14.67278, lon: 121.10833 },
-  { name: "CONCEPCION INTEGRATED SCHOOL ES",    lat: 14.65056, lon: 121.10167 },
-  { name: "CONCEPCION INTEGRATED SCHOOL SL",    lat: 14.65056, lon: 121.10167 },
-  { name: "CONCEPCION ELEMENTARY SCHOOL",       lat: 14.64778, lon: 121.10361 },
-  { name: "STO. NIÑO ELEMENTARY SCHOOL",        lat: 14.63833, lon: 121.09611 }
-
-    { name: "STO. NIÑO NATIONAL HIGH SCHOOL",       lat: 14.63901, lon: 121.09625 },
+  { name: "MALANDAY ELEMENTARY SCHOOL", lat: 14.65028, lon: 121.09441 },
+  { name: "H. BAUTISTA ELEMENTARY SCHOOL", lat: 14.65778, lon: 121.10417 },
+  { name: "NANGKA ELEMENTARY SCHOOL", lat: 14.67278, lon: 121.10833 },
+  { name: "CONCEPCION INTEGRATED SCHOOL ES", lat: 14.65056, lon: 121.10167 },
+  { name: "CONCEPCION INTEGRATED SCHOOL SL", lat: 14.65056, lon: 121.10167 },
+  { name: "CONCEPCION ELEMENTARY SCHOOL", lat: 14.64778, lon: 121.10361 },
+  { name: "STO. NIÑO ELEMENTARY SCHOOL", lat: 14.63833, lon: 121.09611 },
+  { name: "STO. NIÑO NATIONAL HIGH SCHOOL", lat: 14.63901, lon: 121.09625 },
   { name: "LEODEGARIO VICTORINO ELEMENTARY SCHOOL", lat: 14.63541, lon: 121.09021 },
-  { name: "FILIPINAS GYM",                         lat: 14.649, lon: 121.093 }, // Approximate from Visayas St. location
-  { name: "SAMPAGUITA GYM",                        lat: 14.64899, lon: 121.09375 },
-  { name: "MARIKINA ELEMENTARY SCHOOL",            lat: 14.63113, lon: 121.09769 },
-  { name: "STA. ELENA HIGH SCHOOL",                lat: 14.63268, lon: 121.09648 },
-  { name: "NANGKA GYM",                            lat: 14.67247, lon: 121.10841 }
-
-    { name: "KALUMPANG ELEMENTARY SCHOOL",      lat: 14.62222, lon: 121.09000 }, // approx from Calumpang area
-  { name: "KALUMPANG NHS",                    lat: 14.62222, lon: 121.09000 }, // same location (general barangay area)
-  { name: "SAN ROQUE ELEMENTARY SCHOOL",      lat: 14.62306, lon: 121.09694 },
-  { name: "SAN ROQUE HIGH SCHOOL",            lat: 14.62299, lon: 121.09657 },
-  { name: "BARANGKA ELEMENTARY SCHOOL",       lat: 14.63333, lon: 121.08167 },
-  { name: "TANONG HIGH SCHOOL",               lat: 14.63418, lon: 121.08533 },
-  { name: "PLMAR (GREENHEIGHTS)",             lat: 14.65826, lon: 121.10604 }
-
-    { name: "IVS COVERED COURT",               lat: 14.63461, lon: 121.09842 }, // Marikina Sports Center approximate :contentReference[oaicite:0]{index=0}
-  { name: "JESUS DELA PEÑA NATIONAL HIGH SCHOOL", lat: 14.6352, lon: 121.09002 }, // Mapcarta (OpenStreetMap) :contentReference[oaicite:1]{index=1}
-  { name: "MARIKINA HIGH SCHOOL",           lat: 14.64712, lon: 121.10343 }, // Mapcarta :contentReference[oaicite:2]{index=2}
-  { name: "PARANG ELEMENTARY SCHOOL",       lat: 14.65722, lon: 121.11167 }, // From Wikimapia: 14°39′26″ N, 121°6′42″ E → ~14.65722, 121.11167 :contentReference[oaicite:3]{index=3}
-  { name: "PARANG HIGH SCHOOL",             lat: 14.6635, lon: 121.11237 }, // Mapcarta :contentReference[oaicite:4]{index=4}
-  { name: "FORTUNE ELEMENTARY SCHOOL",      lat: 14.65917, lon: 121.12639 }  // From Wikimapia: 14°39′33″ N, 121°7′35″ E → ~14.65917, 121.12639 :contentReference[oaicite:5]{index=5}
-
-   { name: "FORTUNE HIGH SCHOOL",             lat: 14.65944, lon: 121.12694 },
-  { name: "ST. MARY ELEMENTARY SCHOOL",      lat: 14.66861, lon: 121.11361 },
-  { name: "SSS VILLAGE ELEMENTARY SCHOOL",   lat: 14.64000, lon: 121.12111 },
-  { name: "SSS NATIONAL HIGH SCHOOL",        lat: 14.64000, lon: 121.12111 },
-  { name: "KAP. MOY ELEMENTARY SCHOOL",      lat: 14.64944, lon: 121.11833 },
-  { name: "MARIKINA HIGH SCHOOL",            lat: 14.64667, lon: 121.10306 },
-  { name: "MARIKINA HEIGHTS HIGH SCHOOL",    lat: 14.64806, lon: 121.11806 } 
+  { name: "FILIPINAS GYM", lat: 14.649, lon: 121.093 },
+  { name: "SAMPAGUITA GYM", lat: 14.64899, lon: 121.09375 },
+  { name: "MARIKINA ELEMENTARY SCHOOL", lat: 14.63113, lon: 121.09769 },
+  { name: "STA. ELENA HIGH SCHOOL", lat: 14.63268, lon: 121.09648 },
+  { name: "NANGKA GYM", lat: 14.67247, lon: 121.10841 },
+  { name: "KALUMPANG ELEMENTARY SCHOOL", lat: 14.62222, lon: 121.09000 },
+  { name: "KALUMPANG NHS", lat: 14.62222, lon: 121.09000 },
+  { name: "SAN ROQUE ELEMENTARY SCHOOL", lat: 14.62306, lon: 121.09694 },
+  { name: "SAN ROQUE HIGH SCHOOL", lat: 14.62299, lon: 121.09657 },
+  { name: "BARANGKA ELEMENTARY SCHOOL", lat: 14.63333, lon: 121.08167 },
+  { name: "TANONG HIGH SCHOOL", lat: 14.63418, lon: 121.08533 },
+  { name: "PLMAR (GREENHEIGHTS)", lat: 14.65826, lon: 121.10604 },
+  { name: "IVS COVERED COURT", lat: 14.63461, lon: 121.09842 },
+  { name: "JESUS DELA PEÑA NATIONAL HIGH SCHOOL", lat: 14.6352, lon: 121.09002 },
+  { name: "MARIKINA HIGH SCHOOL", lat: 14.64712, lon: 121.10343 },
+  { name: "PARANG ELEMENTARY SCHOOL", lat: 14.65722, lon: 121.11167 },
+  { name: "PARANG HIGH SCHOOL", lat: 14.6635, lon: 121.11237 },
+  { name: "FORTUNE ELEMENTARY SCHOOL", lat: 14.65917, lon: 121.12639 },
+  { name: "FORTUNE HIGH SCHOOL", lat: 14.65944, lon: 121.12694 },
+  { name: "ST. MARY ELEMENTARY SCHOOL", lat: 14.66861, lon: 121.11361 },
+  { name: "SSS VILLAGE ELEMENTARY SCHOOL", lat: 14.64000, lon: 121.12111 },
+  { name: "SSS NATIONAL HIGH SCHOOL", lat: 14.64000, lon: 121.12111 },
+  { name: "KAP. MOY ELEMENTARY SCHOOL", lat: 14.64944, lon: 121.11833 },
+  { name: "MARIKINA HIGH SCHOOL", lat: 14.64667, lon: 121.10306 },
+  { name: "MARIKINA HEIGHTS HIGH SCHOOL", lat: 14.64806, lon: 121.11806 }
 ];
 
 
@@ -927,6 +917,7 @@ const landmarks = [
         document.getElementById("modalOverlay").style.display = "block";
         document.getElementById("confirmRedirect").onclick = function () {
             window.open(mapsUrl, "_blank");
+            closeModal();
         };
 
         return false; // prevent form submission

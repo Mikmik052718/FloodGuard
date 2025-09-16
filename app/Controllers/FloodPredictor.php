@@ -14,11 +14,11 @@ class FloodPredictor extends BaseController
         return view('flood/predict_page');
     }
 
-    // New method for predict result with session support
-    public function predictWithSession()
+    // New method for hazard maps with session support
+    public function hazardMaps()
     {
-        // Page loads immediately, data is fetched asynchronously via AJAX
-        return view('flood/predict_result_with_session');
+        // Page loads immediately, map is displayed
+        return view('flood/hazard_maps');
     }
 
  public function predictAjax()
@@ -64,9 +64,10 @@ class FloodPredictor extends BaseController
 
         // Call Python model
         // Mikmik (Jer dito yung pinalitang ko) V
-        $cmd = 'C:\\Users\\Mikmik\\AppData\\Local\\Programs\\Python\\Python313\\python.exe C:\\xampp\\htdocs\\FloodGuard\\python\\predict.py';
+        $cmd = 'D:/Anaconda/python.exe ../python/predict.py'; //jer location
+        //$cmd = 'C:\\Users\\Mikmik\\AppData\\Local\\Programs\\Python\\Python313\\python.exe C:\\xampp\\htdocs\\FloodGuard\\python\\predict.py';
         $pipes = [];
-   w     $proc = proc_open($cmd, [0=>['pipe','r'],1=>['pipe','w'],2=>['pipe','w']], $pipes);
+        $proc = proc_open($cmd, [0=>['pipe','r'],1=>['pipe','w'],2=>['pipe','w']], $pipes);
         fwrite($pipes[0], json_encode($batch)); fclose($pipes[0]);
         $out = stream_get_contents($pipes[1]);    fclose($pipes[1]);
         $err = stream_get_contents($pipes[2]);    fclose($pipes[2]);
@@ -222,7 +223,8 @@ public function riverStatus()
             ];
         }
         //Mikmik (Jer)
-        $cmd = 'C:\\Users\\Mikmik\\AppData\\Local\\Programs\\Python\\Python313\\python.exe C:\\xampp\\htdocs\\FloodGuard\\python\\predict_hourly.py';
+        $cmd = 'D:/Anaconda/python.exe ../python/predict_hourly.py';
+        //$cmd = 'C:\\Users\\Mikmik\\AppData\\Local\\Programs\\Python\\Python313\\python.exe C:\\xampp\\htdocs\\FloodGuard\\python\\predict_hourly.py';
         $pipes = [];
         $proc = proc_open($cmd, [0 => ['pipe','r'], 1 => ['pipe','w'], 2 => ['pipe','w']], $pipes);
 

@@ -1,0 +1,212 @@
+CRITICAL - 2025-09-16 04:09:56 --> ErrorException: fwrite(): Write of 4500 bytes failed with errno=32 Broken pipe
+[Method: GET, Route: flood/hourly/data]
+in APPPATH\Controllers\FloodPredictor.php on line 230.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(8, 'fwrite(): Write of 4500 bytes failed with errno=32 Broken pipe', 'D:\\xampp\\htdocs\\FloodGuard\\app\\Controllers\\FloodPredictor.php', 230)
+ 2 APPPATH\Controllers\FloodPredictor.php(230): fwrite(NULL, '[{"datetime":"2025-09-15T00:00","weather_code (wmo code)":45,"rain (mm)":0,"temp (?C)":25.5,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":6.13,"wind_gusts_10m (km\\/h)":2.9},{"datetime":"2025-09-15T03:00","weather_code (wmo code)":45,"rain (mm)":0,"temp (?C)":25.3,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":6.13,"wind_gusts_10m (km\\/h)":5},{"datetime":"2025-09-15T06:00","weather_code (wmo code)":45,"rain (mm)":0,"temp (?C)":25,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":6.13,"wind_gusts_10m (km\\/h)":3.2},{"datetime":"2025-09-15T09:00","weather_code (wmo code)":80,"rain (mm)":0,"temp (?C)":28.3,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":6.13,"wind_gusts_10m (km\\/h)":23.4},{"datetime":"2025-09-15T12:00","weather_code (wmo code)":3,"rain (mm)":0,"temp (?C)":31.4,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":6.13,"wind_gusts_10m (km\\/h)":24.8},{"datetime":"2025-09-15T15:00","weather_code (wmo code)":3,"rain (mm)":0,"temp (?C)":32.4,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":6.13,"wind_gusts_10m (km\\/h)":8.6},{"datetime":"2025-09-15T18:00","weather_code (wmo code)":3,"rain (mm)":0,"temp (?C)":30,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":6.13,"wind_gusts_10m (km\\/h)":12.6},{"datetime":"2025-09-15T21:00","weather_code (wmo code)":3,"rain (mm)":0,"temp (?C)":27.3,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":6.13,"wind_gusts_10m (km\\/h)":5.4},{"datetime":"2025-09-16T00:00","weather_code (wmo code)":3,"rain (mm)":0,"temp (?C)":26.8,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":4.13,"wind_gusts_10m (km\\/h)":1.8},{"datetime":"2025-09-16T03:00","weather_code (wmo code)":80,"rain (mm)":0,"temp (?C)":26.1,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":4.13,"wind_gusts_10m (km\\/h)":18},{"datetime":"2025-09-16T06:00","weather_code (wmo code)":3,"rain (mm)":0,"temp (?C)":26.1,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":4.13,"wind_gusts_10m (km\\/h)":2.2},{"datetime":"2025-09-16T09:00","weather_code (wmo code)":80,"rain (mm)":0,"temp (?C)":28.1,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":4.13,"wind_gusts_10m (km\\/h)":15.8},{"datetime":"2025-09-16T12:00","weather_code (wmo code)":80,"rain (mm)":0,"temp (?C)":29.6,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":4.13,"wind_gusts_10m (km\\/h)":22.3},{"datetime":"2025-09-16T15:00","weather_code (wmo code)":3,"rain (mm)":0,"temp (?C)":29.7,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":4.13,"wind_gusts_10m (km\\/h)":14.8},{"datetime":"2025-09-16T18:00","weather_code (wmo code)":95,"rain (mm)":0,"temp (?C)":28.2,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":4.13,"wind_gusts_10m (km\\/h)":6.5},{"datetime":"2025-09-16T21:00","weather_code (wmo code)":95,"rain (mm)":0,"temp (?C)":26.7,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":4.13,"wind_gusts_10m (km\\/h)":6.1},{"datetime":"2025-09-17T00:00","weather_code (wmo code)":95,"rain (mm)":0,"temp (?C)":25.9,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":6.43,"wind_gusts_10m (km\\/h)":4.3},{"datetime":"2025-09-17T03:00","weather_code (wmo code)":45,"rain (mm)":0,"temp (?C)":25.4,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":6.43,"wind_gusts_10m (km\\/h)":5.8},{"datetime":"2025-09-17T06:00","weather_code (wmo code)":45,"rain (mm)":0,"temp (?C)":25,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":6.43,"wind_gusts_10m (km\\/h)":3.6},{"datetime":"2025-09-17T09:00","weather_code (wmo code)":3,"rain (mm)":0,"temp (?C)":29.1,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":6.43,"wind_gusts_10m (km\\/h)":14.4},{"datetime":"2025-09-17T12:00","weather_code (wmo code)":3,"rain (mm)":0,"temp (?C)":32,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":6.43,"wind_gusts_10m (km\\/h)":23},{"datetime":"2025-09-17T15:00","weather_code (wmo code)":95,"rain (mm)":0,"temp (?C)":30.8,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":6.43,"wind_gusts_10m (km\\/h)":25.9},{"datetime":"2025-09-17T18:00","weather_code (wmo code)":95,"rain (mm)":0,"temp (?C)":27.2,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":6.43,"wind_gusts_10m (km\\/h)":20.2},{"datetime":"2025-09-17T21:00","weather_code (wmo code)":80,"rain (mm)":0,"temp (?C)":25.8,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":6.43,"wind_gusts_10m (km\\/h)":14}]')
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\FloodPredictor->predict_hourly_ajax()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FloodPredictor))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-16 04:09:56 --> ErrorException: Uncaught CodeIgniter\Format\Exceptions\FormatException: Failed to parse JSON string. Error: Type is not supported in D:\xampp\htdocs\FloodGuard\system\Format\JSONFormatter.php:45
+Stack trace:
+#0 D:\xampp\htdocs\FloodGuard\system\Format\JSONFormatter.php(45): CodeIgniter\Format\Exceptions\FormatException::forInvalidJSON('Type is not sup...')
+#1 D:\xampp\htdocs\FloodGuard\system\API\ResponseTrait.php(345): CodeIgniter\Format\JSONFormatter->format(Array)
+#2 D:\xampp\htdocs\FloodGuard\system\API\ResponseTrait.php(103): CodeIgniter\Debug\ExceptionHandler->format(Array)
+#3 D:\xampp\htdocs\FloodGuard\system\Debug\ExceptionHandler.php(85): CodeIgniter\Debug\ExceptionHandler->respond(Array, 500)
+#4 D:\xampp\htdocs\FloodGuard\system\Debug\Exceptions.php(162): CodeIgniter\Debug\ExceptionHandler->handle(Object(ErrorException), Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), 500, 1)
+#5 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(ErrorException))
+#6 {main}
+  thrown
+【Previous Exception】
+ErrorException
+fwrite(): Write of 4500 bytes failed with errno=32 Broken pipe
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(8, 'fwrite(): Write...', 'D:\\xampp\\htdocs...', 230)
+#1 D:\xampp\htdocs\FloodGuard\app\Controllers\FloodPredictor.php(230): fwrite(Resource id #125, '[{"datetime":"2...')
+#2 D:\xampp\htdocs\FloodGuard\system\CodeIgniter.php(933): App\Controllers\FloodPredictor->predict_hourly_ajax()
+#3 D:\xampp\htdocs\FloodGuard\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FloodPredictor))
+#4 D:\xampp\htdocs\FloodGuard\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 D:\xampp\htdocs\FloodGuard\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#6 D:\xampp\htdocs\FloodGuard\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#7 D:\xampp\htdocs\FloodGuard\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#8 {main}
+[Method: GET, Route: flood/hourly/data]
+in SYSTEMPATH\Format\JSONFormatter.php on line 45.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+DEBUG - 2025-09-16 04:09:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-09-16 04:09:56 --> TypeError: App\Controllers\Home::index(): Return value must be of type string, CodeIgniter\HTTP\RedirectResponse returned
+[Method: GET, Route: home]
+in APPPATH\Controllers\Home.php on line 11.
+ 1 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->index()
+ 2 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-09-16 04:10:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-09-16 04:10:22 --> TypeError: App\Controllers\Home::index(): Return value must be of type string, CodeIgniter\HTTP\RedirectResponse returned
+[Method: GET, Route: home]
+in APPPATH\Controllers\Home.php on line 11.
+ 1 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->index()
+ 2 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-09-16 04:10:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-09-16 04:10:23 --> TypeError: App\Controllers\Home::index(): Return value must be of type string, CodeIgniter\HTTP\RedirectResponse returned
+[Method: GET, Route: home]
+in APPPATH\Controllers\Home.php on line 11.
+ 1 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->index()
+ 2 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-09-16 04:10:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-16 04:10:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-16 04:10:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-16 04:10:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-16 04:10:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-16 04:10:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-16 04:12:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-16 04:21:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-09-16 04:21:01 --> TypeError: App\Controllers\Home::index(): Return value must be of type string, CodeIgniter\HTTP\RedirectResponse returned
+[Method: GET, Route: home]
+in APPPATH\Controllers\Home.php on line 11.
+ 1 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->index()
+ 2 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-09-16 04:21:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-16 04:21:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-16 04:27:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-16 04:27:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-16 04:28:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-16 04:28:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-16 04:28:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-16 04:28:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-16 04:28:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-16 04:36:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-16 04:36:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-16 04:36:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-16 04:36:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-16 04:36:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-16 04:36:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-16 04:41:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-16 04:41:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-16 04:42:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-16 04:42:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-16 04:42:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-16 04:42:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-16 04:42:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-16 04:42:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-16 04:42:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-16 04:42:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-16 04:49:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-16 04:49:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-16 04:49:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-16 04:49:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-16 04:49:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-16 04:49:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-16 04:49:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-16 04:49:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-16 04:50:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-16 04:50:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-16 04:50:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-16 04:50:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-16 04:50:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-16 04:50:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-16 04:50:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-16 04:50:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-16 04:50:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-16 04:50:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-16 04:53:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-16 04:53:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-16 04:58:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-16 04:58:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-16 04:58:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-16 05:06:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-16 05:09:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-16 05:09:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-09-16 05:09:56 --> ErrorException: fwrite(): Write of 4502 bytes failed with errno=32 Broken pipe
+[Method: GET, Route: flood/hourly/data]
+in APPPATH\Controllers\FloodPredictor.php on line 230.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(8, 'fwrite(): Write of 4502 bytes failed with errno=32 Broken pipe', 'D:\\xampp\\htdocs\\FloodGuard\\app\\Controllers\\FloodPredictor.php', 230)
+ 2 APPPATH\Controllers\FloodPredictor.php(230): fwrite(NULL, '[{"datetime":"2025-09-15T00:00","weather_code (wmo code)":45,"rain (mm)":0,"temp (?C)":25.5,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":6.13,"wind_gusts_10m (km\\/h)":2.9},{"datetime":"2025-09-15T03:00","weather_code (wmo code)":45,"rain (mm)":0,"temp (?C)":25.3,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":6.13,"wind_gusts_10m (km\\/h)":5},{"datetime":"2025-09-15T06:00","weather_code (wmo code)":45,"rain (mm)":0,"temp (?C)":25,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":6.13,"wind_gusts_10m (km\\/h)":3.2},{"datetime":"2025-09-15T09:00","weather_code (wmo code)":80,"rain (mm)":0,"temp (?C)":28.3,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":6.13,"wind_gusts_10m (km\\/h)":23.4},{"datetime":"2025-09-15T12:00","weather_code (wmo code)":3,"rain (mm)":0,"temp (?C)":31.4,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":6.13,"wind_gusts_10m (km\\/h)":24.8},{"datetime":"2025-09-15T15:00","weather_code (wmo code)":3,"rain (mm)":0,"temp (?C)":32.4,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":6.13,"wind_gusts_10m (km\\/h)":8.6},{"datetime":"2025-09-15T18:00","weather_code (wmo code)":3,"rain (mm)":0,"temp (?C)":30,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":6.13,"wind_gusts_10m (km\\/h)":12.6},{"datetime":"2025-09-15T21:00","weather_code (wmo code)":3,"rain (mm)":0,"temp (?C)":27.3,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":6.13,"wind_gusts_10m (km\\/h)":5.4},{"datetime":"2025-09-16T00:00","weather_code (wmo code)":3,"rain (mm)":0,"temp (?C)":26.8,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":4.13,"wind_gusts_10m (km\\/h)":1.8},{"datetime":"2025-09-16T03:00","weather_code (wmo code)":80,"rain (mm)":0,"temp (?C)":26.1,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":4.13,"wind_gusts_10m (km\\/h)":18},{"datetime":"2025-09-16T06:00","weather_code (wmo code)":3,"rain (mm)":0,"temp (?C)":26.1,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":4.13,"wind_gusts_10m (km\\/h)":2.2},{"datetime":"2025-09-16T09:00","weather_code (wmo code)":80,"rain (mm)":0,"temp (?C)":27.2,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":4.13,"wind_gusts_10m (km\\/h)":16.6},{"datetime":"2025-09-16T12:00","weather_code (wmo code)":3,"rain (mm)":0,"temp (?C)":29.1,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":4.13,"wind_gusts_10m (km\\/h)":25.6},{"datetime":"2025-09-16T15:00","weather_code (wmo code)":3,"rain (mm)":0,"temp (?C)":28.9,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":4.13,"wind_gusts_10m (km\\/h)":19.4},{"datetime":"2025-09-16T18:00","weather_code (wmo code)":95,"rain (mm)":0,"temp (?C)":27.7,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":4.13,"wind_gusts_10m (km\\/h)":7.6},{"datetime":"2025-09-16T21:00","weather_code (wmo code)":95,"rain (mm)":0,"temp (?C)":26.4,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":4.13,"wind_gusts_10m (km\\/h)":1.4},{"datetime":"2025-09-17T00:00","weather_code (wmo code)":80,"rain (mm)":0,"temp (?C)":25.8,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":6.43,"wind_gusts_10m (km\\/h)":5.8},{"datetime":"2025-09-17T03:00","weather_code (wmo code)":80,"rain (mm)":0,"temp (?C)":25.4,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":6.43,"wind_gusts_10m (km\\/h)":6.8},{"datetime":"2025-09-17T06:00","weather_code (wmo code)":45,"rain (mm)":0,"temp (?C)":25.2,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":6.43,"wind_gusts_10m (km\\/h)":3.6},{"datetime":"2025-09-17T09:00","weather_code (wmo code)":3,"rain (mm)":0,"temp (?C)":28.6,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":6.43,"wind_gusts_10m (km\\/h)":13.3},{"datetime":"2025-09-17T12:00","weather_code (wmo code)":3,"rain (mm)":0,"temp (?C)":31.9,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":6.43,"wind_gusts_10m (km\\/h)":25.9},{"datetime":"2025-09-17T15:00","weather_code (wmo code)":95,"rain (mm)":0,"temp (?C)":30.5,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":6.43,"wind_gusts_10m (km\\/h)":27},{"datetime":"2025-09-17T18:00","weather_code (wmo code)":95,"rain (mm)":0,"temp (?C)":27.5,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":6.43,"wind_gusts_10m (km\\/h)":22},{"datetime":"2025-09-17T21:00","weather_code (wmo code)":3,"rain (mm)":0,"temp (?C)":26.1,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":6.43,"wind_gusts_10m (km\\/h)":11.2}]')
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\FloodPredictor->predict_hourly_ajax()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FloodPredictor))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-16 05:09:56 --> ErrorException: Uncaught CodeIgniter\Format\Exceptions\FormatException: Failed to parse JSON string. Error: Type is not supported in D:\xampp\htdocs\FloodGuard\system\Format\JSONFormatter.php:45
+Stack trace:
+#0 D:\xampp\htdocs\FloodGuard\system\Format\JSONFormatter.php(45): CodeIgniter\Format\Exceptions\FormatException::forInvalidJSON('Type is not sup...')
+#1 D:\xampp\htdocs\FloodGuard\system\API\ResponseTrait.php(345): CodeIgniter\Format\JSONFormatter->format(Array)
+#2 D:\xampp\htdocs\FloodGuard\system\API\ResponseTrait.php(103): CodeIgniter\Debug\ExceptionHandler->format(Array)
+#3 D:\xampp\htdocs\FloodGuard\system\Debug\ExceptionHandler.php(85): CodeIgniter\Debug\ExceptionHandler->respond(Array, 500)
+#4 D:\xampp\htdocs\FloodGuard\system\Debug\Exceptions.php(162): CodeIgniter\Debug\ExceptionHandler->handle(Object(ErrorException), Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), 500, 1)
+#5 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(ErrorException))
+#6 {main}
+  thrown
+【Previous Exception】
+ErrorException
+fwrite(): Write of 4502 bytes failed with errno=32 Broken pipe
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(8, 'fwrite(): Write...', 'D:\\xampp\\htdocs...', 230)
+#1 D:\xampp\htdocs\FloodGuard\app\Controllers\FloodPredictor.php(230): fwrite(Resource id #125, '[{"datetime":"2...')
+#2 D:\xampp\htdocs\FloodGuard\system\CodeIgniter.php(933): App\Controllers\FloodPredictor->predict_hourly_ajax()
+#3 D:\xampp\htdocs\FloodGuard\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FloodPredictor))
+#4 D:\xampp\htdocs\FloodGuard\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 D:\xampp\htdocs\FloodGuard\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#6 D:\xampp\htdocs\FloodGuard\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#7 D:\xampp\htdocs\FloodGuard\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#8 {main}
+[Method: GET, Route: flood/hourly/data]
+in SYSTEMPATH\Format\JSONFormatter.php on line 45.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+DEBUG - 2025-09-16 05:10:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-09-16 05:10:37 --> ErrorException: fwrite(): Write of 4502 bytes failed with errno=32 Broken pipe
+[Method: GET, Route: flood/hourly/data]
+in APPPATH\Controllers\FloodPredictor.php on line 231.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(8, 'fwrite(): Write of 4502 bytes failed with errno=32 Broken pipe', 'D:\\xampp\\htdocs\\FloodGuard\\app\\Controllers\\FloodPredictor.php', 231)
+ 2 APPPATH\Controllers\FloodPredictor.php(231): fwrite(NULL, '[{"datetime":"2025-09-15T00:00","weather_code (wmo code)":45,"rain (mm)":0,"temp (?C)":25.5,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":6.13,"wind_gusts_10m (km\\/h)":2.9},{"datetime":"2025-09-15T03:00","weather_code (wmo code)":45,"rain (mm)":0,"temp (?C)":25.3,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":6.13,"wind_gusts_10m (km\\/h)":5},{"datetime":"2025-09-15T06:00","weather_code (wmo code)":45,"rain (mm)":0,"temp (?C)":25,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":6.13,"wind_gusts_10m (km\\/h)":3.2},{"datetime":"2025-09-15T09:00","weather_code (wmo code)":80,"rain (mm)":0,"temp (?C)":28.3,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":6.13,"wind_gusts_10m (km\\/h)":23.4},{"datetime":"2025-09-15T12:00","weather_code (wmo code)":3,"rain (mm)":0,"temp (?C)":31.4,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":6.13,"wind_gusts_10m (km\\/h)":24.8},{"datetime":"2025-09-15T15:00","weather_code (wmo code)":3,"rain (mm)":0,"temp (?C)":32.4,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":6.13,"wind_gusts_10m (km\\/h)":8.6},{"datetime":"2025-09-15T18:00","weather_code (wmo code)":3,"rain (mm)":0,"temp (?C)":30,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":6.13,"wind_gusts_10m (km\\/h)":12.6},{"datetime":"2025-09-15T21:00","weather_code (wmo code)":3,"rain (mm)":0,"temp (?C)":27.3,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":6.13,"wind_gusts_10m (km\\/h)":5.4},{"datetime":"2025-09-16T00:00","weather_code (wmo code)":3,"rain (mm)":0,"temp (?C)":26.8,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":4.13,"wind_gusts_10m (km\\/h)":1.8},{"datetime":"2025-09-16T03:00","weather_code (wmo code)":80,"rain (mm)":0,"temp (?C)":26.1,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":4.13,"wind_gusts_10m (km\\/h)":18},{"datetime":"2025-09-16T06:00","weather_code (wmo code)":3,"rain (mm)":0,"temp (?C)":26.1,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":4.13,"wind_gusts_10m (km\\/h)":2.2},{"datetime":"2025-09-16T09:00","weather_code (wmo code)":80,"rain (mm)":0,"temp (?C)":27.2,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":4.13,"wind_gusts_10m (km\\/h)":16.6},{"datetime":"2025-09-16T12:00","weather_code (wmo code)":3,"rain (mm)":0,"temp (?C)":29.1,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":4.13,"wind_gusts_10m (km\\/h)":25.6},{"datetime":"2025-09-16T15:00","weather_code (wmo code)":3,"rain (mm)":0,"temp (?C)":28.9,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":4.13,"wind_gusts_10m (km\\/h)":19.4},{"datetime":"2025-09-16T18:00","weather_code (wmo code)":95,"rain (mm)":0,"temp (?C)":27.7,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":4.13,"wind_gusts_10m (km\\/h)":7.6},{"datetime":"2025-09-16T21:00","weather_code (wmo code)":95,"rain (mm)":0,"temp (?C)":26.4,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":4.13,"wind_gusts_10m (km\\/h)":1.4},{"datetime":"2025-09-17T00:00","weather_code (wmo code)":80,"rain (mm)":0,"temp (?C)":25.8,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":6.43,"wind_gusts_10m (km\\/h)":5.8},{"datetime":"2025-09-17T03:00","weather_code (wmo code)":80,"rain (mm)":0,"temp (?C)":25.4,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":6.43,"wind_gusts_10m (km\\/h)":6.8},{"datetime":"2025-09-17T06:00","weather_code (wmo code)":45,"rain (mm)":0,"temp (?C)":25.2,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":6.43,"wind_gusts_10m (km\\/h)":3.6},{"datetime":"2025-09-17T09:00","weather_code (wmo code)":3,"rain (mm)":0,"temp (?C)":28.6,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":6.43,"wind_gusts_10m (km\\/h)":13.3},{"datetime":"2025-09-17T12:00","weather_code (wmo code)":3,"rain (mm)":0,"temp (?C)":31.9,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":6.43,"wind_gusts_10m (km\\/h)":25.9},{"datetime":"2025-09-17T15:00","weather_code (wmo code)":95,"rain (mm)":0,"temp (?C)":30.5,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":6.43,"wind_gusts_10m (km\\/h)":27},{"datetime":"2025-09-17T18:00","weather_code (wmo code)":95,"rain (mm)":0,"temp (?C)":27.5,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":6.43,"wind_gusts_10m (km\\/h)":22},{"datetime":"2025-09-17T21:00","weather_code (wmo code)":3,"rain (mm)":0,"temp (?C)":26.1,"soil_moisture_0_to_7cm (m?\\/m?)":0,"river_discharge (m?\\/s)":6.43,"wind_gusts_10m (km\\/h)":11.2}]')
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\FloodPredictor->predict_hourly_ajax()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FloodPredictor))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-16 05:10:37 --> ErrorException: Uncaught CodeIgniter\Format\Exceptions\FormatException: Failed to parse JSON string. Error: Type is not supported in D:\xampp\htdocs\FloodGuard\system\Format\JSONFormatter.php:45
+Stack trace:
+#0 D:\xampp\htdocs\FloodGuard\system\Format\JSONFormatter.php(45): CodeIgniter\Format\Exceptions\FormatException::forInvalidJSON('Type is not sup...')
+#1 D:\xampp\htdocs\FloodGuard\system\API\ResponseTrait.php(345): CodeIgniter\Format\JSONFormatter->format(Array)
+#2 D:\xampp\htdocs\FloodGuard\system\API\ResponseTrait.php(103): CodeIgniter\Debug\ExceptionHandler->format(Array)
+#3 D:\xampp\htdocs\FloodGuard\system\Debug\ExceptionHandler.php(85): CodeIgniter\Debug\ExceptionHandler->respond(Array, 500)
+#4 D:\xampp\htdocs\FloodGuard\system\Debug\Exceptions.php(162): CodeIgniter\Debug\ExceptionHandler->handle(Object(ErrorException), Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), 500, 1)
+#5 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(ErrorException))
+#6 {main}
+  thrown
+【Previous Exception】
+ErrorException
+fwrite(): Write of 4502 bytes failed with errno=32 Broken pipe
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(8, 'fwrite(): Write...', 'D:\\xampp\\htdocs...', 231)
+#1 D:\xampp\htdocs\FloodGuard\app\Controllers\FloodPredictor.php(231): fwrite(Resource id #125, '[{"datetime":"2...')
+#2 D:\xampp\htdocs\FloodGuard\system\CodeIgniter.php(933): App\Controllers\FloodPredictor->predict_hourly_ajax()
+#3 D:\xampp\htdocs\FloodGuard\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FloodPredictor))
+#4 D:\xampp\htdocs\FloodGuard\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 D:\xampp\htdocs\FloodGuard\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#6 D:\xampp\htdocs\FloodGuard\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#7 D:\xampp\htdocs\FloodGuard\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#8 {main}
+[Method: GET, Route: flood/hourly/data]
+in SYSTEMPATH\Format\JSONFormatter.php on line 45.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+DEBUG - 2025-09-16 05:10:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-16 05:11:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-16 05:11:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-16 05:16:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-16 05:16:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

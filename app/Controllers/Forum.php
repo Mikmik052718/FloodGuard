@@ -14,16 +14,21 @@ class Forum extends BaseController
 
     public function create()
     {
+        if (!session()->get('logged_in')) {
+            return redirect()->to('/forum')->with('error', 'You must be logged in to create a post.');
+        }
         return view('forum/create');
     }
 
  public function store()
 {
+    if (!session()->get('logged_in')) {
+        return redirect()->to('/forum')->with('error', 'You must be logged in to create a post.');
+    }
+
     $model = new PostModel();
 
-    $authorName = session()->get('logged_in') 
-        ? session()->get('username') 
-        : $this->request->getPost('author_name');
+    $authorName = session()->get('username');
 
     $data = [
         'author_name' => $authorName,

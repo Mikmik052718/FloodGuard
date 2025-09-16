@@ -28,8 +28,37 @@ h2 { text-align: center; margin-bottom: 20px; }
     font-weight: bold;
 }
     </style>
+    <style>
+        .user-info {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #007bff;
+        }
+        .user-info h4 {
+            margin: 0 0 10px 0;
+            color: #007bff;
+        }
+    </style>
 </head>
 <body>
+
+<!-- Session Check and User Info -->
+<?php if (session()->get('logged_in')): ?>
+    <div class="user-info">
+        <h4>👤 Welcome, <?= esc(session()->get('username')) ?>!</h4>
+        <p><strong>User ID:</strong> <?= esc(session()->get('user_id')) ?></p>
+        <p><strong>Role:</strong> <?= esc(session()->get('role')) ?></p>
+        <p><strong>Session Active:</strong> ✅ Yes</p>
+    </div>
+<?php else: ?>
+    <div class="user-info" style="border-left-color: #dc3545; background-color: #f8d7da;">
+        <h4 style="color: #dc3545;">⚠️ No Active Session</h4>
+        <p>You are viewing this page as a guest. <a href="<?= site_url('auth/uslogin') ?>">Login</a> to save your location and get personalized alerts.</p>
+    </div>
+<?php endif; ?>
+
 <h2> Hourly Flood Prediction</h2>
 
 <table id="hourlyTable">

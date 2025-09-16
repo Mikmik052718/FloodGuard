@@ -75,7 +75,7 @@ $routes->get('/landing', 'Landingpagecontroller::landing'); //landing
 //091325 DAILY
 $routes->get('flood/daily', 'FloodPredictor::index');
 $routes->get('flood/predict-ajax', 'FloodPredictor::predictAjax');
-$routes->get('flood/predict-with-session', 'FloodPredictor::predictWithSession');
+$routes->get('flood/hazard-maps', 'FloodPredictor::hazardMaps');
 
 $routes->get('flood/hourly', 'FloodPredictor::hourly');
 $routes->get('flood/hourly/data', 'FloodPredictor::predict_hourly_ajax');

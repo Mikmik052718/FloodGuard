@@ -9,9 +9,9 @@
         <?php if (session()->get('logged_in')): ?>
             <input type="hidden" name="author_name" value="<?= esc(session()->get('username')) ?>">
             <p><strong>Posting as: <?= esc(session()->get('username')) ?></strong></p>
-        <?php else: ?>
-            <label>Your Name:</label><br>
-            <input type="text" name="author_name" required><br><br>
+        <?php // else: ?>
+            <!-- <label>Your Name:</label><br>
+            <input type="text" name="author_name" required><br><br> -->
         <?php endif; ?>
 
         <label>Title:</label><br>
