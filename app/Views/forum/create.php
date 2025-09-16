@@ -1,29 +1,40 @@
 <!DOCTYPE html>
 <html>
-<head><title>Create Post</title></head>
+<head>
+    <title>Create Post</title>
+<link rel="stylesheet" href="<?= base_url('assets/css/create.css'); ?>">
+</head>
+            <header>
+                <h1>
+                <a href="<?= site_url('/home') ?>" class="site-title">Alerto Marikina</a>
+                </h1>
+                <div class="nav-links">
+                <?php if (session()->get('logged_in')): ?>
+                    <span>
+                    Logged in as <strong><?= esc(session()->get('username')) ?></strong> | 
+                    <a href="<?= site_url('auth/logout') ?>" class="logout-link">Logout</a>
+                    </span>
+                <?php endif; ?>
+                </div>
+            </header>
 <body>
-    <h1>Create a New Post</h1>
+    <div class="form-container">
+        <form method="post" action="<?= site_url('forum/store') ?>" class="form-card"> 
+           
 
-    <form method="post" action="<?= site_url('forum/store') ?>"> 
+            <h1>Create a New Post</h1>
+            <label>Title:</label>
+            <input type="text" name="title" class="input-field" required>
 
-        <?php if (session()->get('logged_in')): ?>
-            <input type="hidden" name="author_name" value="<?= esc(session()->get('username')) ?>">
-            <p><strong>Posting as: <?= esc(session()->get('username')) ?></strong></p>
-        <?php // else: ?>
-            <!-- <label>Your Name:</label><br>
-            <input type="text" name="author_name" required><br><br> -->
-        <?php endif; ?>
+            <label>Content:</label>
+            <textarea name="content" rows="5" class="textarea-field" required></textarea>
 
-        <label>Title:</label><br>
-        <input type="text" name="title" required><br><br>
-
-        <label>Content:</label><br>
-        <textarea name="content" rows="5" required></textarea><br><br>
-
-        <button type="submit">Post</button>
-    </form>
-
-    <br>
-    <a href="<?= site_url('forum') ?>">Back to Posts</a>
+            <div class="form-actions">
+                <button type="submit">Post</button>
+                <a href="<?= site_url('forum') ?>" class="btn-cancel">Back to Posts</a>
+            </div>
+        </form>
+    </div>
 </body>
+
 </html>

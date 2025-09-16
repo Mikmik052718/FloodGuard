@@ -68,7 +68,7 @@
 
                                 <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
                                     <li><a class="dropdown-item" href="<?= site_url('forum') ?>">NEWS FEED</a></li>
-                                    <li><a class="dropdown-item" href="<?= site_url('flood/predict-with-session') ?>">FLOOD HAZARD MAPS</a></li>
+                                    <li><a class="dropdown-item" href="<?= site_url('flood/hazard-maps') ?>">FLOOD HAZARD MAPS</a></li>
 
 
                                 </ul>
@@ -86,15 +86,13 @@
             <section class="hero-section d-flex justify-content-center align-items-center" id="section_1">
                 <div class="container">
                     <div class="row">
-
                         <div class="col-lg-8 col-12 mx-auto">
                             <h1 class="text-white text-center">Flood Prediction Marikina City</h1>
-
                             <h6 class="text-center">platform for flood alert</h6>
-
-                            <button type="button" class="btn btn-primary btn-lg mt-4" onclick="findNearestCenter()">Find Nearest Evacuation Center</button>
-                        </div>
-
+                            <div style="display: flex; justify-content: center; margin-top: 1rem;">
+                                <button type="button" class="btn btn-primary btn-lg" onclick="findNearestCenter()">Find Nearest Evacuation Center</button>
+                            </div>
+                        </div>                      
                     </div>
                 </div>
             </section>
