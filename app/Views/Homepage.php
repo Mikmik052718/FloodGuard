@@ -851,39 +851,7 @@ const landmarks = [
 
 
 
-    // Get user location on page load
-    window.onload = function() {
-        if ("geolocation" in navigator) {
-            navigator.geolocation.getCurrentPosition(
-                function (position) {
-                    userLat = position.coords.latitude;
-                    userLon = position.coords.longitude;
-                    
-                    // Get location name using Google Maps Geocoding API
-                    const geocodeUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${userLat},${userLon}&key=YOUR_API_KEY`;
-
-                    fetch(geocodeUrl)
-                        .then(response => response.json())
-                        .then(data => {
-                            if (data.status === "OK") {
-                                const place = data.results[0].formatted_address;
-                                document.getElementById("keyword").value = place;
-                            } else {
-                                document.getElementById("keyword").placeholder = "Location";
-                            }
-                        })
-                        .catch(() => {
-                            document.getElementById("keyword").placeholder = "Location";
-                        });
-                },
-                function () {
-                    document.getElementById("keyword").placeholder = "Unable to get location";
-                }
-            );
-        } else {
-            document.getElementById("keyword").placeholder = "Geolocation not supported";
-        }
-    };
+    // Geolocation request is deferred and will only be triggered on button click
 
     // Haversine distance function
     function getDistance(lat1, lon1, lat2, lon2) {
@@ -898,27 +866,40 @@ const landmarks = [
     }
 
     function findNearestCenter() {
-        if (userLat === null || userLon === null) {
-            alert("Still getting your location. Please wait a moment.");
-            return false;
-        }
+        const proceedWith = (lat, lon) => {
+            userLat = lat;
+            userLon = lon;
 
-        let nearest = landmarks.reduce((nearest, landmark) => {
-            const distance = getDistance(userLat, userLon, landmark.lat, landmark.lon);
-            return distance < nearest.distance ? { ...landmark, distance } : nearest;
-        }, { distance: Infinity });
+            let nearest = landmarks.reduce((nearest, landmark) => {
+                const distance = getDistance(lat, lon, landmark.lat, landmark.lon);
+                return distance < nearest.distance ? { ...landmark, distance } : nearest;
+            }, { distance: Infinity });
 
-        let mapsUrl = `https://www.google.com/maps/dir/?api=1&origin=${userLat},${userLon}&destination=${nearest.lat},${nearest.lon}&travelmode=driving`;
+            let mapsUrl = `https://www.google.com/maps/dir/?api=1&origin=${lat},${lon}&destination=${nearest.lat},${nearest.lon}&travelmode=driving`;
 
-        // Show modal
-        document.getElementById("confirmModal").style.display = "block";
-        document.getElementById("modalOverlay").style.display = "block";
-        document.getElementById("confirmRedirect").onclick = function () {
-            window.open(mapsUrl, "_blank");
-            closeModal();
+            // Show modal
+            document.getElementById("confirmModal").style.display = "block";
+            document.getElementById("modalOverlay").style.display = "block";
+            document.getElementById("confirmRedirect").onclick = function () {
+                window.open(mapsUrl, "_blank");
+                closeModal();
+            };
         };
 
-        return false; // prevent form submission
+        if ("geolocation" in navigator) {
+            navigator.geolocation.getCurrentPosition(
+                function (position) {
+                    proceedWith(position.coords.latitude, position.coords.longitude);
+                },
+                function (error) {
+                    alert("Unable to access your location. Please allow location access and try again.");
+                }
+            );
+        } else {
+            alert("Geolocation is not supported by your browser.");
+        }
+
+        return false; // prevent default behavior
     }
 </script>
 

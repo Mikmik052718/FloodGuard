@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 14, 2025 at 09:16 AM
+-- Generation Time: Sep 17, 2025 at 09:05 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -37,6 +37,13 @@ CREATE TABLE `migrations` (
   `batch` int(11) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `migrations`
+--
+
+INSERT INTO `migrations` (`id`, `version`, `class`, `group`, `namespace`, `time`, `batch`) VALUES
+(1, '2024-01-15-000001', 'App\\Database\\Migrations\\AddGoogleFieldsToUsers', 'default', 'App', 1757839050, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -48,6 +55,7 @@ CREATE TABLE `posts` (
   `author_name` varchar(100) NOT NULL,
   `title` varchar(255) NOT NULL,
   `content` text NOT NULL,
+  `image` varchar(255) DEFAULT NULL,
   `created_at` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -55,13 +63,15 @@ CREATE TABLE `posts` (
 -- Dumping data for table `posts`
 --
 
-INSERT INTO `posts` (`id`, `author_name`, `title`, `content`, `created_at`) VALUES
-(1, 'test name', 'tezt title', 'content test', '2025-06-19 16:07:07'),
-(2, 'name', 'title', 'content', '2025-06-19 16:39:21'),
-(3, 'test name', 'yjynn', 'sdwdw', '2025-06-20 09:34:45'),
-(4, 'user123', 'ganon tagala', 'gaon takaga', '2025-06-20 11:33:51'),
-(5, 'testing name', 'testing no edit anon', 'im an anonymous user so no edit', '2025-06-20 11:34:30'),
-(6, 'anonymous 072625', 'anonymous 072625', 'anonymous 072625', '2025-07-26 11:22:10');
+INSERT INTO `posts` (`id`, `author_name`, `title`, `content`, `image`, `created_at`) VALUES
+(1, 'test name', 'tezt title', 'content test', NULL, '2025-06-19 16:07:07'),
+(2, 'name', 'title', 'content', NULL, '2025-06-19 16:39:21'),
+(3, 'test name', 'yjynn', 'sdwdw', NULL, '2025-06-20 09:34:45'),
+(4, 'user123', 'ganon tagala', 'gaon takaga', NULL, '2025-06-20 11:33:51'),
+(5, 'testing name', 'testing no edit anon', 'im an anonymous user so no edit', NULL, '2025-06-20 11:34:30'),
+(6, 'anonymous 072625', 'anonymous 072625', 'anonymous 072625', NULL, '2025-07-26 11:22:10'),
+(7, 'user123', 'Edit Ft', 'Ito ay art', '1758079015_4b06b0ee57c2e893d64e.png', '2025-09-17 11:16:55'),
+(8, 'user123', 'edited yown', 'eyown', '1758086872_6c4008b24cbe75afa464.png', '2025-09-17 13:27:52');
 
 -- --------------------------------------------------------
 
@@ -73,6 +83,9 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
   `email` varchar(255) NOT NULL,
+  `google_id` varchar(255) DEFAULT NULL,
+  `google_name` varchar(255) DEFAULT NULL,
+  `google_picture` text DEFAULT NULL,
   `email_verified_at` datetime DEFAULT NULL,
   `password` varchar(255) NOT NULL,
   `role` varchar(50) NOT NULL DEFAULT 'user',
@@ -89,11 +102,11 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `email`, `email_verified_at`, `password`, `role`, `created_at`, `updated_at`, `is_active`, `alert_email_enabled`, `alert_min_probability`, `alert_restrict_to_red`, `last_login_at`) VALUES
-(1, 'admin', 'atest@gmail.com', NULL, '$2y$10$hUFpZcCHSO8H6A89v.6RIu0kmuNKoMcGhT1CqU3e0Xg0LuWRO47wa', 'admin', '2025-07-26 13:41:59', '2025-09-13 17:45:48', 1, 1, 50.00, 1, NULL),
-(3, 'admin1', 'btest@gmail.com', NULL, '$2y$10$5g8iShR49bYfoVmwEavu7ukHxX/UX4jDpuarhSD5hbFgj8ZKNvjPW', 'admin', '2025-07-26 13:41:59', '2025-09-13 17:45:56', 1, 1, 50.00, 1, NULL),
-(4, 'user123', 'thethe642@gmail.com', NULL, '$2y$10$5ig/CvJwwR8f2m7ckuDoBOb4Ci0AH7Bc.FfeuBu/kTDPFL5rQOanO', 'user', '2025-07-26 13:41:59', '2025-09-12 17:40:14', 1, 1, 50.00, 1, NULL),
-(5, '0726251343', 'spiderman2099@gmail.com', NULL, '$2y$10$EKjvzoNYBX3TltYb7vBLF.dm/PdY/Z8zRL660kpNZi46hpYJKssxi', 'user', '2025-07-26 05:43:42', '2025-09-09 21:16:53', 1, 1, 50.00, 1, NULL);
+INSERT INTO `users` (`id`, `username`, `email`, `google_id`, `google_name`, `google_picture`, `email_verified_at`, `password`, `role`, `created_at`, `updated_at`, `is_active`, `alert_email_enabled`, `alert_min_probability`, `alert_restrict_to_red`, `last_login_at`) VALUES
+(1, 'admin', 'atest@gmail.com', NULL, NULL, NULL, NULL, '$2y$10$hUFpZcCHSO8H6A89v.6RIu0kmuNKoMcGhT1CqU3e0Xg0LuWRO47wa', 'admin', '2025-07-26 13:41:59', '2025-09-13 17:45:48', 1, 1, 50.00, 1, NULL),
+(3, 'admin1', 'btest@gmail.com', NULL, NULL, NULL, NULL, '$2y$10$5g8iShR49bYfoVmwEavu7ukHxX/UX4jDpuarhSD5hbFgj8ZKNvjPW', 'admin', '2025-07-26 13:41:59', '2025-09-13 17:45:56', 1, 1, 50.00, 1, NULL),
+(4, 'user123', 'sampol@sanbida.edu.ph', NULL, NULL, NULL, NULL, '$2y$10$5ig/CvJwwR8f2m7ckuDoBOb4Ci0AH7Bc.FfeuBu/kTDPFL5rQOanO', 'user', '2025-07-26 13:41:59', '2025-09-12 17:40:14', 1, 1, 50.00, 1, NULL),
+(5, '0726251343', 'jer99@gmail.com', '35436346456', 'Jer Rald', 'https://lh3.googleusercontent.com/a/ACg8ocK_0VpYVPZIbnmVMDPw8k65UPWdnX3wBbqnrBkQ9cKjU4a3nAif=s96-c', NULL, '$2y$10$EKjvzoNYBX3TltYb7vBLF.dm/PdY/Z8zRL660kpNZi46hpYJKssxi', 'user', '2025-07-26 05:43:42', '2025-09-14 09:12:39', 1, 1, 50.00, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -109,6 +122,14 @@ CREATE TABLE `user_locations` (
   `hazard_level` enum('RED','ORANGE','YELLOW','GREEN') DEFAULT NULL,
   `last_checked_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `user_locations`
+--
+
+INSERT INTO `user_locations` (`id`, `user_id`, `lat`, `lon`, `hazard_level`, `last_checked_at`) VALUES
+(1, 4, 14.663680, 121.123635, 'GREEN', '2025-09-16 04:28:22'),
+(2, 5, 14.664684, 121.101940, 'GREEN', '2025-09-14 09:14:43');
 
 -- --------------------------------------------------------
 
@@ -167,7 +188,8 @@ ALTER TABLE `posts`
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `username` (`username`),
-  ADD UNIQUE KEY `uq_users_email` (`email`);
+  ADD UNIQUE KEY `uq_users_email` (`email`),
+  ADD UNIQUE KEY `google_id` (`google_id`);
 
 --
 -- Indexes for table `user_locations`
@@ -191,13 +213,13 @@ ALTER TABLE `weather_daily`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -209,7 +231,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `user_locations`
 --
 ALTER TABLE `user_locations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `weather_daily`

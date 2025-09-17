@@ -36,6 +36,14 @@ class Forum extends BaseController
         'content'     => $this->request->getPost('content'),
     ];
 
+    // Handle image upload
+    $image = $this->request->getFile('image');
+    if ($image && $image->isValid() && !$image->hasMoved()) {
+        $newName = $image->getRandomName();
+        $image->move(FCPATH . 'uploads', $newName);
+        $data['image'] = $newName;
+    }
+
     $model->insert($data);
     return redirect()->to('/forum');
 }
@@ -58,11 +66,26 @@ public function edit($id)
                     public function update($id)
                     {
                         $model = new PostModel();
-                        $model->update($id, [
-                            'author_name' => $this->request->getPost('author_name'),
+                        $post = $model->find($id);
+
+                        $data = [
                             'title'       => $this->request->getPost('title'),
                             'content'     => $this->request->getPost('content'),
-                        ]);
+                        ];
+
+                        // Handle image upload
+                        $image = $this->request->getFile('image');
+                        if ($image && $image->isValid() && !$image->hasMoved()) {
+                            // Delete old image if exists
+                            if (!empty($post['image']) && file_exists(FCPATH . 'uploads/' . $post['image'])) {
+                                unlink(FCPATH . 'uploads/' . $post['image']);
+                            }
+                            $newName = $image->getRandomName();
+                            $image->move(FCPATH . 'uploads', $newName);
+                            $data['image'] = $newName;
+                        }
+
+                        $model->update($id, $data);
                         return redirect()->to('/forum');
                     }
  

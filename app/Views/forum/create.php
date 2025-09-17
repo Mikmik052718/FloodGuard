@@ -19,7 +19,7 @@
             </header>
 <body>
     <div class="form-container">
-        <form method="post" action="<?= site_url('forum/store') ?>" class="form-card"> 
+        <form method="post" action="<?= site_url('forum/store') ?>" enctype="multipart/form-data" class="form-card">
            
 
             <h1>Create a New Post</h1>
@@ -28,6 +28,9 @@
 
             <label>Content:</label>
             <textarea name="content" rows="5" class="textarea-field" required></textarea>
+
+            <label>Image (optional):</label>
+            <input type="file" name="image" accept="image/*" class="input-field">
 
             <div class="form-actions">
                 <button type="submit">Post</button>

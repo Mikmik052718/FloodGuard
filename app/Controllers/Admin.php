@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\PostModel;
+use App\Models\UserModel;
 
 class Admin extends BaseController
 {
@@ -29,6 +30,19 @@ class Admin extends BaseController
         $model = new PostModel();
         $data['posts'] = $model->orderBy('created_at', 'DESC')->findAll();
         return view('admin/posts', $data);
+    }
+    
+    // Display all users (only for admins)
+    public function users()
+    {
+        // Check if the user is an admin
+        if (session()->get('role') !== 'admin') {
+            return redirect()->to('/auth/login');
+        }
+
+        $model = new UserModel();
+        $data['users'] = $model->orderBy('id', 'ASC')->findAll();
+        return view('admin/users', $data);
     }
 
     // Delete a post by ID

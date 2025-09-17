@@ -31,7 +31,7 @@
                     <a class="nav-link text-white" href="#"><i class="bi bi-house-door-fill me-2"></i> Dashboard</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="#"><i class="bi bi-people-fill me-2"></i> Users</a>
+                    <a class="nav-link text-white" href="<?= site_url('admin/users') ?>"><i class="bi bi-people-fill me-2"></i> Users</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="#"><i class="bi bi-card-text me-2"></i> Posts</a>
@@ -57,18 +57,20 @@
             <section class="featured-section">
                 <div class="container">
                     <div class="row g-4">
-                        <!-- USERS CARD -->
+                        <!-- USERS CARD (Linking to Users Page) -->
                         <div class="col-md-4">
-                            <div class="custom-block">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div>
-                                        <h5><i class="bi bi-people-fill me-2"></i>Users</h5>
-                                        <p>Manage user accounts and access rights.</p>
+                            <a href="<?= site_url('admin/users') ?>" class="text-decoration-none">
+                                <div class="custom-block">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h5><i class="bi bi-people-fill me-2"></i>Users</h5>
+                                            <p>Manage user accounts and access rights.</p>
+                                        </div>
+                                        <span class="badge bg-primary-badge">42</span>
                                     </div>
-                                    <span class="badge bg-primary-badge">42</span>
+                                    <img src="<?= base_url('assets/images/users.png') ?>" class="custom-block-image" alt="Users">
                                 </div>
-                                <img src="<?= base_url('assets/images/users.png') ?>" class="custom-block-image" alt="Users">
-                            </div>
+                            </a>
                         </div>
 
                         <!-- POSTS CARD (Linking to another page) -->
