@@ -40,6 +40,11 @@ h2 { text-align: center; margin-bottom: 20px; }
             margin: 0 0 10px 0;
             color: #007bff;
         }
+        .force-reload:hover {
+            background-color: #b02a37 !important;
+            transform: scale(1.05);
+            transition: all 0.2s ease;
+        }
     </style>
 </head>
 <body>
@@ -47,17 +52,28 @@ h2 { text-align: center; margin-bottom: 20px; }
 <!-- Session Check and User Info -->
 <?php if (session()->get('logged_in')): ?>
     <div class="user-info">
-        <h4>👤 Welcome, <?= esc(session()->get('username')) ?>!</h4>
+        <h4>Welcome, <?= esc(session()->get('username')) ?>!</h4>
         <p><strong>User ID:</strong> <?= esc(session()->get('user_id')) ?></p>
         <p><strong>Role:</strong> <?= esc(session()->get('role')) ?></p>
-        <p><strong>Session Active:</strong> ✅ Yes</p>
+        <p><strong>Session Active:</strong> Yes</p>
     </div>
 <?php else: ?>
     <div class="user-info" style="border-left-color: #dc3545; background-color: #f8d7da;">
-        <h4 style="color: #dc3545;">⚠️ No Active Session</h4>
+        <h4 style="color: #dc3545;">No Active Session</h4>
         <p>You are viewing this page as a guest. <a href="<?= site_url('auth/uslogin') ?>">Login</a> to save your location and get personalized alerts.</p>
     </div>
 <?php endif; ?>
+
+<?php
+$back_url = session()->get('logged_in') ? site_url('/home') : site_url('/landing');
+$is_admin = session()->get('role') === 'admin';
+?>
+<div style="text-align: center; margin: 20px 0;">
+    <a href="<?= $back_url ?>" style="display: inline-block; padding: 10px 20px; background: #007bff; color: white; text-decoration: none; border-radius: 5px;">Back</a>
+    <?php if ($is_admin): ?>
+        <button onclick="forceReload()" class="force-reload" style="display: inline-block; margin-left: 10px; padding: 10px 20px; background: #dc3545; color: white; border: none; border-radius: 5px; cursor: pointer;">Force Reload</button>
+    <?php endif; ?>
+</div>
 
 <h2> Hourly Flood Prediction</h2>
 
@@ -81,36 +97,65 @@ h2 { text-align: center; margin-bottom: 20px; }
 </table>
 
 <script>
+const cacheKey = 'hourly_predictions';
+
+window.forceReload = function() {
+    localStorage.removeItem(cacheKey);
+    location.reload();
+};
+
 document.addEventListener("DOMContentLoaded", function() {
+    const cacheExpiry = 30 * 60 * 1000; // 30 minutes in milliseconds
+
+    // Check if cached data exists and is not expired
+    const cached = localStorage.getItem(cacheKey);
+    if (cached) {
+        const parsed = JSON.parse(cached);
+        if (Date.now() - parsed.timestamp < cacheExpiry) {
+            displayData(parsed.data);
+            return;
+        }
+    }
+
+    // Fetch new data
     fetch("<?= site_url('flood/hourly/data') ?>")
       .then(res => res.json())
       .then(data => {
-          const tbody = document.querySelector("#hourlyTable tbody");
-          tbody.innerHTML = "";
           if (data.error) {
-              tbody.innerHTML = `<tr><td colspan="9" style="color:red;text-align:center;">Error: ${data.error}</td></tr>`;
+              document.querySelector("#hourlyTable tbody").innerHTML = `<tr><td colspan="9" style="color:red;text-align:center;">Error: ${data.error}</td></tr>`;
               return;
           }
-          data.hours.forEach(h => {
-              const row = document.createElement("tr");
-              row.className = (h.prediction === "FLOOD") ? "flood" : "no-flood";
-              row.innerHTML = `
-                <td>${h.datetime}</td>
-                <td class="probability">${(h.probability*100).toFixed(4)}</td>
-                <td class="prediction">${h.prediction}</td>
-                <td>${h.weather_code}</td>
-                <td>${h.rain}</td>
-                <td>${h.temp}</td>
-                <td>${h.soil_0_7}</td>
-                <td>${h.discharge}</td>
-                <td>${h.wind_gusts}</td>`;
-              tbody.appendChild(row);
-          });
+          // Cache the data
+          localStorage.setItem(cacheKey, JSON.stringify({
+              data: data,
+              timestamp: Date.now()
+          }));
+          displayData(data);
       })
       .catch(err => {
           document.querySelector("#hourlyTable tbody").innerHTML = `<tr><td colspan="9" style="color:red;text-align:center;">Failed to load data.</td></tr>`;
           console.error(err);
       });
+
+    function displayData(data) {
+        const tbody = document.querySelector("#hourlyTable tbody");
+        tbody.innerHTML = "";
+        data.hours.forEach(h => {
+            const row = document.createElement("tr");
+            row.className = (h.prediction === "FLOOD") ? "flood" : "no-flood";
+            row.innerHTML = `
+              <td>${h.datetime}</td>
+              <td class="probability">${(h.probability*100).toFixed(4)}</td>
+              <td class="prediction">${h.prediction}</td>
+              <td>${h.weather_code}</td>
+              <td>${h.rain}</td>
+              <td>${h.temp}</td>
+              <td>${h.soil_0_7}</td>
+              <td>${h.discharge}</td>
+              <td>${h.wind_gusts}</td>`;
+            tbody.appendChild(row);
+        });
+    }
 });
 </script>
 

@@ -78,6 +78,7 @@ class Auth extends BaseController
         $email = $this->request->getPost('email');
         $password = $this->request->getPost('password');
         $confirm = $this->request->getPost('confirm_password');
+        $alert_email_enabled = $this->request->getPost('alert_email_enabled') ?? 1; // Default to 1 if not set
 
         // Basic validation
         if ($password !== $confirm) {
@@ -99,7 +100,8 @@ class Auth extends BaseController
             'username' => $username,
             'email' => $email,
             'password' => password_hash($password, PASSWORD_DEFAULT),
-            'role' => 'user'  // Default role is 'user'
+            'role' => 'user',  // Default role is 'user'
+            'alert_email_enabled' => $alert_email_enabled
         ]);
 
         return redirect()->to('auth/uslogin')->with('success', 'Registration successful! You can now login.');

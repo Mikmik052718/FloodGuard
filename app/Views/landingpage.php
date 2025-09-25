@@ -156,25 +156,25 @@
                     </svg>
                 </li>
                 <li class="navbar-item">
-                    <a href="<?= site_url('auth/login'); ?>" class="navbar-item-inner">
+                    <a href="<?= site_url('auth/adlogin'); ?>" class="navbar-item-inner">
                         <div class="icon-wrapper"><ion-icon name="lock-closed-outline"></ion-icon></div>
                         <span class="link-text">Admin Login</span>
                     </a>
                 </li>
                 <li class="navbar-item">
-                    <a href="<?= site_url('status/login'); ?>" class="navbar-item-inner">
+                    <a href="<?= site_url('auth/uslogin'); ?>" class="navbar-item-inner">
                         <div class="icon-wrapper"><ion-icon name="person-circle-outline"></ion-icon></div>
                         <span class="link-text">User Login</span>
                     </a>
                 </li>
                 <li class="navbar-item">
-                    <a href="<?= site_url('status/regis'); ?>" class="navbar-item-inner">
+                    <a href="<?= site_url('/auth/register'); ?>" class="navbar-item-inner">
                         <div class="icon-wrapper"><ion-icon name="person-add-outline"></ion-icon></div>
                         <span class="link-text">User Register</span>
                     </a>
                 </li>
                 <li class="navbar-item">
-                    <a href="<?= site_url('status/floodpredict'); ?>" class="navbar-item-inner">
+                    <a href="<?= site_url('/landing'); ?>" class="navbar-item-inner">
                         <div class="icon-wrapper"><ion-icon name="home-outline"></ion-icon></div>
                         <span class="link-text">Home</span>
                     </a>

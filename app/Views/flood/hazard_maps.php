@@ -119,6 +119,13 @@
     </div>
 <?php endif; ?>
 
+<?php
+$back_url = session()->get('logged_in') ? site_url('/home') : site_url('/landing');
+?>
+<div style="text-align: center; margin: 20px 0;">
+    <a href="<?= $back_url ?>" style="display: inline-block; padding: 10px 20px; background: #007bff; color: white; text-decoration: none; border-radius: 5px;">Back</a>
+</div>
+
 <h3 style="text-align:center;">Flood Hazard Map</h3>
 <div id="map" style="height: 400px; margin-top: 20px;"></div>
 

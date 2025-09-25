@@ -9,7 +9,7 @@
 <body>
 
 <!-- Home button -->
-<a href="<?= site_url('home') ?>" class="home-button">Home</a>
+<a href="<?= site_url('/landing') ?>" class="home-button">Home</a>
 
 <div class="container">
     <!-- Left section (Form) -->
@@ -45,7 +45,11 @@
             <input type="email" name="email" placeholder="Email" required>
             <input type="password" name="password" placeholder="Password" required>
             <input type="password" name="confirm_password" placeholder="Confirm Password" required>
-            
+
+            <label>Enable Alert Emails:</label><br>
+            <input type="radio" name="alert_email_enabled" value="1" checked> Yes<br>
+            <input type="radio" name="alert_email_enabled" value="0"> No<br>
+
             <button type="submit" class="btn-register">Register</button>
         </form>
 

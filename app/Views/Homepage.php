@@ -34,7 +34,12 @@
                     </a>
 
                     <div class="d-lg-none ms-auto me-4">
-                        <a href="#top" class="navbar-icon bi-person smoothscroll"></a>
+                        <div class="dropdown">
+                            <a href="#" class="navbar-icon bi-person dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="<?= site_url('auth/logout') ?>">Logout</a></li>
+                            </ul>
+                        </div>
                     </div>
     
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -76,7 +81,12 @@
                         </ul>
 
                         <div class="d-none d-lg-block">
-                            <a href="#top" class="navbar-icon bi-person smoothscroll"></a>
+                            <div class="dropdown">
+                                <a href="#" class="navbar-icon bi-person dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="<?= site_url('auth/logout') ?>">Logout</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
