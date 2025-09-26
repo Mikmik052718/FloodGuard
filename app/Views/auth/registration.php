@@ -63,7 +63,7 @@
 
         <!-- Custom Buttons -->
          <div class="link-actions">
-                <a href="<?= site_url('auth/register') ?>" class="action-chip">Back To Login</a>
+                <a href="<?= site_url('auth/uslogin') ?>" class="action-chip">Back To Login</a>
                 <a href="<?= site_url('flood/predict') ?>" class="action-chip">Flood Prediction</a>
                 <a href="<?= site_url('flood/river-status') ?>" class="action-chip">River Status</a>
         </div>
