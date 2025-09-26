@@ -33,6 +33,23 @@
       color: #888;
       margin-top: 20px;
     }
+    .navigation {
+      margin-top: 20px;
+      text-align: center;
+    }
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      margin: 5px;
+      background-color: #007BFF;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 1em;
+    }
+    .btn:hover {
+      background-color: #0056b3;
+    }
   </style>
 </head>
 <body>
@@ -83,6 +100,12 @@
     ?>
 
     <div class="footer" id="last-updated">Last updated: <span></span></div>
+
+    <div class="navigation">
+      <a href="<?= site_url('flood/hazard-maps') ?>" class="btn">Hazard Maps</a>
+      <a href="<?= site_url('flood/daily') ?>" class="btn">Daily Predictions</a>
+      <a href="<?= site_url('flood/hourly') ?>" class="btn">Hourly Predictions</a>
+    </div>
   </div>
 
   <script>

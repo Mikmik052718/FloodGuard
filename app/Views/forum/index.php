@@ -36,7 +36,7 @@
         </div>
 
         <div class="post-title"><?= esc($post['title']) ?></div>
-        <div class="post-content"><?= esc($post['content']) ?></div>
+        <div class="post-content"><?= $post['content'] ?></div>
         <?php if (!empty($post['image'])): ?>
           <div class="post-image">
             <img src="<?= base_url('uploads/' . esc($post['image'])) ?>" alt="Post Image" style="max-width: 100%; height: auto;">

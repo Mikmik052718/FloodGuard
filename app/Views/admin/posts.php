@@ -21,7 +21,10 @@
   <div class="container">
     <div class="top-bar">
       <h2>Forum Posts</h2>
-      <a href="<?= site_url('/admin/admin_dashboard') ?>" class="btn">Back to Dashboard</a>
+      <div>
+        <a href="<?= site_url('/admin/admin_dashboard') ?>" class="btn">Back to Dashboard</a>
+        <a href="<?= site_url('/admin/force-post') ?>" onclick="return confirm('Are you sure you want to create an update post now?')" class="btn" style="background-color: #28a745; margin-left: 10px;">Update Now</a>
+      </div>
     </div>
 
     <?php foreach ($posts as $post): ?>
@@ -34,7 +37,7 @@
         </div>
 
         <div class="post-title"><?= esc($post['title']) ?></div>
-        <div class="post-content"><?= esc($post['content']) ?></div>
+        <div class="post-content"><?= $post['content'] ?></div>
         <?php if (!empty($post['image'])): ?>
           <div class="post-image">
             <img src="<?= base_url('uploads/' . esc($post['image'])) ?>" alt="Post Image" style="max-width: 100%; height: auto;">

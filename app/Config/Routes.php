@@ -58,6 +58,7 @@ $routes->get('/home', 'Home::index');
 // Admin routes
 $routes->get('/admin/admin_dashboard', 'Admin::dashboard');
 $routes->get('/admin/users', 'Admin::users');
+$routes->get('/admin/force-post', 'Admin::forcePost');
 
 // trial hourly 08/24/25 18:30
 //$routes->get('flood/daily', 'FloodPredictor::predict');

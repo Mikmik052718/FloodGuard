@@ -1,8 +1,4 @@
-# Admin Users View Implementation
-
-## Tasks
-- [x] Add users method to Admin controller
-- [x] Create users.php view with responsive table
-- [x] Update admin_dashboard.php to link to users view
-- [x] Add CSS for responsive table (included inline in the users.php view)
-- [ ] Test the implementation
+- [x] Update email_form.php with Bootstrap styling for consistency
+- [x] Modify Admin.php dashboard method to fetch and pass users data
+- [x] Replace Reports card in admin_dashboard.php with Email form content
+- [x] Test the changes

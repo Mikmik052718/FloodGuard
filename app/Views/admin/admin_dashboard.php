@@ -37,7 +37,7 @@
                     <a class="nav-link text-white" href="#"><i class="bi bi-card-text me-2"></i> Posts</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="#"><i class="bi bi-bar-chart-fill me-2"></i> Reports</a>
+                    <a class="nav-link text-white" href="<?= site_url('email') ?>"><i class="bi bi-envelope-fill me-2"></i> Email</a>
                 </li>
                 <li class="nav-item mt-5">
                     <a class="btn btn-outline-light w-75" href="<?= site_url('auth/logout') ?>">
@@ -89,18 +89,20 @@
                             </a>
                         </div>
 
-                        <!-- REPORTS CARD -->
+                        <!-- EMAIL CARD -->
                         <div class="col-md-4">
-                            <div class="custom-block">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div>
-                                        <h5><i class="bi bi-bar-chart-fill me-2"></i>Reports</h5>
-                                        <p>View system logs and flood alerts.</p>
+                            <a href="<?= site_url('email') ?>" class="text-decoration-none">
+                                <div class="custom-block">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h5><i class="bi bi-envelope-fill me-2"></i>Email</h5>
+                                            <p>Send emails to users.</p>
+                                        </div>
+                                        <span class="badge bg-primary-badge">Send</span>
                                     </div>
-                                    <span class="badge bg-accent-badge">10</span>
+                                    <img src="<?= base_url('assets/images/email.png') ?>" class="custom-block-image" alt="Email">
                                 </div>
-                                <img src="<?= base_url('assets/images/report.png') ?>" class="custom-block-image" alt="Reports">
-                            </div>
+                            </a>
                         </div>
                     </div>
                 </div>

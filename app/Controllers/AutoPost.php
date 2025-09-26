@@ -3,119 +3,9 @@
 namespace App\Controllers;
 
 use App\Models\PostModel;
-use App\Models\UserModel;
 
-class Admin extends BaseController
+class AutoPost extends BaseController
 {
-    // Admin Dashboard
-    public function dashboard()
-    {
-        // Ensure the user is an admin before accessing the dashboard
-        if (session()->get('role') !== 'admin') {
-            return redirect()->to('/auth/login');
-        }
-
-        // Load the admin dashboard view (admin_dashboard.php)
-        return view('admin/admin_dashboard');  // Reference to your admin_dashboard.php file in the 'admin' folder under 'Views'
-    }
-
-    // Display all posts (only for admins)
-    public function posts()
-    {
-        // Check if the user is an admin
-        if (session()->get('role') !== 'admin') {
-            return redirect()->to('/auth/login');
-        }
-
-        $model = new PostModel();
-        $data['posts'] = $model->orderBy('created_at', 'DESC')->findAll();
-        return view('admin/posts', $data);
-    }
-    
-    // Display all users (only for admins)
-    public function users()
-    {
-        // Check if the user is an admin
-        if (session()->get('role') !== 'admin') {
-            return redirect()->to('/auth/login');
-        }
-
-        $model = new UserModel();
-        $data['users'] = $model->orderBy('id', 'ASC')->findAll();
-        return view('admin/users', $data);
-    }
-
-    // Delete a post by ID
-    public function delete($id)
-    {
-        // Ensure the user is an admin before allowing deletion
-        if (session()->get('role') === 'admin') {
-            $model = new PostModel();
-            $model->delete($id);
-        }
-        return redirect()->to('/admin/posts');
-    }
-
-    // Show edit form for a post
-    public function edit($id)
-    {
-        // Ensure the user is an admin before allowing access to the edit page
-        if (session()->get('role') !== 'admin') {
-            return redirect()->to('/auth/login');
-        }
-
-        $model = new PostModel();
-        $data['post'] = $model->find($id);
-        return view('admin/edit', $data);
-    }
-
-    // Update a post after editing
-    public function update($id)
-    {
-        // Ensure the user is an admin before allowing the update
-        if (session()->get('role') !== 'admin') {
-            return redirect()->to('/auth/login');
-        }
-
-        $model = new PostModel();
-        $model->update($id, [
-            'author_name' => $this->request->getPost('author_name'),
-            'title' => $this->request->getPost('title'),
-            'content' => $this->request->getPost('content'),
-        ]);
-        return redirect()->to('/admin/posts');
-    }
-
-    // Force create an update post
-    public function forcePost()
-    {
-        // Ensure the user is an admin
-        if (session()->get('role') !== 'admin') {
-            return redirect()->to('/auth/login');
-        }
-
-        date_default_timezone_set('Asia/Manila');
-
-        // Fetch data
-        $hourlyData = $this->getHourlyData();
-        $dailyData = $this->getDailyData();
-        $riverData = $this->getRiverData();
-
-        // Format content
-        $content = $this->formatContent($hourlyData, $dailyData, $riverData);
-
-        // Create post
-        $postModel = new PostModel();
-        $postModel->insert([
-            'author_name' => 'Admin',
-            'title' => 'Updates As of ' . date('Y-m-d H:i:s'),
-            'content' => $content,
-            'created_at' => date('Y-m-d H:i:s')
-        ]);
-
-        return redirect()->to('/admin/posts')->with('success', 'Update post created successfully.');
-    }
-
     private function getPythonExe()
     {
         $anaconda = 'D:/Anaconda/python.exe';
@@ -130,6 +20,32 @@ class Admin extends BaseController
     private function getScriptPath($script)
     {
         return dirname(__DIR__, 2) . '/python/' . $script;
+    }
+
+    public function index()
+    {
+        date_default_timezone_set('Asia/Manila');
+
+        // Fetch hourly data
+        $hourlyData = $this->getHourlyData();
+        // Fetch daily data
+        $dailyData = $this->getDailyData();
+        // Fetch river data
+        $riverData = $this->getRiverData();
+
+        // Format content
+        $content = $this->formatContent($hourlyData, $dailyData, $riverData);
+
+        // Create post
+        $postModel = new PostModel();
+        $postModel->insert([
+            'author_name' => 'Admin',
+            'title' => 'Updates As of ' . date('Y-m-d H:i:s'),
+            'content' => $content,
+            'created_at' => date('Y-m-d H:i:s')
+        ]);
+
+        echo "Post created successfully.\n";
     }
 
     private function getHourlyData()

@@ -46,6 +46,11 @@ class Email_cont extends Controller
 
     public function form()
     {
+        // Ensure the user is an admin
+        if (session()->get('role') !== 'admin') {
+            return redirect()->to('/auth/login');
+        }
+
         $userModel = new UserModel();
         $users = $userModel->select('id, username, email')->findAll();
 
