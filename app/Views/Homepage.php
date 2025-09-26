@@ -27,7 +27,6 @@
 
             <nav class="navbar navbar-expand-lg">
                 <div class="container">
-                    <!-- PALINK NGA TO JE SA newlanding -->
                     <a class="navbar-brand" href="<?= base_url('status/newlanding') ?>">
                         <i class="bi-back"></i>
                         <span>AlertoMarikeno</span>

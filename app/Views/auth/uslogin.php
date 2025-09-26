@@ -6,17 +6,17 @@
     <title>FloodPredict User • FloodPredict</title>
 
     <!-- Point this to wherever you placed the CSS file -->
-    <link rel="stylesheet" href="<?= base_url('assets/css/admin_login.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/css/user_login.css') ?>">
 </head>
 <body>
 
     <!-- Top-left brand -->
-    <div class="logo">FloodPredict User Test</div>
-
+    <div class="logo">AlertoMarikeno User Login<i class="fa fa-user-circle" aria-hidden="true"></i></div>
+    <a href="<?php echo site_url('Status/newlanding'); ?>" class="home-button">Home</a>
     <div class="container">
         <!-- LEFT: form -->
         <section class="left-section">
-            <h2>User Login</h2>
+            <h2>Login to your Account</h2>
 
             <?php if (session()->getFlashdata('error')): ?>
                 <p class="error"><?= esc(session()->getFlashdata('error')) ?></p>
@@ -69,8 +69,8 @@
 
         <!-- RIGHT: panel blurb -->
         <section class="right-section">
-            <h3>User Panel</h3>
-            <p>Manage flood prediction data, users, and settings.</p>
+            <h3>Welcome Marikeno</h3>
+            <p>View Latest Updates on Marikina River</p>
         </section>
     </div>
 

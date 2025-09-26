@@ -1,0 +1,259 @@
+/* register.css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f2f5;
+}
+
+.container {
+    width: 900px;
+    height: 550px;
+    display: flex;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.left-section, .right-section {
+    flex: 1;
+    padding: 60px 40px;
+}
+
+.left-section {
+    background: #fff;
+}
+
+.right-section {
+    background: linear-gradient(135deg, #1cc7a0, #17a2b8);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.logo {
+    position: absolute;
+    top: 20px;
+    left: 30px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #17a2b8;
+}
+
+h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
+    color: #333;
+    text-align: center;
+}
+
+h3 {
+    font-size: 20px;
+    color: #333;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+input[type="text"], input[type="email"], input[type="password"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 100%;
+}
+
+.btn-register {
+    padding: 10px;
+    background: #1cc7a0;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-register:hover {
+    background: #17a2b8;
+}
+
+/* Custom Buttons Styling */
+.link-actions {
+    margin-top: 16px;
+    display: flex;
+    gap: 44px;
+    flex-wrap: nowrap;  
+    justify-content: flex-start;
+}
+
+.action-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 8px; /* smaller */
+    border-radius: 6px;
+    border: 1px solid #1cc7a0;
+    font-size: 12px;  /* smaller font */
+    font-weight: 600;
+    text-decoration: none;
+    transition: all .2s ease;
+    white-space: nowrap; /* prevent breaking */
+}
+
+/* default + visited colors */
+.action-chip:link,
+.action-chip:visited {
+    color: #1cc7a0;
+    background: rgba(23, 162, 184, 0.08);
+}
+
+/* hover/active */
+.action-chip:hover {
+    background: #1cc7a0;
+    color: #fff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, .2);
+}
+.action-chip:active {
+    transform: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .15);
+}
+
+
+.btn-signin {
+    background: white;
+    color: #17a2b8;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+a.home-button {
+    position: fixed !important;
+    top: 20px !important;
+    right: 30px !important;
+    background-color: #17a2b8 !important;
+    color: white !important;
+    padding: 10px 18px !important;
+    border-radius: 5px !important;
+    font-weight: bold !important;
+    text-decoration: none !important;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16) !important;
+    transition: background-color 0.3s ease !important;
+    z-index: 1000 !important;
+}
+
+a.home-button:hover {
+    background-color: #1cc7a0 !important;
+}
+
+.radio-group {
+    display: flex;
+    gap: 25px;
+    margin: 12px 0 20px 0;
+    align-items: center;
+}
+
+.custom-radio input[type="radio"] {
+    display: none;
+}
+
+.custom-radio {
+    position: relative;
+    padding-left: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    user-select: none;
+}
+
+.radio-mark {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 18px;
+    width: 18px;
+    border: 2px solid #17a2b8;
+    border-radius: 50%;
+    background-color: #fff;
+    transition: all 0.3s ease;
+}
+
+.custom-radio input:checked ~ .radio-mark {
+    background-color: #1cc7a0;
+    border-color: #1cc7a0;
+}
+
+.radio-mark::after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 4px;
+    top: 4px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: white;
+}
+
+.custom-radio input:checked ~ .radio-mark::after {
+    display: block;
+}
+
+/* Hover effect */
+.custom-radio:hover .radio-mark {
+    border-color: #1cc7a0;
+}
+
+.left-section h3 {
+    text-align: center;
+    width: 100%;
+}
+
+.google-login {
+    margin-top: 20px;
+}
+
+.btn-google {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 12px;
+    background: #fff;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 15px;
+    text-decoration: none;
+    transition: all 0.3s;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.btn-google:hover {
+    background: #f8f9fa;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+    transform: translateY(-1px);
+}
+
+.btn-google svg {
+    flex-shrink: 0;
+}
