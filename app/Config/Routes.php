@@ -21,6 +21,7 @@ $routes->get('/auth/adlogin', 'Auth::adlogin');                                 
 $routes->get('/auth/uslogin', 'Auth::uslogin');                                 //user login
 
 $routes->post('/auth/attemptLogin', 'Auth::attemptLogin');
+$routes->post('/auth/updateProfile', 'Auth::updateProfile');
 $routes->get('/auth/logout', 'Auth::logout');
 
 // Google OAuth routes
@@ -31,7 +32,7 @@ $routes->get('/auth/google/callback', 'Auth::googleCallback');
 
 //admin actv
 $routes->get('/admin/posts', 'Admin::posts');
-$routes->get('/admin/delete/(:num)', 'Forum::delete/$1');
+$routes->get('/admin/delete/(:num)', 'Admin::delete/$1');
 //user edit
 $routes->get('forum/edit/(:num)', 'Forum::edit/$1');
 $routes->post('forum/update/(:num)', 'Forum::update/$1');
@@ -86,3 +87,5 @@ $routes->get('flood/hourly/data', 'FloodPredictor::predict_hourly_ajax');
 $routes->post('flood/save-location', 'FloodPredictor::saveUserLocation');
 $routes->get('flood/get-location', 'FloodPredictor::getUserLocation');
 
+// CLI route for autopost
+$routes->cli('autopost', 'AutoPost::index');

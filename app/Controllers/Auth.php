@@ -3,8 +3,6 @@
 namespace App\Controllers;
 
 use App\Models\UserModel;
-use Google\Client;
-use Google\Service\Oauth2;
 
 class Auth extends BaseController
 {
@@ -44,7 +42,7 @@ class Auth extends BaseController
             if ($user['role'] === 'admin') {
                 return redirect()->to('/admin/admin_dashboard');  // Redirect to admin dashboard route
             } elseif ($user['role'] === 'user') {
-            return redirect()->to('/home');
+                return redirect()->to('/forum');
             } else {
                 return redirect()->to('/landing');  // Redirect to the forum for non-admin users
             }
@@ -112,7 +110,7 @@ class Auth extends BaseController
     {
         $googleConfig = config('Google');
 
-        $client = new Client();
+        $client = new \Google_Client();
         $client->setClientId($googleConfig->clientId);
         $client->setClientSecret($googleConfig->clientSecret);
         $client->setRedirectUri($googleConfig->redirectUri);
@@ -154,7 +152,7 @@ class Auth extends BaseController
 
         try {
             // Exchange code for access token
-            $client = new Client();
+            $client = new \Google_Client();
             $client->setClientId($googleConfig->clientId);
             $client->setClientSecret($googleConfig->clientSecret);
             $client->setRedirectUri($googleConfig->redirectUri);
@@ -168,7 +166,7 @@ class Auth extends BaseController
             $client->setAccessToken($token);
 
             // Get user info from Google
-            $oauth2 = new Oauth2($client);
+            $oauth2 = new \Google_Service_Oauth2($client);
             $googleUser = $oauth2->userinfo->get();
 
             // Check if user already exists by Google ID
@@ -224,13 +222,77 @@ class Auth extends BaseController
             if ($user['role'] === 'admin') {
                 return redirect()->to('/admin/admin_dashboard');
             } else {
-                return redirect()->to('/home');
+                return redirect()->to('/forum');
             }
 
         } catch (\Exception $e) {
             log_message('error', 'Google OAuth error: ' . $e->getMessage());
             return redirect()->to('/auth/uslogin')->with('error', 'Google login failed');
         }
+    }
+
+    // Update user profile
+    public function updateProfile()
+    {
+        $session = session();
+        $model = new UserModel();
+
+        $userId = $session->get('user_id');
+        $user = $model->find($userId);
+
+        if (!$user) {
+            return redirect()->back()->with('error', 'User not found');
+        }
+
+        // Verify current password if not Google user
+        if (empty($user['google_id'])) {
+            $currentPassword = $this->request->getPost('current_password');
+            if (!password_verify($currentPassword, $user['password'])) {
+                return redirect()->back()->with('error', 'Current password is incorrect');
+            }
+        }
+
+        $username = $this->request->getPost('username');
+        $newPassword = $this->request->getPost('new_password');
+        $confirmPassword = $this->request->getPost('confirm_password');
+        $alertEmailEnabled = $this->request->getPost('alert_email_enabled');
+        $alertMinProbability = $this->request->getPost('alert_min_probability');
+
+        // Check username uniqueness if changed
+        if ($username !== $user['username']) {
+            if ($model->where('username', $username)->where('id !=', $userId)->first()) {
+                return redirect()->back()->with('error', 'Username already exists');
+            }
+        }
+
+        // Validate new password
+        if (!empty($newPassword)) {
+            if ($newPassword !== $confirmPassword) {
+                return redirect()->back()->with('error', 'New passwords do not match');
+            }
+            $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+        } else {
+            $hashedPassword = $user['password'];
+        }
+
+        // Update user
+        $updateData = [
+            'username' => $username,
+            'password' => $hashedPassword,
+            'alert_email_enabled' => $alertEmailEnabled,
+            'alert_min_probability' => $alertMinProbability
+        ];
+
+        $model->update($userId, $updateData);
+
+        // Update session
+        $session->set([
+            'username' => $username,
+            'alert_email_enabled' => $alertEmailEnabled,
+            'alert_min_probability' => $alertMinProbability
+        ]);
+
+        return redirect()->back()->with('success', 'Profile updated successfully');
     }
 
     // Generate unique username from email

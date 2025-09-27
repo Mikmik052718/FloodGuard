@@ -33,12 +33,6 @@
                     </a>
 
                     <div class="d-lg-none ms-auto me-4">
-                        <div class="dropdown">
-                            <a href="#" class="navbar-icon bi-person dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="<?= site_url('auth/logout') ?>">Logout</a></li>
-                            </ul>
-                        </div>
                     </div>
     
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -80,12 +74,6 @@
                         </ul>
 
                         <div class="d-none d-lg-block">
-                            <div class="dropdown">
-                                <a href="#" class="navbar-icon bi-person dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="<?= site_url('auth/logout') ?>">Logout</a></li>
-                                </ul>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -760,7 +748,7 @@ Anyone with a stable internet connection and a device with a web browser can use
                     </div>
 
                     <div class="col-lg-3 col-md-4 col-12 mt-4 mt-lg-0 ms-auto">
-                        <div class="dropdown">
+                            <div class="dropdown">
                             <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             English</button>
 

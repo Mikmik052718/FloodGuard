@@ -12,7 +12,7 @@
 
     <!-- Top-left brand -->
     <div class="logo">AlertoMarikeno User Login<i class="fa fa-user-circle" aria-hidden="true"></i></div>
-    <a href="<?php echo site_url('Status/newlanding'); ?>" class="home-button">Home</a>
+    <a href="<?php echo site_url('/home'); ?>" class="home-button">Home</a>
     <div class="container">
         <!-- LEFT: form -->
         <section class="left-section">
@@ -61,7 +61,7 @@
             <!-- small links under the form -->
             <div class="link-actions">
                 <a href="<?= site_url('auth/register') ?>" class="action-chip">Create an account</a>
-                <a href="<?= site_url('flood/predict') ?>" class="action-chip">Flood Prediction</a>
+                <a href="<?= site_url('flood/daily') ?>" class="action-chip">Flood Prediction</a>
                 <a href="<?= site_url('flood/river-status') ?>" class="action-chip">River Status</a>
             </div>
 

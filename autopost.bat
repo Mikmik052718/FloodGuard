@@ -1,3 +1,3 @@
 @echo off
 cd /d D:\xampp\htdocs\FloodGuard
-php public/index.php autopost
+"D:\xampp\php\php.exe" public/index.php autopost
