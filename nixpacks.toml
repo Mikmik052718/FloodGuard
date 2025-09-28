@@ -1,12 +1,12 @@
 [phases.setup]
 nixPkgs = [
+  "php82",
   "php82Packages.composer",
   "php82Extensions.intl",
   "php82Extensions.mbstring",
   "php82Extensions.pdo_mysql",
   "libmysqlclient"
 ]
-
 
 [phases.build]
 cmds = [
