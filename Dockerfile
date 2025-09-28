@@ -1,10 +1,10 @@
-# Start from official PHP 8.2 CLI image
+# 1. Base PHP image
 FROM php:8.2-cli
 
-# Set working directory
+# 2. Set working directory
 WORKDIR /app
 
-# Install system dependencies including ICU for intl extension
+# 3. Install system dependencies including ICU for intl extension
 RUN apt-get update && apt-get install -y \
     libpng-dev \
     libonig-dev \
@@ -19,20 +19,23 @@ RUN apt-get update && apt-get install -y \
  && docker-php-ext-install pdo_mysql mbstring intl \
  && rm -rf /var/lib/apt/lists/*
 
-# Install Composer globally
+# 4. Install Composer globally
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Copy the application code
-COPY . /app
+# 5. Copy composer files first to leverage caching
+COPY composer.json composer.lock /app/
 
-# Install PHP dependencies
+# 6. Install PHP dependencies according to composer.lock
 RUN composer install --no-dev --optimize-autoloader --ignore-platform-reqs
 
-# Install Python dependencies only if requirements.txt exists
-RUN [ -f requirements.txt ] && pip3 install --no-cache-dir -r requirements.txt || echo "No requirements.txt, skipping Python deps"
+# 7. Copy the rest of the application including .env
+COPY . /app
 
-# Expose the port (EasyPanel uses $PORT)
+# 8. Install Python dependencies only if requirements.txt exists
+RUN if [ -f requirements.txt ]; then pip3 install --no-cache-dir -r requirements.txt || true; fi
+
+# 9. Expose port (EasyPanel or CI4 default)
 EXPOSE 8080
 
-# Start CodeIgniter development server
+# 10. Start CodeIgniter development server
 CMD ["php", "spark", "serve", "--host=0.0.0.0", "--port=8080"]
