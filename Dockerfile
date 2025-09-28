@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y \
     libonig-dev \
     libxml2-dev \
     libmariadb-dev-compat \
-    libicu-dev \           # <-- required for intl
+    libicu-dev \
     unzip \
     python3 \
     python3-pip \
