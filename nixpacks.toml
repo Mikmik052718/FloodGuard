@@ -4,8 +4,7 @@ nixPkgs = [
   "php82Packages.composer",
   "libmysqlclient",
   "nginx",
-  "nodejs_18",
-  "npm-9_x"
+  "nodejs_18"
 ]
 
 [phases.build]
