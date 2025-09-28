@@ -29,7 +29,7 @@ COPY . /app
 RUN composer install --no-dev --optimize-autoloader --ignore-platform-reqs
 
 # Install Python dependencies only if requirements.txt exists
-RUN if [ -f requirements.txt ]; then pip3 install --no-cache-dir -r requirements.txt || true; fi
+RUN [ -f requirements.txt ] && pip3 install --no-cache-dir -r requirements.txt || echo "No requirements.txt, skipping Python deps"
 
 # Expose the port (EasyPanel uses $PORT)
 EXPOSE 8080
