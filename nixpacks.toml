@@ -1,15 +1,17 @@
 [phases.setup]
 nixPkgs = [
-  "php81",
-  "php81Packages.composer",
+  "php82",
+  "php82Packages.composer",
   "libmysqlclient",
-  "nginx"
+  "nginx",
+  "nodejs_18",
+  "npm-9_x"
 ]
 
-[phases.install]
+[phases.build]
 cmds = [
   "composer install --no-dev --optimize-autoloader"
 ]
 
-[phases.start]
+[start]
 cmd = "php spark serve --host=0.0.0.0 --port=${PORT:-8080}"
