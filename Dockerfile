@@ -23,17 +23,13 @@ RUN a2enmod rewrite
 # 5. Install Composer globally
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# 6. Copy composer files first to leverage caching
+# 6. Copy composer files first to leverage Docker cache
 COPY composer.json composer.lock /app/
 
-# 7. Install PHP dependencies according to composer.lock (force reinstall)
+# 7. Install PHP dependencies including vlucas/phpdotenv
 RUN rm -rf /app/vendor \
     && composer clear-cache \
-    && composer install --optimize-autoloader --ignore-platform-reqs --no-cache \
-    && ls -la /app/vendor \
-    && ls -la /app/vendor/react || true \
-    && ls -la /app/vendor/react/promise || true
-
+    && composer install --optimize-autoloader --ignore-platform-reqs --no-cache
 
 # 8. Copy the rest of the application including .env
 COPY . /app
@@ -48,14 +44,27 @@ RUN printf '%s\n' \
     "<VirtualHost *:80>" \
     "    DocumentRoot /app/public" \
     "    <Directory /app/public>" \
-    "        AllowOverride None" \
+    "        AllowOverride All" \   # Allow .htaccess for CI4 routing
     "        Require all granted" \
     "        DirectoryIndex index.php" \
     "    </Directory>" \
     "</VirtualHost>" \
     > /etc/apache2/sites-available/000-default.conf
 
-# 11. Expose port 80 (Easypanel default)
+# 11. Copy default CI4 .htaccess to public if not present
+RUN if [ ! -f /app/public/.htaccess ]; then \
+    printf '%s\n' \
+    "<IfModule mod_rewrite.c>" \
+    "    RewriteEngine On" \
+    "    RewriteCond %{REQUEST_FILENAME} !-f" \
+    "    RewriteCond %{REQUEST_FILENAME} !-d" \
+    "    RewriteRule ^(.*)$ index.php/$1 [L]" \
+    "</IfModule>" \
+    > /app/public/.htaccess; \
+    fi
+
+# 12. Expose port 80 (Easypanel default)
 EXPOSE 80
 
-# Apache will start automatically when the container runs
+# 13. Start Apache in foreground
+CMD ["apache2-foreground"]
