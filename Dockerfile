@@ -38,13 +38,15 @@ RUN chown -R www-data:www-data /app \
     && chmod -R 777 /app/writable
 
 # 10. Configure Apache to serve from /app/public
-RUN echo "<VirtualHost *:80>
-    DocumentRoot /app/public
-    <Directory /app/public>
-        AllowOverride All
-        Require all granted
-    </Directory>
-</VirtualHost>" > /etc/apache2/sites-available/000-default.conf
+RUN printf '%s\n' \
+    "<VirtualHost *:80>" \
+    "    DocumentRoot /app/public" \
+    "    <Directory /app/public>" \
+    "        AllowOverride All" \
+    "        Require all granted" \
+    "    </Directory>" \
+    "</VirtualHost>" \
+    > /etc/apache2/sites-available/000-default.conf
 
 # 11. Expose port 80 (Easypanel default)
 EXPOSE 80
