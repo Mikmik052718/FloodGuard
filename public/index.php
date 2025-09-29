@@ -1,4 +1,20 @@
 <?php
+// == TEMPORARY DEBUG BLOCK
+
+echo "INDEX IS RUNNING!<br>";
+echo "ENV: " . ($_ENV['CI_ENVIRONMENT'] ?? 'not found') . "<br>";
+echo "DB HOST: " . ($_ENV['database.default.hostname'] ?? 'not found') . "<br>";
+
+echo "<pre>";
+var_dump($_ENV); // TEMP: dump all environment vars
+echo "</pre>";
+
+echo "<pre>";
+var_dump($_SERVER); // TEMP: dump server vars
+echo "</pre>";
+
+// Stop execution before CodeIgniter boots
+exit;
 
 use CodeIgniter\Boot;
 use Config\Paths;
