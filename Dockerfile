@@ -1,4 +1,4 @@
-# 1. Base PHP image
+# 1. Base PHP image (keep CLI for dev server)
 FROM php:8.2-cli
 
 # 2. Set working directory
@@ -34,8 +34,13 @@ COPY . /app
 # 8. Install Python dependencies only if requirements.txt exists
 RUN if [ -f requirements.txt ]; then pip3 install --no-cache-dir -r requirements.txt || true; fi
 
-# 9. Expose port (EasyPanel or CI4 default)
-EXPOSE 8080
+# 9. NEW: Set permissions for CI4 (writable dirs for logs/sessions/uploads)
+RUN chown -R www-data:www-data /app \
+    && chmod -R 755 /app \
+    && chmod -R 777 /app/writable  # Adjust if needed; CI4 requires this for production
 
-# 10. Start CodeIgniter development server
-CMD ["php", "spark", "serve", "--host=0.0.0.0", "--port=8080"]
+# 10. Expose standard port 80 (Easypanel default; change mapping if needed)
+EXPOSE 80
+
+# 11. Start CodeIgniter development server (updated port; add --no-daemon for better logging)
+CMD ["php", "spark", "serve", "--host=0.0.0.0", "--port=80", "--no-daemon"]
