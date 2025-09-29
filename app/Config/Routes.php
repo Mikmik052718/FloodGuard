@@ -89,3 +89,6 @@ $routes->get('flood/get-location', 'FloodPredictor::getUserLocation');
 
 // CLI route for autopost
 $routes->cli('autopost', 'AutoPost::index');
+
+$routes->get('debug', 'Debug::index');
+
