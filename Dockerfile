@@ -4,6 +4,10 @@ FROM php:8.2-apache
 # 2. Set working directory
 WORKDIR /app
 
+# 2.1 Force PHP to display errors in development (important for debugging 500s)
+RUN echo "display_errors=On" > /usr/local/etc/php/conf.d/display-errors.ini \
+    && echo "error_reporting=E_ALL" >> /usr/local/etc/php/conf.d/display-errors.ini
+
 # 3. Install system dependencies including ICU for intl extension
 RUN apt-get update && apt-get install -y \
     libpng-dev \
