@@ -4,10 +4,6 @@ FROM php:8.2-apache
 # 2. Set working directory
 WORKDIR /app
 
-# 2.1 Force PHP to display errors in development (important for debugging 500s)
-RUN echo "display_errors=On" > /usr/local/etc/php/conf.d/display-errors.ini \
-    && echo "error_reporting=E_ALL" >> /usr/local/etc/php/conf.d/display-errors.ini
-
 # 3. Install system dependencies including ICU for intl extension
 RUN apt-get update && apt-get install -y \
     libpng-dev \
@@ -30,8 +26,10 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # 6. Copy composer files first to leverage caching
 COPY composer.json composer.lock /app/
 
-# 7. Install PHP dependencies according to composer.lock
-RUN composer install --no-dev --optimize-autoloader --ignore-platform-reqs
+# 7. Install PHP dependencies according to composer.lock (force reinstall)
+RUN rm -rf /app/vendor \
+    && composer clear-cache \
+    && composer install --no-dev --optimize-autoloader --ignore-platform-reqs
 
 # 8. Copy the rest of the application including .env
 COPY . /app
@@ -52,7 +50,6 @@ RUN printf '%s\n' \
     "    </Directory>" \
     "</VirtualHost>" \
     > /etc/apache2/sites-available/000-default.conf
-
 
 # 11. Expose port 80 (Easypanel default)
 EXPOSE 80
