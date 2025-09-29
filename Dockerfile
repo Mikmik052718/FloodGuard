@@ -14,8 +14,8 @@ RUN apt-get update && apt-get install -y \
     unzip \
     git \
     curl \
-    && docker-php-ext-install pdo_mysql mbstring intl \
-    && rm -rf /var/lib/apt/lists/*
+ && docker-php-ext-install pdo_mysql mbstring intl \
+ && rm -rf /var/lib/apt/lists/*
 
 # 4. Enable Apache Rewrite (needed for CI4 pretty URLs)
 RUN a2enmod rewrite
@@ -27,12 +27,11 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 COPY composer.json composer.lock /app/
 
 # 7. Install PHP dependencies according to composer.lock (force reinstall)
+# ✅ Added vlucas/phpdotenv in composer.json to be installed automatically
 RUN rm -rf /app/vendor \
     && composer clear-cache \
     && composer install --optimize-autoloader --ignore-platform-reqs --no-cache \
-    && ls -la /app/vendor \
-    && ls -la /app/vendor/react || true \
-    && ls -la /app/vendor/react/promise || true
+    && ls -la /app/vendor
 
 # 8. Copy the rest of the application including .env
 COPY . /app
@@ -43,18 +42,20 @@ RUN chown -R www-data:www-data /app \
     && chmod -R 777 /app/writable
 
 # 10. Configure Apache to serve from /app/public
-RUN cat > /etc/apache2/sites-available/000-default.conf <<EOF
-<VirtualHost *:80>
-    DocumentRoot /app/public
-    <Directory /app/public>
-        AllowOverride All
-        Require all granted
-        DirectoryIndex index.php
-    </Directory>
-</VirtualHost>
-EOF
+# ✅ Changed AllowOverride None → All so CI4 .htaccess routing works
+RUN printf '%s\n' \
+    "<VirtualHost *:80>" \
+    "    DocumentRoot /app/public" \
+    "    <Directory /app/public>" \
+    "        AllowOverride All" \
+    "        Require all granted" \
+    "        DirectoryIndex index.php" \
+    "    </Directory>" \
+    "</VirtualHost>" \
+    > /etc/apache2/sites-available/000-default.conf
 
 # 11. Expose port 80 (Easypanel default)
 EXPOSE 80
 
-# Apache will start automatically when the container runs
+# ✅ 12. Start Apache in foreground
+CMD ["apache2-foreground"]
