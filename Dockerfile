@@ -46,11 +46,13 @@ RUN printf '%s\n' \
     "<VirtualHost *:80>" \
     "    DocumentRoot /app/public" \
     "    <Directory /app/public>" \
-    "        AllowOverride All" \
+    "        AllowOverride None" \
     "        Require all granted" \
+    "        DirectoryIndex index.php" \
     "    </Directory>" \
     "</VirtualHost>" \
     > /etc/apache2/sites-available/000-default.conf
+
 
 # 11. Expose port 80 (Easypanel default)
 EXPOSE 80
