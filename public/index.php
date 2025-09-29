@@ -5,7 +5,7 @@
  *---------------------------------------------------------------
  */
 require_once __DIR__ . '/../vendor/autoload.php';
-
+var_dump(class_exists('Dotenv\Dotenv')); // should output true
 // Load environment variables using phpdotenv
 if (file_exists(__DIR__ . '/../.env')) {
     $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
