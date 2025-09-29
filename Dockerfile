@@ -29,9 +29,11 @@ COPY composer.json composer.lock /app/
 # 7. Install PHP dependencies according to composer.lock (force reinstall)
 RUN rm -rf /app/vendor \
     && composer clear-cache \
-    && composer install --no-dev --optimize-autoloader --ignore-platform-reqs --no-cache \
-    && ls -la /app/vendor/react \
+    && composer install --optimize-autoloader --ignore-platform-reqs --no-cache \
+    && ls -la /app/vendor \
+    && ls -la /app/vendor/react || true \
     && ls -la /app/vendor/react/promise || true
+
 
 # 8. Copy the rest of the application including .env
 COPY . /app
