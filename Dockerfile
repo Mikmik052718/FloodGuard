@@ -17,20 +17,22 @@ RUN a2enmod rewrite
 # 5. Install Composer globally
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# 6. Copy everything first (so vendor will persist)
+# 6. Copy composer files first (for caching)
+COPY composer.json composer.lock /app/
+
+# 7. Install PHP dependencies (no dev packages)
+RUN composer clear-cache \
+ && composer install --no-interaction --optimize-autoloader --no-dev
+
+# 8. Copy the rest of the application including .env
 COPY . /app
 
-# 7. Install PHP dependencies, including phpdotenv
-RUN composer clear-cache \
- && composer install --no-interaction --optimize-autoloader \
- && composer require vlucas/phpdotenv --no-interaction --optimize-autoloader
-
-# 8. Set permissions
+# 9. Set permissions
 RUN chown -R www-data:www-data /app \
  && chmod -R 755 /app \
  && chmod -R 777 /app/writable
 
-# 9. Configure Apache
+# 10. Configure Apache
 RUN printf '%s\n' \
  "<VirtualHost *:80>" \
  "    DocumentRoot /app/public" \
@@ -42,8 +44,8 @@ RUN printf '%s\n' \
  "</VirtualHost>" \
  > /etc/apache2/sites-available/000-default.conf
 
-# 10. Expose port 80
+# 11. Expose port 80
 EXPOSE 80
 
-# 11. Start Apache
+# 12. Start Apache
 CMD ["apache2-foreground"]
