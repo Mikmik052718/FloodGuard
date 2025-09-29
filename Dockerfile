@@ -1,5 +1,5 @@
-# 1. Base PHP image (keep CLI for dev server)
-FROM php:8.2-cli
+# 1. Base PHP image (use Apache, not CLI, for production)
+FROM php:8.2-apache
 
 # 2. Set working directory
 WORKDIR /app
@@ -12,35 +12,41 @@ RUN apt-get update && apt-get install -y \
     libmariadb-dev-compat \
     libicu-dev \
     unzip \
-    python3 \
-    python3-pip \
     git \
     curl \
  && docker-php-ext-install pdo_mysql mbstring intl \
  && rm -rf /var/lib/apt/lists/*
 
-# 4. Install Composer globally
+# 4. Enable Apache Rewrite (needed for CI4 pretty URLs)
+RUN a2enmod rewrite
+
+# 5. Install Composer globally
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# 5. Copy composer files first to leverage caching
+# 6. Copy composer files first to leverage caching
 COPY composer.json composer.lock /app/
 
-# 6. Install PHP dependencies according to composer.lock
+# 7. Install PHP dependencies according to composer.lock
 RUN composer install --no-dev --optimize-autoloader --ignore-platform-reqs
 
-# 7. Copy the rest of the application including .env
+# 8. Copy the rest of the application including .env
 COPY . /app
 
-# 8. Install Python dependencies only if requirements.txt exists
-RUN if [ -f requirements.txt ]; then pip3 install --no-cache-dir -r requirements.txt || true; fi
-
-# 9. NEW: Set permissions for CI4 (writable dirs for logs/sessions/uploads)
+# 9. Set permissions for CI4 (writable dirs for logs/sessions/uploads)
 RUN chown -R www-data:www-data /app \
     && chmod -R 755 /app \
-    && chmod -R 777 /app/writable  # Adjust if needed; CI4 requires this for production
+    && chmod -R 777 /app/writable
 
-# 10. Expose standard port 80 (Easypanel default; change mapping if needed)
+# 10. Configure Apache to serve from /app/public
+RUN echo "<VirtualHost *:80>
+    DocumentRoot /app/public
+    <Directory /app/public>
+        AllowOverride All
+        Require all granted
+    </Directory>
+</VirtualHost>" > /etc/apache2/sites-available/000-default.conf
+
+# 11. Expose port 80 (Easypanel default)
 EXPOSE 80
 
-# 11. Start CodeIgniter development server (updated port; add --no-daemon for better logging)
-CMD ["php", "spark", "serve", "--host=0.0.0.0", "--port=80", "--no-daemon"]
+# Apache will start automatically when the container runs
