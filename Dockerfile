@@ -26,12 +26,10 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # 6. Copy composer files first to leverage caching
 COPY composer.json composer.lock /app/
 
-# 7. Install PHP dependencies according to composer.lock (force reinstall)
-# ✅ Added vlucas/phpdotenv in composer.json to be installed automatically
-RUN rm -rf /app/vendor \
-    && composer clear-cache \
+# 7. Install PHP dependencies and ensure phpdotenv is present
+RUN composer clear-cache \
     && composer install --optimize-autoloader --ignore-platform-reqs --no-cache \
-    && ls -la /app/vendor
+    && composer require vlucas/phpdotenv --no-interaction --optimize-autoloader
 
 # 8. Copy the rest of the application including .env
 COPY . /app
@@ -42,7 +40,6 @@ RUN chown -R www-data:www-data /app \
     && chmod -R 777 /app/writable
 
 # 10. Configure Apache to serve from /app/public
-# ✅ Changed AllowOverride None → All so CI4 .htaccess routing works
 RUN printf '%s\n' \
     "<VirtualHost *:80>" \
     "    DocumentRoot /app/public" \
@@ -57,5 +54,5 @@ RUN printf '%s\n' \
 # 11. Expose port 80 (Easypanel default)
 EXPOSE 80
 
-# ✅ 12. Start Apache in foreground
+# 12. Start Apache in foreground
 CMD ["apache2-foreground"]
