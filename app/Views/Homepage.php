@@ -97,8 +97,9 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-8 col-12 mx-auto">
-                            <h1 class="text-white text-center">Flood Prediction Marikina City</h1>
-                            <h6 class="text-center">platform for flood alert</h6>
+                            <h1 class="text-white text-center">Flood Prediction</h1>
+                            <h6 class="text-center">Marikina City</h6>
+                            <br>
                             <div style="display: flex; justify-content: center; margin-top: 1rem;">
                                 <button type="button" class="btn btn-primary btn-lg" onclick="findNearestCenter()">Find Nearest Evacuation Center</button>
                             </div>
@@ -114,15 +115,15 @@
 
                         <div class="col-lg-4 col-12 mb-4 mb-lg-0">
                             <div class="custom-block bg-white shadow-lg">
-                                <a href="topics-detail.html">
+                                <a href="<?= base_url('flood/hourly') ?>">
                                     <div class="d-flex">
                                         <div>
-                                            <h5 class="mb-2">Flood Predict.</h5>
+                                            <h5 class="mb-2">Flood Predict</h5>
 
-                                            <p class="mb-0">Stay alert, stay safe prepare today to protect tomorrow from floods.</p>
+                                            <p class="mb-0">Click Here for the Flood Prediction Table!</p>
                                         </div>
 
-                                        <span class="badge bg-design rounded-pill ms-auto">14</span>
+                                        <span class="badge bg-design rounded-pill ms-auto">1</span>
                                     </div>
 
                                     <img src="<?= base_url('assets/images/Floodwarning.png') ?>" class="custom-block-image img-fluid" alt="Flood Warning">
@@ -140,12 +141,12 @@
                                         <div>
                                             <h5 class="text-white mb-2">Purpose of this project</h5>
 
-                                            <p class="text-white">This project uses machine learning and data analytics to deliver accurate flood predictions and evacuation guidance for San Mateo, Rizal, and Marikina City, improving preparedness and public safety.</p>
+                                            <p class="text-white">This project uses machine learning and data analytics to deliver accurate flood predictions and evacuation guidance for Marikina City, improving preparedness and public safety.</p>
 
                                             <a href="topics-detail.html" class="btn custom-btn mt-2 mt-lg-3">Learn More</a>
                                         </div>
 
-                                        <span class="badge bg-finance rounded-pill ms-auto">25</span>
+                                        <span class="badge bg-finance rounded-pill ms-auto">-</span>
                                     </div>
 
                                     <div class="social-share d-flex">
@@ -598,7 +599,7 @@
 
                                     <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                         <div class="accordion-body">
-Our Flood Prediction System is a web-based application designed to provide accurate flood prediction, alerts, and evacuation routing for flood-prone areas like Marikina City and San Mateo, Rizal. It uses historical weather and river data combined with machine learning algorithms to help communities prepare and respond effectively.                                        </div>
+Our Flood Prediction System is a web-based application designed to provide accurate flood prediction, alerts, and evacuation routing for Marikina City. It uses historical weather and river data combined with machine learning algorithms to help communities prepare and respond effectively.                                        </div>
                                     </div>
                                 </div>
 
@@ -611,7 +612,7 @@ Our Flood Prediction System is a web-based application designed to provide accur
 
                                     <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                                         <div class="accordion-body">
-The system analyzes historical weather patterns and river discharge data using machine learning models Support Vector Machine and Random Forest to generate reliable flood risk forecasts.                                        </div>
+The system analyzes historical weather patterns and river discharge data using machine learning models to generate reliable flood risk forecasts.                                        </div>
                                     </div>
                                 </div>
 
@@ -624,7 +625,7 @@ The system analyzes historical weather patterns and river discharge data using m
 
                                     <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                                         <div class="accordion-body">
-Anyone with a stable internet connection and a device with a web browser can use the application. Users create accounts to receive personalized alerts and access features like evacuation routes and community status updates.                                        </div>
+Anyone with a stable internet connection and a device with a web browser can use the application. Users create accounts to receive location based alerts and access features like evacuation routes and community status updates.                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -716,7 +717,7 @@ Anyone with a stable internet connection and a device with a web browser can use
                 <div class="row">
 
                     <div class="col-lg-3 col-12 mb-4 pb-2">
-                        <a class="navbar-brand mb-2" href="FloodPredict.html">
+                        <a class="navbar-brand mb-2" href="<?= base_url('auth/adlogin'); ?>">
                             <i class="bi-back"></i>
                             <span>Topic</span>
                         </a>

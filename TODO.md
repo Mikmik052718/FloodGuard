@@ -1,4 +1,3 @@
-- [x] Update email_form.php with Bootstrap styling for consistency
-- [x] Modify Admin.php dashboard method to fetch and pass users data
-- [x] Replace Reports card in admin_dashboard.php with Email form content
-- [x] Test the changes
+- [x] Add delete method in app/Controllers/Forum.php
+- [x] Add route for forum/delete/(:num) in app/Config/Routes.php
+- [x] Add delete link with confirm popup in app/Views/forum/index.php post-actions, only for author

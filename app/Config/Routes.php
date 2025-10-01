@@ -36,6 +36,7 @@ $routes->get('/admin/delete/(:num)', 'Admin::delete/$1');
 //user edit
 $routes->get('forum/edit/(:num)', 'Forum::edit/$1');
 $routes->post('forum/update/(:num)', 'Forum::update/$1');
+$routes->get('forum/delete/(:num)', 'Forum::delete/$1');
 //admin edit
 $routes->get('admin/edit/(:num)', 'Admin::edit/$1');
 $routes->post('admin/update/(:num)', 'Admin::update/$1');

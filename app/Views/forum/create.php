@@ -39,6 +39,11 @@
            
 
             <h1>Create a New Post</h1>
+            <?php if (session()->has('error')): ?>
+                <div class="error-message" style="color: red; margin-bottom: 10px; font-weight: bold;">
+                    <?= session('error') ?>
+                </div>
+            <?php endif; ?>            
             <label>Title:</label>
             <input type="text" name="title" class="input-field" required>
 

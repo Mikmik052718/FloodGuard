@@ -59,19 +59,24 @@
           </div>
         </div>
 
-        <div class="post-title"><?= esc($post['title']) ?></div>
-        <div class="post-content"><?= $post['content'] ?></div>
+        <div class="post-title">
+            <?= esc($post['title']) ?>
+        </div>
+        <div class="post-content">
+            <?= $post['content'] ?>
+        </div>
         <?php if (!empty($post['image'])): ?>
           <div class="post-image">
-            <img src="<?= base_url('uploads/' . esc($post['image'])) ?>" alt="Post Image" style="max-width: 100%; height: auto;">
-          </div>
-        <?php endif; ?>
+              <img src="<?= base_url('uploads/' . esc($post['image'])) ?>" alt="Post Image" style="max-width: 100%; height: auto;">
+            </div>
+          <?php endif; ?>
 
         <div class="post-actions">
           <?php if (session()->get('logged_in') && session()->get('username') === $post['author_name']): ?>
             <a href="<?= site_url('forum/edit/' . $post['id']) ?>">Edit</a>
+            <a href="<?= site_url('forum/delete/' . $post['id']) ?>" onclick="return confirm('Are you sure you want to delete this post?')">Delete</a>
           <?php endif; ?>
-          <a href="#">Like</a> | <a href="#">Comment</a>
+          <!-- <a href="#">Like</a> -->
         </div>
       </div>
     <?php endforeach; ?>

@@ -30,15 +30,38 @@ class Forum extends BaseController
 
     $authorName = session()->get('username');
 
+    $title = $this->request->getPost('title');
+    $content = $this->request->getPost('content');
+
+    $badWords = ['gago', 'puta', 'tangina','kupal', 'hayop', 'putangina', 'putanginamo'];
+
+    // Function to censor bad words
+    function censorText($text, $badWords) {
+        $text = strtolower($text);
+        foreach ($badWords as $word) {
+            $pattern = '/\b' . preg_quote(strtolower($word), '/') . '\b/ui';
+            $replacement = str_repeat('*', strlen($word));
+            $text = preg_replace($pattern, $replacement, $text);
+        }
+        return $text;
+    }
+
+    $censoredTitle = censorText($title, $badWords);
+    $censoredContent = censorText($content, $badWords);
+
     $data = [
         'author_name' => $authorName,
-        'title'       => $this->request->getPost('title'),
-        'content'     => $this->request->getPost('content'),
+        'title'       => $censoredTitle,
+        'content'     => $censoredContent,
     ];
 
     // Handle image upload
     $image = $this->request->getFile('image');
     if ($image && $image->isValid() && !$image->hasMoved()) {
+        // Check if content is empty when image is uploaded
+        if (empty(trim($this->request->getPost('content')))) {
+            return redirect()->back()->withInput()->with('error', 'A caption is required when uploading a photo.');
+        }
         $newName = $image->getRandomName();
         $image->move(FCPATH . 'uploads', $newName);
         $data['image'] = $newName;
@@ -88,6 +111,32 @@ public function edit($id)
                         $model->update($id, $data);
                         return redirect()->to('/forum');
                     }
+
+    public function delete($id)
+    {
+        if (!session()->get('logged_in')) {
+            return redirect()->to('/forum')->with('error', 'You must be logged in to delete a post.');
+        }
+
+        $model = new PostModel();
+        $post = $model->find($id);
+
+        if (!$post) {
+            return redirect()->to('/forum')->with('error', 'Post not found.');
+        }
+
+        if (session()->get('username') !== $post['author_name']) {
+            return redirect()->to('/forum')->with('error', 'Unauthorized');
+        }
+
+        // Delete associated image if exists
+        if (!empty($post['image']) && file_exists(FCPATH . 'uploads/' . $post['image'])) {
+            unlink(FCPATH . 'uploads/' . $post['image']);
+        }
+
+        $model->delete($id);
+        return redirect()->to('/forum');
+    }
  
 public function weather()
 {
