@@ -5,15 +5,30 @@
 <title>Flood Hazard Maps</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 <link rel="stylesheet" href="<?= base_url('assets/css/floodmaps.css') ?>" />
+<link rel="stylesheet" href="<?= base_url('assets/css/Logo.css') ?>" />
 </head>
 
 <body>
 
 <!-- 🔹 NAVBAR -->
 <header>
-    <h1>
-      <a href="<?= site_url('/home') ?>" class="site-title">Alerto Marikina</a>
-    </h1>
+    <a href="<?= site_url('home') ?>" class="logo">
+                       
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke-width="3">
+                       
+                        <path d="M20 40a12 12 0 0 1 0-24 14 14 0 0 1 28 4h2a10 10 0 0 1 0 20H20z" fill="none"/>
+                      
+                        <line x1="24" y1="44" x2="20" y2="54"/>
+                        <line x1="32" y1="44" x2="28" y2="54"/>
+                        <line x1="40" y1="44" x2="36" y2="54"/>
+                       
+                        <path d="M16 58q4 4 8 0t8 0 8 0 8 0" fill="none"/>
+                        </svg>
+
+                        <div class="divider"></div>
+
+                        <div class="logo-text">AlertoMarikeno</div>
+                    </a>
     <div class="nav-links">
       <?php if (session()->get('logged_in')): ?>
         <span>
@@ -37,7 +52,7 @@
     <?php endif; ?>
 
     <!-- 🔹 Title -->
-    <h3>Flood Hazard Maps</h3>
+    <h3>Flood Hazard Map</h3>
 
     <!-- 🔹 Map -->
     <div id="map"></div>

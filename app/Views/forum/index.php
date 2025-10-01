@@ -6,12 +6,28 @@
    <link rel="stylesheet" href="<?= base_url('assets/css/bootstrap.min.css'); ?>">
   <!-- <link rel="stylesheet" href="<?= base_url('assets/css/bootstrap-icon.css'); ?>"> -->
   <link rel="stylesheet" href="<?= base_url('assets/css/newsfeed.css'); ?>">
+  <link rel="stylesheet" href="<?= base_url('assets/css/Logo.css'); ?>">
+  <link rel="stylesheet" href="<?= base_url('assets/css/header.css'); ?>">
 </head>
 <body>
 <header>
-    <h1>
-      <a href="<?= site_url('/home') ?>" class="site-title">Alerto Marikeno</a>
-    </h1>
+  <a href="<?= site_url('home') ?>" class="logo">
+                       
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke-width="3">
+                       
+    <path d="M20 40a12 12 0 0 1 0-24 14 14 0 0 1 28 4h2a10 10 0 0 1 0 20H20z" fill="none"/>
+                      
+    <line x1="24" y1="44" x2="20" y2="54"/>
+    <line x1="32" y1="44" x2="28" y2="54"/>
+    <line x1="40" y1="44" x2="36" y2="54"/>
+                       
+    <path d="M16 58q4 4 8 0t8 0 8 0 8 0" fill="none"/>
+    </svg>
+
+    <div class="divider"></div>
+
+    <div class="logo-text">AlertoMarikeno</div>
+  </a>
     <div class="nav-links">
       <?php if (session()->get('logged_in')): ?>
         <span>
@@ -20,13 +36,12 @@
         </span>
       <?php endif; ?>
     </div>
-  </header>
+</header>
 
   <div class="container">
     <div class="top-bar">
       <h2>Latest Posts</h2>
       <div>
-        <a href="<?= site_url('/home') ?>" class="btn">Back to Homepage</a>
         <?php if (session()->get('logged_in')): ?>
           <a href="<?= site_url('forum/create') ?>" class="btn">+ New Post</a>
         <?php else: ?>

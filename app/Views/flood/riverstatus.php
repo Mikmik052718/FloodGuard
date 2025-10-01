@@ -5,54 +5,40 @@
   <meta http-equiv="refresh" content="300"> <!-- Refresh every 5 minutes -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Water Levels at Sto Nino</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      margin: 0;
-      padding: 20px;
-      color: #333;
-    }
-    .container {
-      max-width: 600px;
-      margin: auto;
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    h1 {
-      color: #007BFF;
-    }
-    .level {
-      font-size: 1.2em;
-      margin: 10px 0;
-    }
-    .footer {
-      font-size: 0.9em;
-      color: #888;
-      margin-top: 20px;
-    }
-    .navigation {
-      margin-top: 20px;
-      text-align: center;
-    }
-    .btn {
-      display: inline-block;
-      padding: 10px 20px;
-      margin: 5px;
-      background-color: #007BFF;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-      font-size: 1em;
-    }
-    .btn:hover {
-      background-color: #0056b3;
-    }
-  </style>
+  <link rel="stylesheet" href="<?= base_url('assets/css/floodmaps.css') ?>" />
+<link rel="stylesheet" href="<?= base_url('assets/css/Logo.css') ?>" />
+<link rel="stylesheet" href="<?= base_url('assets/css/header.css') ?>" />
+<link rel="stylesheet" href="<?= base_url('assets/css/riverstatus.css') ?>" />
 </head>
+<header>
+    <a href="<?= site_url('home') ?>" class="logo">
+                       
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke-width="3">
+                       
+                        <path d="M20 40a12 12 0 0 1 0-24 14 14 0 0 1 28 4h2a10 10 0 0 1 0 20H20z" fill="none"/>
+                      
+                        <line x1="24" y1="44" x2="20" y2="54"/>
+                        <line x1="32" y1="44" x2="28" y2="54"/>
+                        <line x1="40" y1="44" x2="36" y2="54"/>
+                       
+                        <path d="M16 58q4 4 8 0t8 0 8 0 8 0" fill="none"/>
+                        </svg>
+
+                        <div class="divider"></div>
+
+                        <div class="logo-text">AlertoMarikeno</div>
+                    </a>
+    <div class="nav-links">
+      <?php if (session()->get('logged_in')): ?>
+        <span>
+          Logged in as <strong><?= esc(session()->get('username')) ?></strong> | 
+          <a href="<?= site_url('auth/logout') ?>" class="logout-link">Logout</a>
+        </span>
+      <?php endif; ?>
+    </div>
+  </header>
 <body>
+  
   <div class="container">
     <h1>Sto Nino Water Level</h1>
 

@@ -19,17 +19,29 @@
         <link rel="stylesheet" href="<?= base_url('assets/css/bootstrap.min.css'); ?>">
         <link rel="stylesheet" href="<?= base_url('assets/css/bootstrap-icon.css'); ?>">
         <link rel="stylesheet" href="<?= base_url('assets/css/home_page.css'); ?>">
+        <link rel="stylesheet" href="<?= base_url('assets/css/Logo.css'); ?>">
     </head>
-    
     <body id="top">
-
         <main>
 
             <nav class="navbar navbar-expand-lg">
                 <div class="container">
-                    <a class="navbar-brand" href="<?= base_url('status/newlanding') ?>">
-                        <i class="bi-back"></i>
-                        <span>AlertoMarikeno</span>
+                    <a href="<?= site_url('home') ?>" class="logo">
+                       
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke-width="3">
+                       
+                        <path d="M20 40a12 12 0 0 1 0-24 14 14 0 0 1 28 4h2a10 10 0 0 1 0 20H20z" fill="none"/>
+                      
+                        <line x1="24" y1="44" x2="20" y2="54"/>
+                        <line x1="32" y1="44" x2="28" y2="54"/>
+                        <line x1="40" y1="44" x2="36" y2="54"/>
+                       
+                        <path d="M16 58q4 4 8 0t8 0 8 0 8 0" fill="none"/>
+                        </svg>
+
+                        <div class="divider"></div>
+
+                        <div class="logo-text">AlertoMarikeno</div>
                     </a>
 
                     <div class="d-lg-none ms-auto me-4">
@@ -65,10 +77,11 @@
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Pages</a>
 
                                 <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
-                                    <li><a class="dropdown-item" href="<?= site_url('forum') ?>">NEWS FEED</a></li>
-                                    <li><a class="dropdown-item" href="<?= site_url('flood/hazard-maps') ?>">FLOOD HAZARD MAPS</a></li>
-
-
+                                    <li><a class="dropdown-item" href="<?= site_url('forum') ?>">Newsfeed</a></li>
+                                    <li><a class="dropdown-item" href="<?= site_url('flood/hazard-maps') ?>">Flood Hazard Map</a></li>
+                                    <li><a class="dropdown-item" href="<?= site_url('flood/hourly') ?>">Prediction Table</a></li>
+                                    <li><a class="dropdown-item" href="<?= site_url('flood/river-status') ?>">River Status</a></li>
+                                </ul>
                                 </ul>
                             </li>
                         </ul>
@@ -138,7 +151,7 @@
                                     <div class="social-share d-flex">
                                         <p class="text-white me-4">Share:</p>
 
-                                        <ul class="social-icon">
+                                        <!--<ul class="social-icon">
                                             <li class="social-icon-item">
                                                 <a href="#" class="social-icon-link bi-twitter"></a>
                                             </li>
@@ -150,7 +163,7 @@
                                             <li class="social-icon-item">
                                                 <a href="#" class="social-icon-link bi-pinterest"></a>
                                             </li>
-                                        </ul>
+                                        </ul> -->
 
                                         <a href="#" class="custom-icon bi-bookmark ms-auto"></a>
                                     </div>
