@@ -59,13 +59,12 @@ $is_admin = session()->get('role') === 'admin';
       <th>W-code</th>
       <th>Rain&nbsp;mm</th>
       <th>Temp&nbsp;°C</th>
-      <th>Soil 0-7cm</th>
       <th>Discharge m³/s</th>
       <th>Wind Gusts km/h</th>
     </tr>
   </thead>
   <tbody>
-    <tr><td colspan="9" style="text-align:center;">Loading predictions...</td></tr>
+    <tr><td colspan="8" style="text-align:center;">Loading predictions...</td></tr>
   </tbody>
 </table>
 
@@ -95,7 +94,7 @@ document.addEventListener("DOMContentLoaded", function() {
       .then(res => res.json())
       .then(data => {
           if (data.error) {
-              document.querySelector("#hourlyTable tbody").innerHTML = `<tr><td colspan="9" style="color:red;text-align:center;">Error: ${data.error}</td></tr>`;
+              document.querySelector("#hourlyTable tbody").innerHTML = `<tr><td colspan="8" style="color:red;text-align:center;">Error: ${data.error}</td></tr>`;
               return;
           }
           // Cache the data
@@ -106,24 +105,34 @@ document.addEventListener("DOMContentLoaded", function() {
           displayData(data);
       })
       .catch(err => {
-          document.querySelector("#hourlyTable tbody").innerHTML = `<tr><td colspan="9" style="color:red;text-align:center;">Failed to load data.</td></tr>`;
+          document.querySelector("#hourlyTable tbody").innerHTML = `<tr><td colspan="8" style="color:red;text-align:center;">Failed to load data.</td></tr>`;
           console.error(err);
       });
 
     function displayData(data) {
         const tbody = document.querySelector("#hourlyTable tbody");
         tbody.innerHTML = "";
+        const now = new Date();
+        const manilaTime = new Date(now.toLocaleString("en-US", {timeZone: "Asia/Manila"}));
+        const currentYear = manilaTime.getFullYear();
+        const currentMonth = manilaTime.getMonth();
+        const currentDate = manilaTime.getDate();
+        const currentHour = manilaTime.getHours();
         data.hours.forEach(h => {
             const row = document.createElement("tr");
             row.className = (h.prediction === "FLOOD") ? "flood" : "no-flood";
+            const hDateTime = new Date(h.datetime);
+            const isCurrent = hDateTime.getFullYear() === currentYear &&
+                              hDateTime.getMonth() === currentMonth &&
+                              hDateTime.getDate() === currentDate &&
+                              hDateTime.getHours() === currentHour;
             row.innerHTML = `
-              <td>${h.datetime}</td>
+              <td style="color: ${isCurrent ? 'red' : 'inherit'}">${h.datetime}</td>
               <td class="probability">${(h.probability*100).toFixed(4)}</td>
               <td class="prediction">${h.prediction}</td>
               <td>${h.weather_code}</td>
               <td>${h.rain}</td>
               <td>${h.temp}</td>
-              <td>${h.soil_0_7}</td>
               <td>${h.discharge}</td>
               <td>${h.wind_gusts}</td>`;
             tbody.appendChild(row);

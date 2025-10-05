@@ -264,7 +264,7 @@
                                                 <a href="topics-detail.html">
                                                     <div class="d-flex">
                                                         <div>
-                                                            <h5 class="mb-2">Max Temperature</h5>
+                                                            <h5 class="mb-2">River Discharge</h5>
 
                                                                 <p class="mb-0">The maximum temperature forecast for the day</p>
                                                         </div>
