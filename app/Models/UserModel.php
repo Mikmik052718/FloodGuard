@@ -22,7 +22,9 @@ class UserModel extends Model
         'last_login_at',
         'google_id',
         'google_name',
-        'google_picture'
+        'google_picture',
+        'last_water_alert_date',
+        'last_water_alert_level'
     ];
     protected $useTimestamps = false;
 

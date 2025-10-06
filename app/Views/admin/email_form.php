@@ -54,41 +54,128 @@
                 <p>Send emails to users from the admin panel.</p>
             </section>
 
+            <!-- Flash Messages -->
+            <?php if (session()->getFlashdata('error')): ?>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <?= session()->getFlashdata('error') ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            <?php endif; ?>
+
+            <?php if (session()->getFlashdata('alert_results')): ?>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        var alertModal = new bootstrap.Modal(document.getElementById('alertResultsModal'));
+                        alertModal.show();
+                    });
+                </script>
+            <?php endif; ?>
+
             <section class="featured-section">
                 <div class="container">
                     <div class="row justify-content-center">
-                        <div class="col-md-8">
-                            <div class="custom-block">
-                                <h5><i class="bi bi-envelope-fill me-2"></i>Send Email</h5>
-                                <form action="<?= site_url('email/send') ?>" method="post" class="mt-3">
-                                    <div class="mb-3">
-                                        <label for="user_id" class="form-label">Select User:</label>
-                                        <select name="user_id" class="form-select" required>
-                                            <option value="all">-- Send to All Users --</option>
-                                            <?php foreach ($users as $user): ?>
-                                                <option value="<?= $user['id'] ?>"><?= esc($user['username']) ?> (<?= esc($user['email']) ?>)</option>
-                                            <?php endforeach; ?>
-                                        </select>
-                                    </div>
+                        <div class="col-md-10">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="custom-block">
+                                        <h5><i class="bi bi-envelope-fill me-2"></i>Send Email</h5>
+                                        <form action="<?= site_url('email/send') ?>" method="post" class="mt-3">
+                                            <div class="mb-3">
+                                                <label for="user_id" class="form-label">Select User:</label>
+                                                <select name="user_id" class="form-select" required>
+                                                    <option value="all">-- Send to All Users --</option>
+                                                    <?php foreach ($users as $user): ?>
+                                                        <option value="<?= $user['id'] ?>"><?= esc($user['username']) ?> (<?= esc($user['email']) ?>)</option>
+                                                    <?php endforeach; ?>
+                                                </select>
+                                            </div>
 
-                                    <div class="mb-3">
-                                        <label for="subject" class="form-label">Subject (Heading):</label>
-                                        <input type="text" id="subject" name="subject" class="form-control" required placeholder="Enter email subject">
-                                    </div>
+                                            <div class="mb-3">
+                                                <label for="subject" class="form-label">Subject (Heading):</label>
+                                                <input type="text" id="subject" name="subject" class="form-control" required placeholder="Enter email subject">
+                                            </div>
 
-                                    <div class="mb-3">
-                                        <label for="message" class="form-label">Message:</label>
-                                        <textarea id="message" name="message" class="form-control" rows="4" required placeholder="Enter your message here"></textarea>
-                                    </div>
+                                            <div class="mb-3">
+                                                <label for="message" class="form-label">Message:</label>
+                                                <textarea id="message" name="message" class="form-control" rows="4" required placeholder="Enter your message here"></textarea>
+                                            </div>
 
-                                    <button type="submit" class="btn btn-primary">Send Email</button>
-                                </form>
+                                            <button type="submit" class="btn btn-primary">Send Email</button>
+                                        </form>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="custom-block">
+                                        <h5><i class="bi bi-exclamation-triangle-fill me-2"></i>Send Water Level Alert</h5>
+                                        <p>Send a manual water level alert to users with email alerts enabled, regardless of current water levels.</p>
+                                        <form action="<?= site_url('email/send-water-alert') ?>" method="post" class="mt-3">
+                                            <div class="mb-3">
+                                                <label for="alert_level" class="form-label">Alert Level:</label>
+                                                <select name="alert_level" class="form-select" required>
+                                                    <option value="alert">Alert</option>
+                                                    <option value="alarm">Alarm</option>
+                                                    <option value="critical">Critical</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="custom_message" class="form-label">Custom Message (Optional):</label>
+                                                <textarea id="custom_message" name="custom_message" class="form-control" rows="3" placeholder="Add any additional message..."></textarea>
+                                            </div>
+
+                                            <button type="submit" class="btn btn-warning">Send Water Alert</button>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
         </main>
+    </div>
+</div>
+
+<!-- Alert Results Modal -->
+<div class="modal fade" id="alertResultsModal" tabindex="-1" aria-labelledby="alertResultsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="alertResultsModalLabel"><i class="bi bi-exclamation-triangle-fill me-2"></i>Water Alert Results</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Manual water level alerts have been sent to users with email notifications enabled.</p>
+                <p><strong>Total Sent: <?= session()->getFlashdata('alert_sent_count') ?? 0 ?></strong></p>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Email</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $results = session()->getFlashdata('alert_results');
+                        if ($results):
+                            foreach ($results as $row):
+                        ?>
+                            <tr>
+                                <td><?= esc($row['email']) ?></td>
+                                <td><?= $row['status'] ?></td>
+                            </tr>
+                        <?php
+                            endforeach;
+                        endif;
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
     </div>
 </div>
 

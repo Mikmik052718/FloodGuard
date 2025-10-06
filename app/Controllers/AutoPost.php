@@ -46,6 +46,11 @@ class AutoPost extends BaseController
         ]);
 
         echo "Post created successfully.\n";
+
+        // Send water level alerts
+        $emailController = new \App\Controllers\Email_cont();
+        $alertResult = $emailController->sendWaterAlerts();
+        echo $alertResult . "\n";
     }
 
     private function getHourlyData()
@@ -140,8 +145,8 @@ class AutoPost extends BaseController
     {
         $lat = 14.657293;
         $lon = 121.11524;
-        $start = date('Y-m-d', strtotime('-2 days'));
-        $end   = date('Y-m-d', strtotime('+2 days'));
+        $start = date('Y-m-d', strtotime('-1 day'));
+        $end   = date('Y-m-d', strtotime('+1 day'));
 
         // Get weather and discharge
         $cli = \Config\Services::curlrequest();
@@ -199,14 +204,12 @@ class AutoPost extends BaseController
               'prediction'      => $preds[$i]['prediction'],
               'weather_code'    => $batch[$i]['weather_code (wmo code)'],
               'rain_sum'        => $batch[$i]['rain_sum (mm)'],
-              'temp_max'        => $batch[$i]['temperature_2m_max (?C)'],
-              'temp_min'        => $batch[$i]['temperature_2m_min (?C)'],
               'river_discharge' => $batch[$i]['river_discharge (m?/s)'],
             ];
         }
 
-        // Take first 2: today and tomorrow
-        return array_slice($days, 0, 2);
+        // Take today and tomorrow
+        return array_slice($days, 1, 2);
     }
 
     private function getRiverData()
@@ -256,9 +259,9 @@ class AutoPost extends BaseController
 
         $content .= "<h3>Daily Probability</h3>";
         if ($daily) {
-            $content .= "<table border='1'><tr><th>Date</th><th>Prob %</th><th>Prediction</th><th>Rain mm</th><th>Temp Max °C</th><th>Temp Min °C</th><th>Discharge m³/s</th></tr>";
+            $content .= "<table border='1'><tr><th>Date</th><th>Prob %</th><th>Prediction</th><th>Rain mm</th><th>Discharge m³/s</th></tr>";
             foreach ($daily as $d) {
-                $content .= "<tr><td>{$d['date']}</td><td>" . number_format($d['probability']*100, 2) . "</td><td>{$d['prediction']}</td><td>{$d['rain_sum']}</td><td>{$d['temp_max']}</td><td>{$d['temp_min']}</td><td>{$d['river_discharge']}</td></tr>";
+                $content .= "<tr><td>{$d['date']}</td><td>" . number_format($d['probability']*100, 2) . "</td><td>{$d['prediction']}</td><td>{$d['rain_sum']}</td><td>{$d['river_discharge']}</td></tr>";
             }
             $content .= "</table>";
         } else {

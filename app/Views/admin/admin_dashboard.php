@@ -66,7 +66,7 @@
                                             <h5><i class="bi bi-people-fill me-2"></i>Users</h5>
                                             <p>Manage user accounts and access rights.</p>
                                         </div>
-                                        <span class="badge bg-primary-badge">42</span>
+                                        <span class="badge bg-primary-badge"><?= $userCount ?? 0 ?></span>
                                     </div>
                                     <img src="<?= base_url('assets/images/users.png') ?>" class="custom-block-image" alt="Users">
                                 </div>
@@ -82,7 +82,7 @@
                                             <h5><i class="bi bi-card-text me-2"></i>Posts</h5>
                                             <p>Review and moderate news feed posts.</p>
                                         </div>
-                                        <span class="badge bg-secondary-badge">128</span>
+                                        <span class="badge bg-secondary-badge"><?= $postCount ?? 0 ?></span>
                                     </div>
                                     <img src="<?= base_url('assets/images/posts.png') ?>" class="custom-block-image" alt="Posts">
                                 </div>

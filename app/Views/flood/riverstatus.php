@@ -90,7 +90,7 @@
     <div class="navigation">
       <a href="<?= site_url('flood/hazard-maps') ?>" class="btn">Hazard Maps</a>
       <a href="<?= site_url('flood/daily') ?>" class="btn">Daily Predictions</a>
-      <a href="<?= site_url('flood/hourly') ?>" class="btn">Hourly Predictions</a>
+      <a href="<?= site_url('flood/hourly') ?>" class="btn">3 Hour Predictions</a>
     </div>
   </div>
 

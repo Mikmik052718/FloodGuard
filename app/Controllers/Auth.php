@@ -102,7 +102,11 @@ class Auth extends BaseController
             'alert_email_enabled' => $alert_email_enabled
         ]);
 
-        return redirect()->to('auth/uslogin')->with('success', 'Registration successful! You can now login.');
+        // Send registration confirmation email
+        $this->sendRegistrationEmail($username, $email);
+
+        session()->set('show_success_modal', true);
+        return redirect()->to('auth/uslogin');
     }
 
     // Google OAuth Login
@@ -200,6 +204,9 @@ class Auth extends BaseController
 
                     $model->save($userData);
                     $user = $model->findByGoogleId($googleUser->id);
+
+                    // Send registration confirmation email for Google OAuth
+                    $this->sendRegistrationEmail($userData['username'], $userData['email']);
                 }
             }
 
@@ -309,5 +316,45 @@ class Auth extends BaseController
         }
 
         return $username;
+    }
+
+    // Send registration confirmation email
+    private function sendRegistrationEmail(string $username, string $email)
+    {
+        $emailService = \Config\Services::email();
+
+        $emailService->setFrom(env('email.from'), env('email.fromName'));
+        $emailService->setTo($email);
+        $emailService->setSubject('Welcome to AlertoMarikeno - Account Registration Confirmation');
+        $emailService->setMessage("
+            <html>
+            <head>
+                <style>
+                    body { font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px; }
+                    .container { background-color: #ffffff; padding: 20px; border-radius: 10px; max-width: 600px; margin: 0 auto; }
+                    h2 { color: #333; }
+                    p { color: #666; }
+                    .footer { margin-top: 20px; font-size: 12px; color: #999; }
+                </style>
+            </head>
+            <body>
+                <div class='container'>
+                    <h2>Welcome to AlertoMarikeno, {$username}!</h2>
+                    <p>Thank you for registering an account with us. Your email address has been successfully used to create your AlertoMarikeno account.</p>
+                    <p>You can now log in to your account and start using our flood prediction and alert services.</p>
+                    <p>If you have any questions, feel free to contact our support team.</p>
+                    <p>Best regards,<br>The AlertoMarikeno Team</p>
+                    <div class='footer'>
+                        <p>This is an automated message. Please do not reply to this email.</p>
+                    </div>
+                </div>
+            </body>
+            </html>
+        ");
+
+        if (!$emailService->send()) {
+            // Log the error but don't stop registration
+            log_message('error', 'Failed to send registration email to ' . $email . ': ' . $emailService->printDebugger(['headers']));
+        }
     }
 }

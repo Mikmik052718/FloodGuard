@@ -205,13 +205,12 @@
                                 <button class="nav-link" id="finance-tab" data-bs-toggle="tab" data-bs-target="#finance-tab-pane" type="button" role="tab" aria-controls="finance-tab-pane" aria-selected="false">Flood Warnings</button>
                             </li>
 
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="music-tab" data-bs-toggle="tab" data-bs-target="#music-tab-pane" type="button" role="tab" aria-controls="music-tab-pane" aria-selected="false">Flood control</button>
-                            </li>
-
-                            <li class="nav-item" role="presentation">
+                           <!-- <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="music-tab" data-bs-toggle="tab" data-bs-target="#music-tab-pane" type="button" role="tab" aria-controls="music-tab-pane" aria-selected="false">Water Level</button>
+                            </li> -->
+                            <!-- <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="education-tab" data-bs-toggle="tab" data-bs-target="#education-tab-pane" type="button" role="tab" aria-controls="education-tab-pane" aria-selected="false">Preparedness</button>
-                            </li>
+                            </li> -->
                         </ul>
                     </div>
                 </div>
@@ -233,7 +232,7 @@
                                                             <p class="mb-0">Codes representing various weather conditions.</p>
                                                         </div>
 
-                                                        <span class="badge bg-design rounded-pill ms-auto">14</span>
+                                                        <span id="weather-code-badge" class="badge bg-design rounded-pill ms-auto">-</span>
                                                     </div>
 
                                                     <img src="<?= base_url('assets/images/weathercode.jpg'); ?>" class="custom-block-image img-fluid" alt="Weather Code">
@@ -251,7 +250,7 @@
                                                                 <p class="mb-0">The minimum temperature forecast for the day.</p>
                                                         </div>
 
-                                                        <span class="badge bg-design rounded-pill ms-auto">75</span>
+                                                        <span id="min-temp-badge" class="badge bg-design rounded-pill ms-auto">-</span>
                                                     </div>
 
                                                     <img src="<?= base_url('assets/images/mintemp.jpg'); ?>" class="custom-block-image img-fluid" alt="Weather Code">
@@ -264,12 +263,12 @@
                                                 <a href="topics-detail.html">
                                                     <div class="d-flex">
                                                         <div>
-                                                            <h5 class="mb-2">River Discharge</h5>
+                                                            <h5 class="mb-2">Max Temperature</h5>
 
                                                                 <p class="mb-0">The maximum temperature forecast for the day</p>
                                                         </div>
 
-                                                        <span class="badge bg-design rounded-pill ms-auto">100</span>
+                                                        <span id="max-temp-badge" class="badge bg-design rounded-pill ms-auto">-</span>
                                                     </div>
 
                                                     <img src="<?= base_url('assets/images/maxtemp.jpg'); ?>" class="custom-block-image img-fluid" alt="Weather Code">
@@ -291,7 +290,7 @@
                                                                 <p class="mb-0">Total rainfall measured during the last 24 hours in millimeters.</p>
                                                             </div>
 
-                                                            <span class="badge bg-advertising rounded-pill ms-auto">30</span>
+                                                            <span id="precipitation-sum-badge" class="badge bg-advertising rounded-pill ms-auto">-</span>
                                                         </div>
 
                                                         <img src="images/topics/undraw_online_ad_re_ol62.png" class="custom-block-image img-fluid" alt="">
@@ -309,7 +308,7 @@
                                                                 <p class="mb-0">Total hours with rainfall recorded in the last week.</p>
                                                             </div>
 
-                                                            <span class="badge bg-advertising rounded-pill ms-auto">65</span>
+                                                            <span id="precipitation-hours-badge" class="badge bg-advertising rounded-pill ms-auto">-</span>
                                                         </div>
 
                                                         <img src="images/topics/undraw_Group_video_re_btu7.png" class="custom-block-image img-fluid" alt="">
@@ -327,7 +326,7 @@
                                                                 <p class="mb-0">Chance of rain occurring in the next 24 hours.</p>
                                                             </div>
 
-                                                            <span class="badge bg-advertising rounded-pill ms-auto">50</span>
+                                                            <span id="precipitation-probability-badge" class="badge bg-advertising rounded-pill ms-auto">-</span>
                                                         </div>
 
                                                         <img src="images/topics/undraw_viral_tweet_gndb.png" class="custom-block-image img-fluid" alt="">
@@ -345,13 +344,13 @@
                                                         <div>
                                                             <h5 class="mb-2">Flood Prediction</h5>
 
-                                                            <p class="mb-0">A possible flood hase been detected in your area. Please take necessary precautions and proceed to the nearest evacuation center.</p>
+                                                            <p class="mb-0">See the probability of a possible flood for today.</p>
                                                         </div>
 
-                                                        <span class="badge bg-finance rounded-pill ms-auto">30</span>
+                                                       <!-- <span class="badge bg-finance rounded-pill ms-auto">30</span> -->
                                                     </div>
 
-                                                    <img src="images/topics/undraw_Finance_re_gnv2.png" class="custom-block-image img-fluid" alt="">
+                                                    <p id="flood-probability-text" class="custom-block-image img-fluid" style="text-align: center; font-size: 1.2em; color: #333;">Loading flood probability...</p>
                                                 </a>
                                             </div>
                                         </div>
@@ -363,14 +362,16 @@
 
                                                     <div class="custom-block-overlay-text d-flex">
                                                         <div>
-                                                            <h5 class="text-white mb-2">When ?</h5>
+                                                            <h5 class="text-white mb-2">When?</h5>
 
-                                                            <p class="text-white">There is a potential flood event predicted within the next 7 days. Stay updated with the latest alerts and take necessary precautions.</p>
+                                                            <p class="text-white">Stay updated with the latest alerts and take necessary precautions.</p>
 
-                                                            <a href="topics-detail.html" class="btn custom-btn mt-2 mt-lg-3">Learn More</a>
+                                                            <a href="<?= base_url('flood/hourly'); ?>" class="btn custom-btn mt-2 mt-lg-3">3-Hour Flood Prediction</a>
+                                                            <a href="<?= base_url('flood/daily'); ?>" class="btn custom-btn mt-2 mt-lg-3">Daily Flood Prediction</a>
+                                                            <a href="<?= base_url('flood/river-status'); ?>" class="btn custom-btn mt-2 mt-lg-3">Marikina River Status</a>
                                                         </div>
 
-                                                        <span class="badge bg-finance rounded-pill ms-auto">25</span>
+                                                        <!-- <span class="badge bg-finance rounded-pill ms-auto">25</span>-->
                                                     </div>
 
                                                     <div class="social-share d-flex">
@@ -400,7 +401,7 @@
                                     </div>
                                 </div>
 
-                                <div class="tab-pane fade" id="music-tab-pane" role="tabpanel" aria-labelledby="music-tab" tabindex="0">
+                               <!-- <div class="tab-pane fade" id="music-tab-pane" role="tabpanel" aria-labelledby="music-tab" tabindex="0">
                                     <div class="row">
                                         <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3">
                                             <div class="custom-block bg-white shadow-lg">
@@ -412,7 +413,7 @@
                                                             <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
                                                         </div>
 
-                                                        <span class="badge bg-music rounded-pill ms-auto">45</span>
+                                                        <span class="badge bg-finance rounded-pill ms-auto">25</span>
                                                     </div>
 
                                                     <img src="images/topics/undraw_Compose_music_re_wpiw.png" class="custom-block-image img-fluid" alt="">
@@ -430,7 +431,7 @@
                                                             <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
                                                         </div>
 
-                                                        <span class="badge bg-music rounded-pill ms-auto">45</span>
+                                                        <span class="badge bg-finance rounded-pill ms-auto">25</span>
                                                     </div>
 
                                                     <img src="images/topics/undraw_happy_music_g6wc.png" class="custom-block-image img-fluid" alt="">
@@ -448,7 +449,7 @@
                                                             <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
                                                         </div>
 
-                                                        <span class="badge bg-music rounded-pill ms-auto">20</span>
+                                                         <span class="badge bg-finance rounded-pill ms-auto">25</span>
                                                     </div>
 
                                                     <img src="images/topics/undraw_Podcast_audience_re_4i5q.png" class="custom-block-image img-fluid" alt="">
@@ -456,47 +457,47 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div>  -->
 
-                                <div class="tab-pane fade" id="education-tab-pane" role="tabpanel" aria-labelledby="education-tab" tabindex="0">
-                                    <div class="row">
-                                        <div class="col-lg-6 col-md-6 col-12 mb-4 mb-lg-3">
-                                            <div class="custom-block bg-white shadow-lg">
-                                                <a href="topics-detail.html">
-                                                    <div class="d-flex">
-                                                        <div>
-                                                            <h5 class="mb-2">Graduation</h5>
+                                                                    <!--    <div class="tab-pane fade" id="education-tab-pane" role="tabpanel" aria-labelledby="education-tab" tabindex="0">
+                                                                            <div class="row">
+                                                                                <div class="col-lg-6 col-md-6 col-12 mb-4 mb-lg-3">
+                                                                                    <div class="custom-block bg-white shadow-lg">
+                                                                                        <a href="topics-detail.html">
+                                                                                        <div class="d-flex">
+                                                                                                <div>
+                                                                                                    <h5 class="mb-2">Graduation</h5>
 
-                                                            <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
-                                                        </div>
+                                                                                                    <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
+                                                                                                </div>
 
-                                                        <span class="badge bg-education rounded-pill ms-auto">80</span>
-                                                    </div>
+                                                                                                <span class="badge bg-education rounded-pill ms-auto">80</span>
+                                                                                            </div>
 
-                                                    <img src="images/topics/undraw_Graduation_re_gthn.png" class="custom-block-image img-fluid" alt="">
-                                                </a>
-                                            </div>
-                                        </div>
+                                                                                            <img src="images/topics/undraw_Graduation_re_gthn.png" class="custom-block-image img-fluid" alt="">
+                                                                                        </a> 
+                                                                                    </div>
+                                                                                </div>
 
-                                        <div class="col-lg-6 col-md-6 col-12">
-                                            <div class="custom-block bg-white shadow-lg">
-                                                <a href="topics-detail.html">
-                                                    <div class="d-flex">
-                                                        <div>
-                                                            <h5 class="mb-2">Educator</h5>
+                                                                                <div class="col-lg-6 col-md-6 col-12">
+                                                                                    <div class="custom-block bg-white shadow-lg">
+                                                                                        <a href="topics-detail.html">
+                                                                                            <div class="d-flex">
+                                                                                                <div>
+                                                                                                    <h5 class="mb-2">Educator</h5>
 
-                                                            <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
-                                                        </div>
+                                                                                                    <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
+                                                                                                </div>
 
-                                                        <span class="badge bg-education rounded-pill ms-auto">75</span>
-                                                    </div>
+                                                                                                <span class="badge bg-education rounded-pill ms-auto">75</span>
+                                                                                            </div>
 
-                                                    <img src="images/topics/undraw_Educator_re_ju47.png" class="custom-block-image img-fluid" alt="">
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                                                                            <img src="images/topics/undraw_Educator_re_ju47.png" class="custom-block-image img-fluid" alt="">
+                                                                                        </a>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div> -->
                             </div>
 
                     </div>
@@ -919,6 +920,40 @@ const landmarks = [
         document.getElementById("confirmModal").style.display = "none";
         document.getElementById("modalOverlay").style.display = "none";
     }
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    fetch("<?= site_url('home/weather-data') ?>")
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("weather-code-badge").textContent = data.weather_code;
+            document.getElementById("min-temp-badge").textContent = data.temperature_2m_min + "°C";
+            document.getElementById("max-temp-badge").textContent = data.temperature_2m_max + "°C";
+            document.getElementById("precipitation-sum-badge").textContent = data.precipitation_sum + "mm";
+            document.getElementById("precipitation-hours-badge").textContent = data.precipitation_hours + "h";
+            document.getElementById("precipitation-probability-badge").textContent = data.precipitation_probability + "%";
+        })
+        .catch(error => {
+            console.error("Error fetching weather data:", error);
+        });
+
+    // Fetch flood prediction data
+    fetch("<?= site_url('flood/predict-ajax') ?>")
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success' && data.days && data.days.length > 0) {
+                const todayProb = (data.days[0].probability * 100).toFixed(2);
+                document.getElementById("flood-probability-text").textContent = `Flood Probability: ${todayProb}%`;
+            } else {
+                document.getElementById("flood-probability-text").textContent = "Flood Probability: N/A";
+            }
+        })
+        .catch(error => {
+            console.error("Error fetching flood data:", error);
+            document.getElementById("flood-probability-text").textContent = "Flood Probability: Error";
+        });
+});
 </script>
 
     </body>

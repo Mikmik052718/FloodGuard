@@ -89,13 +89,11 @@
             <th>ID</th>
             <th>Username</th>
             <th>Email</th>
-            <th>Email Verified</th>
             <th>Role</th>
             <th>Created At</th>
             <th>Updated At</th>
             <th>Alert Email</th>
             <th>Alert Min Probability</th>
-            <th>Last Login</th>
           </tr>
         </thead>
         <tbody>
@@ -104,7 +102,6 @@
               <td><?= esc($user['id']) ?></td>
               <td><?= esc($user['username']) ?></td>
               <td><?= esc($user['email']) ?></td>
-              <td><?= $user['email_verified_at'] ? date('Y-m-d H:i', strtotime($user['email_verified_at'])) : 'Not Verified' ?></td>
               <td><?= esc($user['role']) ?></td>
               <td><?= date('Y-m-d H:i', strtotime($user['created_at'])) ?></td>
               <td><?= date('Y-m-d H:i', strtotime($user['updated_at'])) ?></td>
@@ -112,7 +109,6 @@
                 <?= $user['alert_email_enabled'] ? 'Enabled' : 'Disabled' ?>
               </td>
               <td><?= $user['alert_min_probability'] ?? 'N/A' ?></td>
-              <td><?= $user['last_login_at'] ? date('Y-m-d H:i', strtotime($user['last_login_at'])) : 'Never' ?></td>
             </tr>
           <?php endforeach; ?>
         </tbody>

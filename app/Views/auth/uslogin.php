@@ -18,8 +18,15 @@
         <section class="left-section">
             <h2>Login to your Account</h2>
 
-            <?php if (session()->getFlashdata('error')): ?>
-                <p class="error"><?= esc(session()->getFlashdata('error')) ?></p>
+
+            <!-- Flash Messages -->
+            <?php if (session()->get('show_success_modal')): ?>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        document.getElementById('successModal').style.display = 'block';
+                    });
+                </script>
+                <?php session()->remove('show_success_modal'); ?>
             <?php endif; ?>
 
             <form method="post" action="<?= site_url('auth/attemptLogin') ?>">
@@ -71,8 +78,19 @@
         <section class="right-section">
             <h3>Welcome Marikeno</h3>
             <p>View Latest Updates on Marikina River</p>
+            <br>
+                            <a href="<?= site_url('auth/register') ?>" class="action-chip">Sign Up!</a>
         </section>
     </div>
+
+<!-- Success Modal -->
+<div id="successModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000;">
+    <div style="background: white; padding: 20px; border-radius: 10px; text-align: center; max-width: 400px; width: 90%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+        <h3>User Successfully Registered</h3>
+        <p>Your account has been created successfully!</p>
+        <button onclick="document.getElementById('successModal').style.display='none'" style="background: #4CAF50; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin: 10px;">OK</button>
+    </div>
+</div>
 
 </body>
 </html>
