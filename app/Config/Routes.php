@@ -28,7 +28,7 @@ $routes->get('/auth/logout', 'Auth::logout');
 $routes->get('/auth/google', 'Auth::googleLogin');
 $routes->get('/auth/google/callback', 'Auth::googleCallback');
 
-// old $routes->get('/admin/posts', 'Forum::adminPosts'); 
+
 
 //admin actv
 $routes->get('/admin/posts', 'Admin::posts');
@@ -53,18 +53,16 @@ $routes->get('flood/predict_hourly', 'FloodPredictor::predict_hourly'); // hourl
 $routes->get('flood/river-status', 'FloodPredictor::riverStatus');
 
 $routes->get('/home', 'Home::index');
-//Landing - for the url 
-//Home - to fetch the controller
-//index - to find the method 
-                                                            //http://localhost/FloodGuard/public/index.php/flood/predict
+$routes->get('/home/weather-data', 'Home::getWeatherData');
+                                                                                    //Landing - for the url
+                                                                                    //Home - to fetch the controller
+                                                                                    //index - to find the method
+
+
 // Admin routes
 $routes->get('/admin/admin_dashboard', 'Admin::dashboard');
 $routes->get('/admin/users', 'Admin::users');
 $routes->get('/admin/force-post', 'Admin::forcePost');
-
-// trial hourly 08/24/25 18:30
-//$routes->get('flood/daily', 'FloodPredictor::predict');
-//$routes->get('flood/hourly', 'FloodPredictor::predict_hourly');
 
 //09/09/25
 $routes->get('emailtest', 'Email_cont::index');
