@@ -101,7 +101,14 @@
                             <h6 class="text-center">Marikina City</h6>
                             <br>
                             <div style="display: flex; justify-content: center; margin-top: 1rem;">
-                                <button type="button" class="btn btn-primary btn-lg" onclick="findNearestCenter()">Find Nearest Evacuation Center</button>
+                                <button 
+                                    type="button" 
+                                    class="btn btn-lg" 
+                                    style="background-color: #80d0c7; border: none; color: white;"
+                                    onclick="findNearestCenter()"
+                                >
+                                    Find Nearest Evacuation Center
+                                </button>
                             </div>
                         </div>                      
                     </div>
@@ -131,41 +138,68 @@
                                 </a>
                             </div>
                         </div>
-
-                        <div class="col-lg-6 col-12">
+                        <div class="col-lg-4 col-12">
                             <div class="custom-block custom-block-overlay">
                                 <div class="d-flex flex-column h-100">
-                                    <img src="images/businesswoman-using-tablet-analysis.jpg" class="custom-block-image img-fluid" alt="">
-
                                     <div class="custom-block-overlay-text d-flex">
                                         <div>
-                                            <h5 class="text-white mb-2">Purpose of this project</h5>
+                                            <h5 class="text-white mb-2">River Status</h5>
+                                             <?php
+    // Initialize cURL
+    $curl = curl_init();
 
-                                            <p class="text-white">This project uses machine learning and data analytics to deliver accurate flood predictions and evacuation guidance for Marikina City, improving preparedness and public safety.</p>
+    // Configure cURL request
+    curl_setopt_array($curl, [
+        CURLOPT_URL => "https://pasig-marikina-tullahanffws.pagasa.dost.gov.ph/water/table_list.do",
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_POST => true,
+        CURLOPT_HTTPHEADER => [
+            "Content-Type: application/x-www-form-urlencoded; charset=UTF-8",
+            "X-Requested-With: XMLHttpRequest"
+        ],
+        CURLOPT_POSTFIELDS => "isajax=true"
+    ]);
 
-                                            <a href="topics-detail.html" class="btn custom-btn mt-2 mt-lg-3">Learn More</a>
+    // Execute and close cURL
+    $response = curl_exec($curl);
+    curl_close($curl);
+
+    // Decode JSON response
+    $data = json_decode($response, true);
+
+    // Search for Sto Nino station
+    $targetStation = null;
+    foreach ($data as $station) {
+        if (strtolower(trim($station["obsnm"])) === "sto nino") {
+            $targetStation = $station;
+            break;
+        }
+    }
+
+if ($targetStation && !empty($targetStation["wl"])) {
+    echo '<div class="river-status-box">';
+    echo '<div class="status-item">💧 <strong>Current Water Level:</strong> ' . $targetStation["wl"] . ' m</div>';
+    echo '<hr class="divider-line">';
+    echo '<div class="status-item">⏱️ <strong>-30 min:</strong> ' . $targetStation["wl30m"] . ' m</div>';
+    echo '<div class="status-item">⏱️ <strong>-1 hr:</strong> ' . $targetStation["wl1h"] . ' m</div>';
+    echo '<div class="status-item">⏱️ <strong>-2 hr:</strong> ' . $targetStation["wl2h"] . ' m</div>';
+    echo '<hr class="divider-line">';
+    echo '<div class="status-item">🚨 <strong>Alert Level:</strong> ' . $targetStation["alertwl"] . ' m</div>';
+    echo '<div class="status-item ">⚠️ <strong>Alarm Level:</strong> ' . $targetStation["alarmwl"] . ' m</div>';
+    echo '<div class="status-item ">🔴 <strong>Critical Level:</strong> ' . $targetStation["criticalwl"] . ' m</div>';
+    echo '</div>';
+} else {
+    echo '<div class="river-status-box text-center">No recent data found for Sto. Niño.</div>';
+}
+
+    ?>                           
+
+                                            <a href="<?= base_url('flood/river-status'); ?>" class="btn custom-btn mt-2 mt-lg-3">Marikina River Status</a>
+
                                         </div>
-
-                                        <span class="badge bg-finance rounded-pill ms-auto">-</span>
                                     </div>
 
                                     <div class="social-share d-flex">
-                                        <p class="text-white me-4">Share:</p>
-
-                                        <!--<ul class="social-icon">
-                                            <li class="social-icon-item">
-                                                <a href="#" class="social-icon-link bi-twitter"></a>
-                                            </li>
-
-                                            <li class="social-icon-item">
-                                                <a href="#" class="social-icon-link bi-facebook"></a>
-                                            </li>
-
-                                            <li class="social-icon-item">
-                                                <a href="#" class="social-icon-link bi-pinterest"></a>
-                                            </li>
-                                        </ul> -->
-
                                         <a href="#" class="custom-icon bi-bookmark ms-auto"></a>
                                     </div>
 
@@ -177,7 +211,6 @@
                     </div>
                 </div>
             </section>
-
 
             <section class="explore-section section-padding" id="section_2">
                 <div class="container">

@@ -4,82 +4,41 @@
   <meta charset="UTF-8">
   <title>Admin - User Management</title>
   <link rel="stylesheet" href="<?= base_url('assets/css/newsfeed.css'); ?>">
-  <link rel="stylesheet" href="<?= base_url('assets/css/admin_dashboard.css'); ?>">
-  <style>
-    /* Responsive table styles */
-    .table-container {
-      width: 100%;
-      overflow-x: auto;
-      margin-top: 20px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      border-radius: 8px;
-    }
-    
-    .users-table {
-      width: 100%;
-      border-collapse: collapse;
-      background-color: #fff;
-    }
-    
-    .users-table th, 
-    .users-table td {
-      padding: 12px 15px;
-      text-align: left;
-      border-bottom: 1px solid #e0e0e0;
-    }
-    
-    .users-table th {
-      background-color: #f5f5f5;
-      font-weight: bold;
-      color: #333;
-      position: sticky;
-      top: 0;
-    }
-    
-    .users-table tr:hover {
-      background-color: #f9f9f9;
-    }
-    
-    .users-table .true-value {
-      color: #2ecc71;
-      font-weight: bold;
-    }
-    
-    .users-table .false-value {
-      color: #e74c3c;
-    }
-    
-    /* Make the table container scrollable vertically with fixed height */
-    .table-container {
-      max-height: 600px;
-      overflow-y: auto;
-    }
-    
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-      .container {
-        width: 95%;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="<?= base_url('assets/css/admin/darkheader.css'); ?>">
+  <link rel="stylesheet" href="<?= base_url('assets/css/Logo.css'); ?>">
+  <link rel="stylesheet" href="<?= base_url('assets/css/admin/usertable.css'); ?>">
 </head>
-<body>
-  <header>
-    <h1>
-      <a href="<?= site_url('/admin/admin_dashboard') ?>" class="site-title">Admin Dashboard</a>
-    </h1>
+<header>
+    <a href="<?= site_url('/admin/admin_dashboard') ?>" class="logo">
+                       
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke-width="3">
+                       
+                        <path d="M20 40a12 12 0 0 1 0-24 14 14 0 0 1 28 4h2a10 10 0 0 1 0 20H20z" fill="none"/>
+                      
+                        <line x1="24" y1="44" x2="20" y2="54"/>
+                        <line x1="32" y1="44" x2="28" y2="54"/>
+                        <line x1="40" y1="44" x2="36" y2="54"/>
+                       
+                        <path d="M16 58q4 4 8 0t8 0 8 0 8 0" fill="none"/>
+                        </svg>
+
+                        <div class="divider"></div>
+
+                        <div class="logo-text">Admin Dashboard</div>
+                    </a>
     <div class="nav-links">
-      <span>
-        Logged in as <strong><?= esc(session()->get('username')) ?></strong> |
-        <a href="<?= site_url('auth/logout') ?>" class="logout-link">Logout</a>
-      </span>
+      <?php if (session()->get('logged_in')): ?>
+        <span>
+          Logged in as <strong><?= esc(session()->get('username')) ?></strong> | 
+          <a href="<?= site_url('auth/logout') ?>" class="logout-link">Logout</a>
+        </span>
+      <?php endif; ?>
     </div>
   </header>
-
+<body>
   <div class="container">
     <div class="top-bar">
       <h2>User Management</h2>
-      <a href="<?= site_url('/admin/admin_dashboard') ?>" class="btn">Back to Dashboard</a>
     </div>
 
     <div class="table-container">

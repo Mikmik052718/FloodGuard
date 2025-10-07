@@ -5,7 +5,6 @@
   <meta http-equiv="refresh" content="300"> <!-- Refresh every 5 minutes -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Water Levels at Sto Nino</title>
-  <link rel="stylesheet" href="<?= base_url('assets/css/floodmaps.css') ?>" />
 <link rel="stylesheet" href="<?= base_url('assets/css/Logo.css') ?>" />
 <link rel="stylesheet" href="<?= base_url('assets/css/header.css') ?>" />
 <link rel="stylesheet" href="<?= base_url('assets/css/riverstatus.css') ?>" />
