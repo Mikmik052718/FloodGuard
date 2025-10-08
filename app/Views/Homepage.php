@@ -543,7 +543,7 @@ if ($targetStation && !empty($targetStation["wl"])) {
 
                 <div class="container">
                     <div class="row">
-
+<!--
                         <div class="col-12 text-center">
                             <h2 class="text-white mb-4">Developers</h2>
                         </div>
@@ -600,8 +600,8 @@ if ($targetStation && !empty($targetStation["wl"])) {
                         <div class="col-12 text-center mt-5">
                             <p class="text-white">
                                 Want to learn more?
-                                <!--<a href="#" class="btn custom-btn custom-border-btn ms-3">Check out Youtube</a> -->
-                            </p>
+                                <a href="#" class="btn custom-btn custom-border-btn ms-3">Check out </a> -->
+                            </p> 
                         </div>
                     </div>
                 </div>
@@ -976,7 +976,7 @@ document.addEventListener("DOMContentLoaded", function() {
         .then(response => response.json())
         .then(data => {
             if (data.status === 'success' && data.days && data.days.length > 0) {
-                const todayProb = (data.days[0].probability * 100).toFixed(2);
+                const todayProb = (data.days[0].probability * 10000).toFixed(2);
                 document.getElementById("flood-probability-text").textContent = `Flood Probability: ${todayProb}%`;
             } else {
                 document.getElementById("flood-probability-text").textContent = "Flood Probability: N/A";
