@@ -11,14 +11,13 @@
 
         <!-- CSS FILES -->        
         <link rel="preconnect" href="https://fonts.googleapis.com">
-        
+
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans&display=swap" rel="stylesheet">
-                        
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans&display=swap" rel="stylesheet">          
         <link rel="stylesheet" href="<?= base_url('assets/css/bootstrap.min.css'); ?>">
         <link rel="stylesheet" href="<?= base_url('assets/css/bootstrap-icon.css'); ?>">
-        <link rel="stylesheet" href="<?= base_url('assets/css/home_page.css'); ?>">
+        <link rel="stylesheet" href="<?= base_url('assets/css/home.css'); ?>">
         <link rel="stylesheet" href="<?= base_url('assets/css/Logo.css'); ?>">
     </head>
     <body id="top">
@@ -145,54 +144,54 @@
                                         <div>
                                             <h5 class="text-white mb-2">River Status</h5>
                                              <?php
-    // Initialize cURL
-    $curl = curl_init();
+                                            // Initialize cURL
+                                            $curl = curl_init();
 
-    // Configure cURL request
-    curl_setopt_array($curl, [
-        CURLOPT_URL => "https://pasig-marikina-tullahanffws.pagasa.dost.gov.ph/water/table_list.do",
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_POST => true,
-        CURLOPT_HTTPHEADER => [
-            "Content-Type: application/x-www-form-urlencoded; charset=UTF-8",
-            "X-Requested-With: XMLHttpRequest"
-        ],
-        CURLOPT_POSTFIELDS => "isajax=true"
-    ]);
+                                            // Configure cURL request
+                                            curl_setopt_array($curl, [
+                                                CURLOPT_URL => "https://pasig-marikina-tullahanffws.pagasa.dost.gov.ph/water/table_list.do",
+                                                CURLOPT_RETURNTRANSFER => true,
+                                                CURLOPT_POST => true,
+                                                CURLOPT_HTTPHEADER => [
+                                                    "Content-Type: application/x-www-form-urlencoded; charset=UTF-8",
+                                                    "X-Requested-With: XMLHttpRequest"
+                                                ],
+                                                CURLOPT_POSTFIELDS => "isajax=true"
+                                            ]);
 
-    // Execute and close cURL
-    $response = curl_exec($curl);
-    curl_close($curl);
+                                            // Execute and close cURL
+                                            $response = curl_exec($curl);
+                                            curl_close($curl);
 
-    // Decode JSON response
-    $data = json_decode($response, true);
+                                            // Decode JSON response
+                                            $data = json_decode($response, true);
 
-    // Search for Sto Nino station
-    $targetStation = null;
-    foreach ($data as $station) {
-        if (strtolower(trim($station["obsnm"])) === "sto nino") {
-            $targetStation = $station;
-            break;
-        }
-    }
+                                            // Search for Sto Nino station
+                                            $targetStation = null;
+                                            foreach ($data as $station) {
+                                                if (strtolower(trim($station["obsnm"])) === "sto nino") {
+                                                    $targetStation = $station;
+                                                    break;
+                                                }
+                                            }
 
-if ($targetStation && !empty($targetStation["wl"])) {
-    echo '<div class="river-status-box">';
-    echo '<div class="status-item">💧 <strong>Current Water Level:</strong> ' . $targetStation["wl"] . ' m</div>';
-    echo '<hr class="divider-line">';
-    echo '<div class="status-item">⏱️ <strong>-30 min:</strong> ' . $targetStation["wl30m"] . ' m</div>';
-    echo '<div class="status-item">⏱️ <strong>-1 hr:</strong> ' . $targetStation["wl1h"] . ' m</div>';
-    echo '<div class="status-item">⏱️ <strong>-2 hr:</strong> ' . $targetStation["wl2h"] . ' m</div>';
-    echo '<hr class="divider-line">';
-    echo '<div class="status-item">🚨 <strong>Alert Level:</strong> ' . $targetStation["alertwl"] . ' m</div>';
-    echo '<div class="status-item ">⚠️ <strong>Alarm Level:</strong> ' . $targetStation["alarmwl"] . ' m</div>';
-    echo '<div class="status-item ">🔴 <strong>Critical Level:</strong> ' . $targetStation["criticalwl"] . ' m</div>';
-    echo '</div>';
-} else {
-    echo '<div class="river-status-box text-center">No recent data found for Sto. Niño.</div>';
-}
+                                        if ($targetStation && !empty($targetStation["wl"])) {
+                                            echo '<div class="river-status-box">';
+                                            echo '<div class="status-item">💧 <strong>Current Water Level:</strong> ' . $targetStation["wl"] . ' m</div>';
+                                            echo '<hr class="divider-line">';
+                                            echo '<div class="status-item">⏱️ <strong>-30 min:</strong> ' . $targetStation["wl30m"] . ' m</div>';
+                                            echo '<div class="status-item">⏱️ <strong>-1 hr:</strong> ' . $targetStation["wl1h"] . ' m</div>';
+                                            echo '<div class="status-item">⏱️ <strong>-2 hr:</strong> ' . $targetStation["wl2h"] . ' m</div>';
+                                            echo '<hr class="divider-line">';
+                                            echo '<div class="status-item">🚨 <strong>Alert Level:</strong> ' . $targetStation["alertwl"] . ' m</div>';
+                                            echo '<div class="status-item ">⚠️ <strong>Alarm Level:</strong> ' . $targetStation["alarmwl"] . ' m</div>';
+                                            echo '<div class="status-item ">🔴 <strong>Critical Level:</strong> ' . $targetStation["criticalwl"] . ' m</div>';
+                                            echo '</div>';
+                                        } else {
+                                            echo '<div class="river-status-box text-center">No recent data found for Sto. Niño.</div>';
+                                        }
 
-    ?>                           
+                                            ?>                           
 
                                             <a href="<?= base_url('flood/river-status'); ?>" class="btn custom-btn mt-2 mt-lg-3">Marikina River Status</a>
 
@@ -756,7 +755,7 @@ Anyone with a stable internet connection and a device with a web browser can use
                             <span>Topic</span>
                         </a>
                     </div>
-
+<!--
                     <div class="col-lg-3 col-md-4 col-6">
                         <h6 class="site-footer-title mb-3">Resources</h6>
 
@@ -812,6 +811,7 @@ Anyone with a stable internet connection and a device with a web browser can use
                     </div>
 
                 </div>
+-->
             </div>
         </footer>
 
