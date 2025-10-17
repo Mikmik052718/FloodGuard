@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="refresh" content="900">
   <title>Forum</title>
    <link rel="stylesheet" href="<?= base_url('assets/css/bootstrap.min.css'); ?>">
   <!-- <link rel="stylesheet" href="<?= base_url('assets/css/bootstrap-icon.css'); ?>"> -->
@@ -50,36 +51,42 @@
       </div>
     </div>
 
-    <?php foreach ($posts as $post): ?>
-      <div class="post-card">
-        <div class="post-header">
-          <div class="author-info">
-            <strong><?= esc($post['author_name']) ?></strong>
-            <span><?= $post['created_at'] ?></span>
+    <div id="posts-container">
+      <?php foreach ($posts as $post): ?>
+        <div class="post-card">
+          <div class="post-header">
+            <div class="author-info">
+              <strong><?= esc($post['author_name']) ?></strong>
+              <span><?= $post['created_at'] ?></span>
+            </div>
+          </div>
+
+          <div class="post-title">
+              <?= esc($post['title']) ?>
+          </div>
+          <div class="post-content">
+              <?= $post['content'] ?>
+          </div>
+          <?php if (!empty($post['image'])): ?>
+            <div class="post-image">
+                <img src="<?= base_url('uploads/' . esc($post['image'])) ?>" alt="Post Image" style="max-width: 100%; height: auto;">
+              </div>
+            <?php endif; ?>
+
+          <div class="post-actions">
+            <?php if (session()->get('logged_in') && session()->get('username') === $post['author_name']): ?>
+              <a href="<?= site_url('forum/edit/' . $post['id']) ?>">Edit</a>
+              <a href="<?= site_url('forum/delete/' . $post['id']) ?>" onclick="return confirm('Are you sure you want to delete this post?')">Delete</a>
+            <?php endif; ?>
+            <!-- <a href="#">Like</a> -->
           </div>
         </div>
+      <?php endforeach; ?>
+    </div>
 
-        <div class="post-title">
-            <?= esc($post['title']) ?>
-        </div>
-        <div class="post-content">
-            <?= $post['content'] ?>
-        </div>
-        <?php if (!empty($post['image'])): ?>
-          <div class="post-image">
-              <img src="<?= base_url('uploads/' . esc($post['image'])) ?>" alt="Post Image" style="max-width: 100%; height: auto;">
-            </div>
-          <?php endif; ?>
-
-        <div class="post-actions">
-          <?php if (session()->get('logged_in') && session()->get('username') === $post['author_name']): ?>
-            <a href="<?= site_url('forum/edit/' . $post['id']) ?>">Edit</a>
-            <a href="<?= site_url('forum/delete/' . $post['id']) ?>" onclick="return confirm('Are you sure you want to delete this post?')">Delete</a>
-          <?php endif; ?>
-          <!-- <a href="#">Like</a> -->
-        </div>
-      </div>
-    <?php endforeach; ?>
+    <div class="text-center mt-4">
+      <button id="view-more-btn" class="btn btn-primary" style="display: none;">View More</button>
+    </div>
   </div>
 
   <!-- Profile Modal -->
@@ -135,6 +142,56 @@
       var myModal = new bootstrap.Modal(document.getElementById('profileModal'));
       myModal.show();
     }
+
+    const isLoggedIn = <?= session()->get('logged_in') ? 'true' : 'false' ?>;
+    const currentUsername = '<?= esc(session()->get('username')) ?>';
+
+    let offset = 15; // Start after the initial 15 posts
+    const limit = 15;
+    const viewMoreBtn = document.getElementById('view-more-btn');
+    const postsContainer = document.getElementById('posts-container');
+
+    // Check if there are more posts to load initially
+    if (<?= $total_posts ?> > 15) {
+      viewMoreBtn.style.display = 'inline-block';
+    }
+
+    viewMoreBtn.addEventListener('click', function() {
+      fetch('<?= site_url('forum/loadMorePosts') ?>?offset=' + offset)
+        .then(response => response.json())
+        .then(data => {
+          if (data.length > 0) {
+            data.forEach(post => {
+              let actions = '';
+              if (isLoggedIn && currentUsername === post.author_name) {
+                actions = `<a href="<?= site_url('forum/edit/') ?>${post.id}">Edit</a> <a href="<?= site_url('forum/delete/') ?>${post.id}" onclick="return confirm('Are you sure you want to delete this post?')">Delete</a>`;
+              }
+              const postCard = document.createElement('div');
+              postCard.className = 'post-card';
+              postCard.innerHTML = `
+                <div class="post-header">
+                  <div class="author-info">
+                    <strong>${post.author_name}</strong>
+                    <span>${post.created_at}</span>
+                  </div>
+                </div>
+                <div class="post-title">${post.title}</div>
+                <div class="post-content">${post.content}</div>
+                ${post.image ? `<div class="post-image"><img src="<?= base_url('uploads/') ?>${post.image}" alt="Post Image" style="max-width: 100%; height: auto;"></div>` : ''}
+                <div class="post-actions">${actions}</div>
+              `;
+              postsContainer.appendChild(postCard);
+            });
+            offset += limit;
+            if (data.length < limit) {
+              viewMoreBtn.style.display = 'none';
+            }
+          } else {
+            viewMoreBtn.style.display = 'none';
+          }
+        })
+        .catch(error => console.error('Error loading more posts:', error));
+    });
   </script>
 
 </body>

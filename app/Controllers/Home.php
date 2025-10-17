@@ -39,7 +39,7 @@ class Home extends BaseController
         // Fetch hourly for precipitation probability
         $hourlyURL = "https://api.open-meteo.com/v1/forecast?latitude={$lat}&longitude={$lon}&hourly=precipitation_probability&timezone=auto&start_date={$today}&end_date={$today}";
         $hourly = json_decode($cli->get($hourlyURL)->getBody(), true)['hourly'];
-        $precipitation_probability = !empty($hourly['precipitation_probability']) ? max($hourly['precipitation_probability']) * 100 : 0;
+        $precipitation_probability = !empty($hourly['precipitation_probability']) ? max($hourly['precipitation_probability']) * 10000 : 0;
 
         $data = [
             'weather_code' => $wx['weather_code'][0] ?? 0,

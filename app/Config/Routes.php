@@ -11,6 +11,7 @@ $routes->get('/', 'Hello::index');  // This replaces the default Welcome control
 $routes->get('/forum', 'Forum::index');
 $routes->get('/forum/create', 'Forum::create');
 $routes->post('/forum/store', 'Forum::store');
+$routes->get('/forum/loadMorePosts', 'Forum::loadMorePosts');
 
 //regis handle
 $routes->get('/auth/register', 'Auth::register');

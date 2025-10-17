@@ -1,12 +1,7 @@
-# TODO List for Fixing Registration Success Modal Issue and Adding Email Feature
+# Forum Pagination Implementation
 
-- [x] Move success modal display logic from registration.php to uslogin.php
-- [x] Remove success flashdata check and modal from registration.php
-- [x] Fix modal positioning to center it properly
-- [x] Change to session variable to prevent modal on refresh
-- [x] Add registration confirmation email feature
-- [x] Update automatic posts: remove Temp Max/Min columns, show current day and next day
-- [x] Test registration flow: modal appears on login after registration
-- [x] Test refreshing registration page: no modal
-- [x] Test refreshing login page after registration: no modal reappearance
-- [x] Test email is sent upon registration
+- [x] Modify Forum.php index() method to limit posts to 15
+- [x] Add loadMorePosts() method in Forum.php for AJAX loading
+- [x] Update forum/index.php view to add "View More" button
+- [x] Add JavaScript for AJAX loading of more posts
+- [x] Add route for loadMorePosts

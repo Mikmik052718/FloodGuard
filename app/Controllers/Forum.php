@@ -8,7 +8,8 @@ class Forum extends BaseController
     public function index()
     {
         $model = new PostModel();
-        $data['posts'] = $model->orderBy('created_at', 'DESC')->findAll();
+        $data['posts'] = $model->orderBy('created_at', 'DESC')->limit(15)->findAll();
+        $data['total_posts'] = $model->countAll();
         return view('forum/index', $data);
     }
 
@@ -176,6 +177,18 @@ public function weatherDaily()
     $data['flood'] = $floodData['daily'] ?? null;
 
     return view('forum/weather_daily', $data);
+}
+
+public function loadMorePosts()
+{
+    $offset = $this->request->getGet('offset') ?? 0;
+    $limit = 15;
+    $page = intval($offset / $limit) + 1;
+
+    $model = new PostModel();
+    $posts = $model->orderBy('created_at', 'DESC')->paginate($limit, 'default', $page);
+
+    return $this->response->setJSON($posts);
 }
 
 
