@@ -102,9 +102,14 @@ public function sendEmail()
     return view('admin/email_result', ['results' => $results]);
 }
 
-    // Send water level alerts to users with email alerts enabled
     public function sendWaterAlerts()
     {
+        // Custom water level thresholds 
+        $customAlertLevel = 12.5;    
+        $customAlarmLevel = 16.0;    
+        $customCriticalLevel = 17.0; 
+        $useCustomLevels = false;    // Set to true to use custom levels instead of API levels
+
         // Fetch water level data
         $curl = curl_init();
         curl_setopt_array($curl, [
@@ -136,9 +141,17 @@ public function sendEmail()
         }
 
         $currentLevel = (float) $targetStation["wl"];
-        $alertLevel = (float) $targetStation["alertwl"];
-        $alarmLevel = (float) $targetStation["alarmwl"];
-        $criticalLevel = (float) $targetStation["criticalwl"];
+
+        // Use custom levels if enabled, otherwise use API levels
+        if ($useCustomLevels) {
+            $alertLevel = $customAlertLevel;
+            $alarmLevel = $customAlarmLevel;
+            $criticalLevel = $customCriticalLevel;
+        } else {
+            $alertLevel = (float) $targetStation["alertwl"];
+            $alarmLevel = (float) $targetStation["alarmwl"];
+            $criticalLevel = (float) $targetStation["criticalwl"];
+        }
 
         // Determine current alert status
         $alertStatus = 'none';
