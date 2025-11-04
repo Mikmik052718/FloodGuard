@@ -6,15 +6,29 @@ use App\Models\PostModel;
 
 class AutoPost extends BaseController
 {
-    private function getPythonExe()
+private function getPythonExe()
     {
-        $anaconda = 'D:/Anaconda/python.exe';
-        $mikmik = 'C:\\Users\\Mikmik\\AppData\\Local\\Programs\\Python\\Python313\\python.exe';
-        if (file_exists($anaconda)) {
-            return $anaconda;
-        } else {
-            return $mikmik;
+        // Check if we're on a Linux/Docker environment (production)
+        if (PHP_OS_FAMILY === 'Linux' || getenv('DOCKER_CONTAINER') === 'true') {
+            return '/opt/venv/bin/python3';
         }
+
+        // Local development environment - check multiple possible Python paths
+        $possiblePaths = [
+            'D:/Anaconda/python.exe',                    // Anaconda
+            'C:\\Users\\Mikmik\\AppData\\Local\\Programs\\Python\\Python313\\python.exe', // Mikmik's Python
+            'C:\\Python313\\python.exe',                // Standard Python install
+            'python.exe'                                // System PATH Python
+        ];
+
+        foreach ($possiblePaths as $path) {
+            if (file_exists($path)) {
+                return $path;
+            }
+        }
+
+        // Fallback to system python
+        return 'python';
     }
 
     private function getScriptPath($script)

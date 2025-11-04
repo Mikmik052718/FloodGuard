@@ -94,3 +94,8 @@ $routes->cli('autopost', 'AutoPost::index');
 $routes->get('email/water-alerts', 'Email_cont::sendWaterAlerts');
 $routes->post('email/send-water-alert', 'Email_cont::sendWaterAlertManual');
 
+// SMS routes
+$routes->get('sms', 'SmsController::index');
+$routes->post('sms/send-water-alert', 'SmsController::sendWaterAlertManual');
+$routes->match(['get', 'post'], 'sms/gateway', 'SmsController::gateway');
+

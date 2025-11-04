@@ -129,6 +129,32 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="row mt-4">
+                                <div class="col-md-6">
+                                    <div class="custom-block">
+                                        <h5><i class="bi bi-chat-dots-fill me-2"></i>Send SMS Water Level Alert</h5>
+                                        <p>Send a manual water level alert via SMS to users with SMS alerts enabled.</p>
+                                        <form action="<?= site_url('sms/send-water-alert') ?>" method="post" class="mt-3">
+                                            <div class="mb-3">
+                                                <label for="sms_alert_level" class="form-label">Alert Level:</label>
+                                                <select name="alert_level" class="form-select" required>
+                                                    <option value="alert">Alert</option>
+                                                    <option value="alarm">Alarm</option>
+                                                    <option value="critical">Critical</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="sms_custom_message" class="form-label">Custom Message (Optional):</label>
+                                                <textarea id="sms_custom_message" name="custom_message" class="form-control" rows="3" placeholder="Add any additional message..."></textarea>
+                                            </div>
+
+                                            <button type="submit" class="btn btn-info">Send SMS Alert</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -163,6 +189,48 @@
                         ?>
                             <tr>
                                 <td><?= esc($row['email']) ?></td>
+                                <td><?= $row['status'] ?></td>
+                            </tr>
+                        <?php
+                            endforeach;
+                        endif;
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SMS Alert Results Modal -->
+<div class="modal fade" id="smsAlertResultsModal" tabindex="-1" aria-labelledby="smsAlertResultsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="smsAlertResultsModalLabel"><i class="bi bi-chat-dots-fill me-2"></i>SMS Water Alert Results</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Manual water level alerts have been sent via SMS to users with SMS notifications enabled.</p>
+                <p><strong>Total Sent: <?= session()->getFlashdata('sms_alert_sent_count') ?? 0 ?></strong></p>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Phone</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $smsResults = session()->getFlashdata('sms_alert_results');
+                        if ($smsResults):
+                            foreach ($smsResults as $row):
+                        ?>
+                            <tr>
+                                <td><?= esc($row['phone']) ?></td>
                                 <td><?= $row['status'] ?></td>
                             </tr>
                         <?php
