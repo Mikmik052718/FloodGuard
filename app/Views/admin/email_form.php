@@ -113,6 +113,7 @@
                                             <div class="mb-3">
                                                 <label for="alert_level" class="form-label">Alert Level:</label>
                                                 <select name="alert_level" class="form-select" required>
+                                                    <option value="warning">Warning</option>
                                                     <option value="alert">Alert</option>
                                                     <option value="alarm">Alarm</option>
                                                     <option value="critical">Critical</option>
@@ -139,16 +140,13 @@
                                             <div class="mb-3">
                                                 <label for="sms_alert_level" class="form-label">Alert Level:</label>
                                                 <select name="alert_level" class="form-select" required>
+                                                    <option value="warning">Warning</option>
                                                     <option value="alert">Alert</option>
                                                     <option value="alarm">Alarm</option>
                                                     <option value="critical">Critical</option>
                                                 </select>
                                             </div>
 
-                                            <div class="mb-3">
-                                                <label for="sms_custom_message" class="form-label">Custom Message (Optional):</label>
-                                                <textarea id="sms_custom_message" name="custom_message" class="form-control" rows="3" placeholder="Add any additional message..."></textarea>
-                                            </div>
 
                                             <button type="submit" class="btn btn-info">Send SMS Alert</button>
                                         </form>

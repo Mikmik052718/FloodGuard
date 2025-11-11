@@ -65,6 +65,11 @@ private function getPythonExe()
         $emailController = new \App\Controllers\Email_cont();
         $alertResult = $emailController->sendWaterAlerts();
         echo $alertResult . "\n";
+
+        // Send SMS water level alerts
+        $smsController = new \App\Controllers\SmsController();
+        $smsAlertResult = $smsController->sendWaterAlertsSMS();
+        echo $smsAlertResult . "\n";
     }
 
     private function getHourlyData()
@@ -275,7 +280,7 @@ private function getPythonExe()
         if ($daily) {
             $content .= "<table border='1'><tr><th>Date</th><th>Prob %</th><th>Prediction</th><th>Rain mm</th><th>Discharge m³/s</th></tr>";
             foreach ($daily as $d) {
-                $content .= "<tr><td>{$d['date']}</td><td>" . number_format($d['probability']*10000, 2) . "</td><td>{$d['prediction']}</td><td>{$d['rain_sum']}</td><td>{$d['river_discharge']}</td></tr>";
+                $content .= "<tr><td>{$d['date']}</td><td>" . number_format($d['probability']*1000, 2) . "</td><td>{$d['prediction']}</td><td>{$d['rain_sum']}</td><td>{$d['river_discharge']}</td></tr>";
             }
             $content .= "</table>";
         } else {

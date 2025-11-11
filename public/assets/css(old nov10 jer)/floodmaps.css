@@ -1,0 +1,179 @@
+/* FloodGuard — floodmaps.css */
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f5f7fa;
+    color: #333;
+}
+
+/* 🔹 Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 30px;
+    background: #007bff;
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+.navbar .logo {
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+}
+.navbar .nav-links {
+    display: flex;
+    gap: 18px;
+}
+.navbar .nav-links a {
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+    transition: 0.3s;
+}
+.navbar .nav-links a:hover {
+    color: #ffe082;
+}
+.navbar .nav-btn {
+    background: #ffc107;
+    color: #212529;
+    padding: 6px 14px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.3s;
+}
+.navbar .nav-btn:hover {
+    background: #e0a800;
+}
+
+/* 🔹 Page Container */
+.container {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+/* 🔹 Header */
+h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #007bff;
+}
+
+/* 🔹 User Info Card */
+.user-info {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    border-left: 5px solid #007bff;
+}
+.user-info h4 { margin: 0 0 8px; }
+.user-info p { margin: 5px 0; font-size: 14px; }
+
+/* 🔹 Map */
+#map {
+    height: 450px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+/* 🔹 Location Controls */
+.location-controls {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 20px 0;
+}
+.location-controls button {
+    border: none;
+    border-radius: 8px;
+    padding: 10px 18px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.location-controls button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+.btn-primary { background: #007bff; color: #fff; }
+.btn-success { background: #28a745; color: #fff; }
+.btn-warning { background: #ffc107; color: #212529; }
+
+/* 🔹 Status Box */
+.location-status {
+    text-align: center;
+    font-weight: bold;
+    padding: 12px;
+    border-radius: 8px;
+    margin: 10px auto;
+    max-width: 600px;
+    display: none;
+}
+.status-success { background: #d4edda; color: #155724; }
+.status-error { background: #f8d7da; color: #721c24; }
+.status-info { background: #d1ecf1; color: #0c5460; }
+
+/* 🔹 Legend */
+.legend {
+    text-align: center;
+    margin-top: 15px;
+}
+.legend span {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 6px;
+    margin: 5px;
+    font-size: 13px;
+    font-weight: bold;
+    color: #fff;
+}
+.low { background: #28a745; }
+.medium { background: #ffc107; color: #212529; }
+.high { background: #dc3545; }
+
+/* 🔹 Info Footer */
+.info-footer {
+    text-align: center;
+    font-size: 13px;
+    color: #666;
+    margin-top: 15px;
+}
+header {
+  background: #80d0c7;
+  color: #fff;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 {
+  margin: 0;
+}
+
+header .logout-link {
+  color: #f1faee;
+  text-decoration: none;
+}
+
+header .logout-link:hover {
+  text-decoration: underline;
+}
+.site-title {
+  color: #fff;
+  text-decoration: none;
+}
+
+.site-title:hover {
+  text-decoration: underline;
+}

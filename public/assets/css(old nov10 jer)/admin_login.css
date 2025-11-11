@@ -1,0 +1,204 @@
+/* admin_login.css – Improved design for Admin Login */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #1f1f1f;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    width: 850px;
+    max-width: 95%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    background: #2c2f33;
+    border-radius: 12px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+    overflow: hidden;
+}
+
+.left-section, .right-section {
+    flex: 1 1 50%;
+    padding: 50px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.left-section {
+    background: #343a40;
+}
+
+.right-section {
+    background: linear-gradient(135deg, #17a2b8, #138f75);
+    color: white;
+    text-align: center;
+    align-items: center;
+}
+
+.right-section h3 {
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
+.right-section p {
+    font-size: 16px;
+    max-width: 300px;
+}
+
+.logo {
+    position: absolute;
+    top: 25px;
+    left: 40px;
+    font-size: 26px;
+    font-weight: bold;
+    color: #1cc7a0;
+}
+
+h2 {
+    font-size: 26px;
+    margin-bottom: 25px;
+    text-align: center;
+    color: #f8f9fa;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #555;
+    background-color: #2b2e31;
+    color: #fff;
+    font-size: 15px;
+}
+
+input[type="text"]::placeholder,
+input[type="password"]::placeholder {
+    color: #aaa;
+}
+
+.btn-login {
+    padding: 12px;
+    background: #1cc7a0;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-login:hover {
+    background: #138f75;
+}
+
+/* Google Sign-In Button Styles */
+.google-login {
+    margin-top: 20px;
+}
+
+.btn-google {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 12px;
+    background: #fff;
+    color: #333;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 15px;
+    text-decoration: none;
+    transition: all 0.3s;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.btn-google:hover {
+    background: #f8f9fa;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    transform: translateY(-1px);
+}
+
+.btn-google svg {
+    flex-shrink: 0;
+}
+
+.error {
+    color: #ff6b6b;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .left-section, .right-section {
+        flex: 1 1 100%;
+        padding: 30px 25px;
+    }
+}
+
+.link-actions {
+    margin-top: 16px;
+    display: flex;
+    gap: 20 px;
+    flex-wrap: nowrap;  
+    justify-content: flex-start;
+}
+
+.action-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 8px; /* smaller */
+    border-radius: 6px;
+    border: 1px solid #1cc7a0;
+    font-size: 12px;  /* smaller font */
+    font-weight: 600;
+    text-decoration: none;
+    transition: all .2s ease;
+    white-space: nowrap; /* prevent breaking */
+}
+
+/* default + visited colors */
+.action-chip:link,
+.action-chip:visited {
+    color: #1cc7a0;
+    background: rgba(28, 199, 160, 0.08);
+}
+
+/* hover/active */
+.action-chip:hover {
+    background: #1cc7a0;
+    color: #0f1716;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, .25);
+}
+.action-chip:active {
+    transform: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .2);
+}
+

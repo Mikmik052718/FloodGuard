@@ -105,10 +105,10 @@ public function sendEmail()
     public function sendWaterAlerts()
     {
         // Custom water level thresholds 
-        $customAlertLevel = 12.5;    
-        $customAlarmLevel = 16.0;    
-        $customCriticalLevel = 17.0; 
-        $useCustomLevels = false;    // Set to true to use custom levels instead of API levels
+        $customAlertLevel = 14.81;    
+        $customAlarmLevel = 15.81;    
+        $customCriticalLevel = 16.81; 
+        $useCustomLevels = true;    // Set to true to use custom levels instead of API levels
 
         // Fetch water level data
         $curl = curl_init();
@@ -250,7 +250,7 @@ public function sendEmail()
             } else {
                 $message .= "<br>";
             }
-            $message .= "Please take necessary precautions.<br><br>";
+            $message .= $this->getAlertMessage($alertLevel);
             $message .= "Regards,<br>AlertoMarikeno Admin Team";
 
             $email->setMessage($message);
@@ -273,6 +273,23 @@ public function sendEmail()
         session()->setFlashdata('alert_sent_count', $sentCount);
 
         return redirect()->to(site_url('email'));
+    }
+
+    // Helper method to get alert messages
+    private function getAlertMessage($alertLevel)
+    {
+        switch ($alertLevel) {
+            case 'warning':
+                return "This is a warning for possible hazard as the water level is reaching level 13.50<br><br>";
+            case 'alert':
+                return "Please take necessary precautions.<br><br>";
+            case 'alarm':
+                return "Please take immediate precautions and prepare for evacuation if necessary.<br><br>";
+            case 'critical':
+                return "CRITICAL LEVEL: Immediate evacuation may be required. Please follow local authorities' instructions.<br><br>";
+            default:
+                return "Please take necessary precautions.<br><br>";
+        }
     }
 
 }

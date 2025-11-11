@@ -1,0 +1,68 @@
+
+    /* 🔹 Logo Container */
+    /* 🔹 Logo Container */
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: white;
+      transition: all 0.3s ease;
+    }
+
+    .logo svg {
+      width: 50px;
+      height: 50px;
+      stroke: white;
+      transition: stroke 0.3s ease;
+    }
+
+    .divider {
+      width: 1px;
+      background-color: white;
+      height: 40px;
+      margin: 0 10px;
+      transition: background-color 0.3s ease;
+    }
+
+    .logo-text {
+      font-size: 28px;
+      font-weight: 500;
+      color: white;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    /* 🔹 Underline effect (animated) */
+    .logo-text::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 0;
+      height: 2px;
+      background-color: #13547a;
+      transition: width 0.3s ease;
+    }
+
+    .logo:hover .logo-text::after {
+      width: 100%;
+    }
+    /* 🔹 Hover Effect */
+    .logo:hover svg {
+      stroke: #13547a;
+    }
+    .logo:hover .divider {
+      background-color: #13547a;
+    }
+    .logo:hover .logo-text {
+      color: #13547a;
+    }
+
+    .logo {
+      cursor: pointer;
+    }
+    
+    body, table, th, td, h2, .logo-text {
+    font-family: sans-serif;
+}

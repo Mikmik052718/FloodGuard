@@ -349,7 +349,7 @@ private function getPythonExe()
         if ($hourly) {
             $content .= "<table border='1'><tr><th>Datetime</th><th>Prob %</th><th>Prediction</th><th>Rain mm</th><th>Temp °C</th><th>Discharge m³/s</th></tr>";
             foreach ($hourly as $h) {
-                $content .= "<tr><td>{$h['datetime']}</td><td>" . number_format($h['probability']*100, 4) . "</td><td>{$h['prediction']}</td><td>{$h['rain']}</td><td>{$h['temp']}</td><td>{$h['discharge']}</td></tr>";
+                $content .= "<tr><td>{$h['datetime']}</td><td>" . number_format($h['probability']*10000, 4) . "</td><td>{$h['prediction']}</td><td>{$h['rain']}</td><td>{$h['temp']}</td><td>{$h['discharge']}</td></tr>";
             }
             $content .= "</table>";
         } else {
@@ -360,7 +360,7 @@ private function getPythonExe()
         if ($daily) {
             $content .= "<table border='1'><tr><th>Date</th><th>Prob %</th><th>Prediction</th><th>Rain mm</th><th>Discharge m³/s</th></tr>";
             foreach ($daily as $d) {
-                $content .= "<tr><td>{$d['date']}</td><td>" . number_format($d['probability']*100, 2) . "</td><td>{$d['prediction']}</td><td>{$d['rain_sum']}</td><td>{$d['river_discharge']}</td></tr>";
+                $content .= "<tr><td>{$d['date']}</td><td>" . number_format($d['probability']*1000, 2) . "</td><td>{$d['prediction']}</td><td>{$d['rain_sum']}</td><td>{$d['river_discharge']}</td></tr>";
             }
             $content .= "</table>";
         } else {

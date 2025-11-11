@@ -55,6 +55,9 @@
         CURLOPT_POSTFIELDS => "isajax=true"
     ]);
 
+    // For testing API failure, uncomment the next line:
+     $response = false; // Simulate API failure
+
     $response = curl_exec($curl);
     curl_close($curl);
 
@@ -70,18 +73,16 @@
         }
     }
 
-    // Output levels
-    if ($targetStation && !empty($targetStation["wl"])) {
-        echo "<div class='level'>Current: " . $targetStation["wl"] . " m</div>";
-        echo "<div class='level'>-30 min: " . $targetStation["wl30m"] . " m</div>";
-        echo "<div class='level'>-1 hr: " . $targetStation["wl1h"] . " m</div>";
-        echo "<div class='level'>-2 hr: " . $targetStation["wl2h"] . " m</div>";
-        echo "<div class='level'>Alert Level: " . $targetStation["alertwl"] . " m</div>";
-        echo "<div class='level'>Alarm Level: " . $targetStation["alarmwl"] . " m</div>";
-        echo "<div class='level'>Critical Level: " . $targetStation["criticalwl"] . " m</div>";
-    } else {
-        echo "<p>No recent data found for Sto Nino. ):</p>";
-    }
+    // Output levels (always show, even if API fails)
+    echo "<div class='level'>Current: " . ($targetStation["wl"] ?? "N/A") . " m</div>";
+    echo "<div class='level'>-30 min: " . ($targetStation["wl30m"] ?? "N/A") . " m</div>";
+    echo "<div class='level'>-1 hr: " . ($targetStation["wl1h"] ?? "N/A") . " m</div>";
+    echo "<div class='level'>-2 hr: " . ($targetStation["wl2h"] ?? "N/A") . " m</div>";
+    echo "<div class='level'>-3 hr: " . ($targetStation["wl3h"] ?? "N/A") . " m</div>";
+    echo "<div class='level'>-12 hr: " . ($targetStation["wl12h"] ?? "N/A") . " m</div>";
+    echo "<div class='level'>Alert Level: " . ($targetStation["alertwl"] ?? "N/A") . " m</div>";
+    echo "<div class='level'>Alarm Level: " . ($targetStation["alarmwl"] ?? "N/A") . " m</div>";
+    echo "<div class='level'>Critical Level: " . ($targetStation["criticalwl"] ?? "N/A") . " m</div>";
     ?>
 
     <div class="footer" id="last-updated">Last updated: <span></span></div>

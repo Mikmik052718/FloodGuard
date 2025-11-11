@@ -97,5 +97,6 @@ $routes->post('email/send-water-alert', 'Email_cont::sendWaterAlertManual');
 // SMS routes
 $routes->get('sms', 'SmsController::index');
 $routes->post('sms/send-water-alert', 'SmsController::sendWaterAlertManual');
+$routes->get('sms/water-alerts', 'SmsController::sendWaterAlertsSMS'); // sms water alerts
 $routes->match(['get', 'post'], 'sms/gateway', 'SmsController::gateway');
 

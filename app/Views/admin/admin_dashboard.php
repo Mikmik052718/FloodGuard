@@ -95,8 +95,8 @@
                                 <div class="custom-block">
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div>
-                                            <h5><i class="bi bi-envelope-fill me-2"></i>Email</h5>
-                                            <p>Send emails to users.</p>
+                                            <h5><i class="bi bi-envelope-fill me-2"></i>Notify</h5>
+                                            <p>Notify users.</p>
                                         </div>
                                         <span class="badge bg-primary-badge">Send</span>
                                     </div>

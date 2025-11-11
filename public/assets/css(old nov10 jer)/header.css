@@ -1,0 +1,27 @@
+body {
+  background: #f4f6f8;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background: #80d0c7;
+  color: #fff;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header .logout-link {
+  color: #f1faee;
+  text-decoration: none;
+}
+
+header .logout-link:hover {
+  text-decoration: underline;
+}
+
+body, table, th, td, h2, .logo-text {
+    font-family: sans-serif;
+}
