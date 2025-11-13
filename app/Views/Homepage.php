@@ -292,7 +292,7 @@
 
                                         <div class="col-lg-4 col-md-6 col-12">
                                             <div class="custom-block bg-white shadow-lg">
-                                                <a href="topics-detail.html">
+                                                !<!--<a href="topics-detail.html"> -->
                                                     <div class="d-flex">
                                                         <div>
                                                             <h5 class="mb-2">Max Temperature</h5>
