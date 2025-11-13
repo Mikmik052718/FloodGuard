@@ -73,16 +73,25 @@
                             </li>
 
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Pages</a>
+  <a class="nav-link dropdown-toggle d-flex align-items-center gap-2" 
+     href="#" 
+     id="navbarLightDropdownMenuLink" 
+     role="button" 
+     data-bs-toggle="dropdown" 
+     aria-expanded="false">
 
-                                <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
-                                    <li><a class="dropdown-item" href="<?= site_url('forum') ?>">Newsfeed</a></li>
-                                    <li><a class="dropdown-item" href="<?= site_url('flood/hazard-maps') ?>">Flood Hazard Map</a></li>
-                                    <li><a class="dropdown-item" href="<?= site_url('flood/hourly') ?>">Prediction Table</a></li>
-                                    <li><a class="dropdown-item" href="<?= site_url('flood/river-status') ?>">River Status</a></li>
-                                </ul>
-                                </ul>
-                            </li>
+    <i class="bi bi-grid"></i> Pages
+  </a>
+
+  <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
+    <li><a class="dropdown-item" href="<?= site_url('forum') ?>">Newsfeed</a></li>
+    <li><a class="dropdown-item" href="<?= site_url('flood/hazard-maps') ?>">Flood Hazard Map</a></li>
+    <li><a class="dropdown-item" href="<?= site_url('flood/hourly') ?>">Prediction Table</a></li>
+    <li><a class="dropdown-item" href="<?= site_url('flood/river-status') ?>">River Status</a></li>
+  </ul>
+</li>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
                         </ul>
 
                         <div class="d-none d-lg-block">
@@ -716,8 +725,9 @@ Anyone with a stable internet connection and a device with a web browser can use
 
                         <div class="col-lg-3 col-md-6 col-12 mx-auto">
                             <h4 class="mb-3">San Beda University Rizal</h4>
+                           
+                            <p>H46X+WJP, Taytay, 1920 Rizal&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
 
-                            <p>H46X+WJP, Taytay, 1920 Rizal</p>
 
                             <hr>
 

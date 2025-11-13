@@ -1,47 +1,85 @@
+/* Global font */
 * {
   font-family: 'Montserrat', sans-serif !important;
+  box-sizing: border-box; /* ✅ helps consistent sizing */
 }
 
+/* Page background and spacing */
 body {
   background: #f4f6f8;
   margin: 0;
   padding: 0;
 }
-    .container {
-      max-width: 600px;
-      margin: auto;
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    h1 {
-      color: #007BFF;
-    }
-    .level {
-      font-size: 1.2em;
-      margin: 10px 0;
-    }
-    .footer {
-      font-size: 0.9em;
-      color: #888;
-      margin-top: 20px;
-    }
-    .navigation {
-      margin-top: 20px;
-      text-align: center;
-    }
-    .btn {
-      display: inline-block;
-      padding: 10px 20px;
-      margin: 5px;
-      background-color: #007BFF;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-      font-size: 1em;
-    }
-    .btn:hover {
-      background-color: #0056b3;
-    }
 
+/* Main content box */
+.container {
+  max-width: 600px;
+  width: 90%; /* ✅ allows it to shrink on mobile */
+  margin: 40px auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Headings */
+h1 {
+  color: #007BFF;
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+/* Level text */
+.level {
+  font-size: 1.2em;
+  margin: 10px 0;
+  text-align: center;
+}
+
+/* Footer */
+.footer {
+  font-size: 0.9em;
+  color: #888;
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* Navigation and buttons */
+.navigation {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 5px;
+  background-color: #007BFF;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 1em;
+  transition: background-color 0.2s ease;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+/* ✅ Responsive adjustments */
+@media (max-width: 600px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .btn {
+    display: block;         /* stack buttons vertically */
+    width: 100%;            /* full width buttons */
+    box-sizing: border-box;
+  }
+
+  .container {
+    width: 95%;             /* narrower margins on small screens */
+    padding: 15px;
+  }
+}
