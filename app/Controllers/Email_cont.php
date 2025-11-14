@@ -48,7 +48,7 @@ class Email_cont extends Controller
     {
         // Ensure the user is an admin
         if (session()->get('role') !== 'admin') {
-            return redirect()->to('/auth/login');
+            return redirect()->to('/auth/adlogin');
         }
 
         $userModel = new UserModel();

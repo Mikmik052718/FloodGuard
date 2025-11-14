@@ -11,15 +11,15 @@ class FloodPredictor extends BaseController
 
     private function getPythonExe()
     {
-        // Check if we're on a Linux/Docker environment (production)
+        // for production env
         if (PHP_OS_FAMILY === 'Linux' || getenv('DOCKER_CONTAINER') === 'true') {
             return '/opt/venv/bin/python3';
         }
 
-        // Local development environment - check multiple possible Python paths
+        // dev env
         $possiblePaths = [
             'D:/Anaconda/python.exe',                    // Anaconda
-            'C:\\Users\\Mikmik\\AppData\\Local\\Programs\\Python\\Python313\\python.exe', // Mikmik's Python
+            'C:\\Users\\Mikmik\\AppData\\Local\\Programs\\Python\\Python313\\python.exe', // Mikmik Python
             'C:\\Python313\\python.exe',                // Standard Python install
             'python.exe'                                // System PATH Python
         ];

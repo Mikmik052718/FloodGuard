@@ -12,7 +12,7 @@ class Admin extends BaseController
     {
         // Ensure the user is an admin before accessing the dashboard
         if (session()->get('role') !== 'admin') {
-            return redirect()->to('/auth/login');
+            return redirect()->to('/auth/adlogin');
         }
 
         // Get counts
@@ -30,7 +30,7 @@ class Admin extends BaseController
     {
         // Check if the user is an admin
         if (session()->get('role') !== 'admin') {
-            return redirect()->to('/auth/login');
+            return redirect()->to('/auth/adlogin');
         }
 
         $model = new PostModel();
@@ -43,7 +43,7 @@ class Admin extends BaseController
     {
         // Check if the user is an admin
         if (session()->get('role') !== 'admin') {
-            return redirect()->to('/auth/login');
+            return redirect()->to('/auth/adlogin');
         }
 
         $model = new UserModel();
@@ -67,7 +67,7 @@ class Admin extends BaseController
     {
         // Ensure the user is an admin before allowing access to the edit page
         if (session()->get('role') !== 'admin') {
-            return redirect()->to('/auth/login');
+            return redirect()->to('/auth/adlogin');
         }
 
         $model = new PostModel();
@@ -80,7 +80,7 @@ class Admin extends BaseController
     {
         // Ensure the user is an admin before allowing the update
         if (session()->get('role') !== 'admin') {
-            return redirect()->to('/auth/login');
+            return redirect()->to('/auth/adlogin');
         }
 
         $model = new PostModel();
@@ -97,7 +97,7 @@ class Admin extends BaseController
     {
         // Ensure the user is an admin
         if (session()->get('role') !== 'admin') {
-            return redirect()->to('/auth/login');
+            return redirect()->to('/auth/adlogin');
         }
 
         date_default_timezone_set('Asia/Manila');

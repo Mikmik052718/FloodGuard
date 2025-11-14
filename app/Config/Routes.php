@@ -7,7 +7,7 @@ use CodeIgniter\Router\RouteCollection;
  */
 // URL http://localhost/FloodGuard/public/index.php/forum
 
-$routes->get('/', 'Hello::index');  // This replaces the default Welcome controller
+$routes->get('/', 'Home::index');  // This replaces the default Welcome controller
 $routes->get('/forum', 'Forum::index');
 $routes->get('/forum/create', 'Forum::create');
 $routes->post('/forum/store', 'Forum::store');
@@ -54,7 +54,7 @@ $routes->get('flood/predict_hourly', 'FloodPredictor::predict_hourly'); // hourl
 $routes->get('flood/river-status', 'FloodPredictor::riverStatus');
 
 $routes->get('/home', 'Home::index');
-$routes->get('/home/weather-data', 'Home::getWeatherData');
+//$routes->get('/home/weather-data', 'Home::getWeatherData');
                                                                                     //Landing - for the url
                                                                                     //Home - to fetch the controller
                                                                                     //index - to find the method
