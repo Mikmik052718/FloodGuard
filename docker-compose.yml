@@ -10,6 +10,7 @@ services:
       - ./writable:/app/writable
     environment:
       - DOCKER_CONTAINER=true
+      - app.baseURL='https://cps2-alertomarikeno-alemar-ci4.ucdynr.easypanel.host/
       - database.default.hostname=cps2_alertomarikeno_db_alemar
       - database.default.database=fdb_main
       - database.default.username=mysql
