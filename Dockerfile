@@ -16,6 +16,7 @@ RUN apt-get update && apt-get install -y \
     curl \
     python3 \
     python3-venv \
+    cron \
     && docker-php-ext-install pdo_mysql mysqli mbstring intl \
     && rm -rf /var/lib/apt/lists/*
 
@@ -50,6 +51,10 @@ RUN chown -R www-data:www-data /app \
     && chmod -R 755 /app \
     && chmod -R 777 /app/writable
 
+# 12. Set up cron job for autopost
+COPY docker/cron/autopost /etc/cron.d/autopost
+RUN chmod 0644 /etc/cron.d/autopost && crontab /etc/cron.d/autopost
+
 # 10. Configure Apache to serve from /app/public
 RUN cat > /etc/apache2/sites-available/000-default.conf <<EOF
 <VirtualHost *:80>
@@ -62,7 +67,12 @@ RUN cat > /etc/apache2/sites-available/000-default.conf <<EOF
 </VirtualHost>
 EOF
 
-# 11. Expose port 80 (Easypanel default)
+# 13. Expose port 80 (Easypanel default)
 EXPOSE 80
 
-# Apache will start automatically when the container runs
+# 14. Copy and make start script executable
+COPY docker/cron/start.sh /usr/local/bin/start.sh
+RUN chmod +x /usr/local/bin/start.sh
+
+# 15. Start both cron and Apache
+CMD ["/usr/local/bin/start.sh"]

@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  floodguard:
+    build: .
+    ports:
+      - "80:80"
+    volumes:
+      - .:/app
+      - ./writable:/app/writable
+    environment:
+      - DOCKER_CONTAINER=true
+      - database.default.hostname=cps2_alertomarikeno_db_alemar
+      - database.default.database=fdb_main
+      - database.default.username=mysql
+      - database.default.password=82c70079186ede7276c7
+      - database.default.DBDriver=MySQLi
+      - database.default.DBPrefix=
+      - database.default.port=3306
+    # Remove depends_on since using external DB
+    # depends_on:
+    #   - db
+
+  # Comment out local DB since using external hosting DB
+  # db:
+  #   image: mysql:8.0
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: rootpassword
+  #     MYSQL_DATABASE: floodguard
+  #     MYSQL_USER: floodguard
+  #     MYSQL_PASSWORD: password
+  #   ports:
+  #     - "3306:3306"
+  #   volumes:
+  #     - db_data:/var/lib/mysql
+  #     - ./fdb_main.sql:/docker-entrypoint-initdb.d/fdb_main.sql
+
+# volumes:
+#   db_data:
