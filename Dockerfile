@@ -4,7 +4,7 @@ FROM php:8.2-apache
 # 2. Set working directory
 WORKDIR /app
 
-# 3. Install system dependencies including ICU for intl extension
+# 3. Install system dependencies including ICU for intl extension and Python
 RUN apt-get update && apt-get install -y \
     libpng-dev \
     libonig-dev \
@@ -14,7 +14,9 @@ RUN apt-get update && apt-get install -y \
     unzip \
     git \
     curl \
-    && docker-php-ext-install pdo_mysql mbstring intl \
+    python3 \
+    python3-venv \
+    && docker-php-ext-install pdo_mysql mysqli mbstring intl \
     && rm -rf /var/lib/apt/lists/*
 
 # 4. Enable Apache Rewrite (needed for CI4 pretty URLs)
@@ -37,7 +39,13 @@ RUN rm -rf /app/vendor \
 # 8. Copy the rest of the application including .env
 COPY . /app
 
-# 9. Set permissions for CI4 (writable dirs for logs/sessions/uploads)
+# 9. Create Python virtual environment and install dependencies
+RUN python3 -m venv /opt/venv && /opt/venv/bin/pip install --no-cache-dir -r requirements.txt
+
+# 10. Make Python scripts executable
+RUN chmod +x python/*.py
+
+# 11. Set permissions for CI4 (writable dirs for logs/sessions/uploads)
 RUN chown -R www-data:www-data /app \
     && chmod -R 755 /app \
     && chmod -R 777 /app/writable
