@@ -78,8 +78,8 @@
     echo "<div class='level'>-30 min: " . ($targetStation["wl30m"] ?? "N/A") . " m</div>";
     echo "<div class='level'>-1 hr: " . ($targetStation["wl1h"] ?? "N/A") . " m</div>";
     echo "<div class='level'>-2 hr: " . ($targetStation["wl2h"] ?? "N/A") . " m</div>";
-    echo "<div class='level'>-3 hr: " . ($targetStation["wl3h"] ?? "N/A") . " m</div>";
-    echo "<div class='level'>-12 hr: " . ($targetStation["wl12h"] ?? "N/A") . " m</div>";
+    //echo "<div class='level'>-3 hr: " . ($targetStation["wl3h"] ?? "N/A") . " m</div>";
+    //echo "<div class='level'>-12 hr: " . ($targetStation["wl12h"] ?? "N/A") . " m</div>";
     echo "<div class='level'>Alert Level: " . ($targetStation["alertwl"] ?? "N/A") . " m</div>";
     echo "<div class='level'>Alarm Level: " . ($targetStation["alarmwl"] ?? "N/A") . " m</div>";
     echo "<div class='level'>Critical Level: " . ($targetStation["criticalwl"] ?? "N/A") . " m</div>";
