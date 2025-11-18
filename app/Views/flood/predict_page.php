@@ -79,7 +79,6 @@ $back_url = session()->get('logged_in') ? site_url('/home') : site_url('/home');
 $is_admin = session()->get('role') === 'admin';
 ?>
 <div style="text-align: center; margin: 20px 0;">
-    <a href="<?= $back_url ?>" style="display: inline-block; padding: 10px 20px; background: #007bff; color: white; text-decoration: none; border-radius: 5px;">Home</a>
     <?php if ($is_admin): ?>
         <button onclick="forceReload()" class="force-reload" style="display: inline-block; margin-left: 10px; padding: 10px 20px; background: #dc3545; color: white; border: none; border-radius: 5px; cursor: pointer;">Force Reload</button>
     <?php endif; ?>

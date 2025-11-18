@@ -1,4 +1,10 @@
+.min-temp-img {
+    height: 150px;   /* unique height */
+    object-fit: cover;
+}
+
 /*
+
 
 TemplateMo 590 topic listing
 
@@ -572,7 +578,7 @@ strong {
 .custom-block-image {
   display: block;
   width: 100%;
-  height: 200px;
+  height: 250px;
   object-fit: cover;
   margin-top: 35px;
 }

@@ -556,16 +556,10 @@ strong {
 .custom-block-image {
   display: block;
   width: 100%;
-  height: 200px;
+  height: 500px;
   object-fit: cover;
   margin-top: 35px;
 }
-
-.min-temp-img {
-    height: 150px;   /* unique height */
-    object-fit: cover;
-}
-
 
 .custom-block .rounded-pill {
   border-radius: 5px !important;
