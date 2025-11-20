@@ -6,7 +6,7 @@
   <title>Forum</title>
    <link rel="stylesheet" href="<?= base_url('assets/css/bootstrap.min.css'); ?>">
   <!-- <link rel="stylesheet" href="<?= base_url('assets/css/bootstrap-icon.css'); ?>"> -->
-  <link rel="stylesheet" href="<?= base_url('assets/css/newsfeed.css'); ?>">
+  <link rel="stylesheet" href="<?= base_url('assets/css/newsfeednew.css'); ?>">
   <link rel="stylesheet" href="<?= base_url('assets/css/Logo.css'); ?>">
   <link rel="stylesheet" href="<?= base_url('assets/css/header.css'); ?>">
 </head>

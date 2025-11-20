@@ -17,7 +17,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans&display=swap" rel="stylesheet">          
         <link rel="stylesheet" href="<?= base_url('assets/css/bootstrap.min.css'); ?>">
         <link rel="stylesheet" href="<?= base_url('assets/css/bootstrap-icon.css'); ?>">
-        <link rel="stylesheet" href="<?= base_url('assets/css/home.css'); ?>">
+        <link rel="stylesheet" href="<?= base_url('assets/css/homenew.css'); ?>">
         <link rel="stylesheet" href="<?= base_url('assets/css/Logo.css'); ?>">
     </head>
     <body id="top">
@@ -265,7 +265,7 @@
                                     <div class="row">
                                         <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
                                             <div class="custom-block bg-white shadow-lg">
-                                                <a href="<?= site_url('status/summary') ?>">
+                                                <a href="<?= base_url('flood/daily') ?>">
                                                     <div class="d-flex">
                                                         <div>
                                                             <h5 class="mb-2">Weather Code</h5>
@@ -283,7 +283,7 @@
 
                                         <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
                                             <div class="custom-block bg-white shadow-lg">
-                                                <a href="<?= site_url('status/summary') ?>">
+                                                <a href="<?= base_url('flood/daily') ?>">
                                                     <div class="d-flex">
                                                         <div>
                                                             <h5 class="mb-2">Min Temperature</h5>
@@ -293,15 +293,17 @@
 
                                                         <span id="min-temp-badge" class="badge bg-design rounded-pill ms-auto">-</span>
                                                     </div>
+                                                    <img src="<?= base_url('assets/images/mintemp.jpg'); ?>" 
+     class="custom-block-image img-fluid min-temp-img"
+     alt="Weather Code">
 
-                                                    <img src="<?= base_url('assets/images/mintemp.jpg'); ?>" class="custom-block-image img-fluid" alt="Weather Code">
                                                 </a>
                                             </div>
                                         </div>
 
                                         <div class="col-lg-4 col-md-6 col-12">
                                             <div class="custom-block bg-white shadow-lg">
-                                                !<!--<a href="topics-detail.html"> -->
+                                                <a href="<?= base_url('flood/daily') ?>">
                                                     <div class="d-flex">
                                                         <div>
                                                             <h5 class="mb-2">Max Temperature</h5>
@@ -323,7 +325,7 @@
                                     <div class="row">
                                         <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3">
                                                 <div class="custom-block bg-white shadow-lg">
-                                                    <a href="topics-detail.html">
+                                                <a href="<?= base_url('flood/daily') ?>">
                                                         <div class="d-flex">
                                                             <div>
                                                                 <h5 class="mb-2">Precipitation Sum</h5>
@@ -334,43 +336,43 @@
                                                             <span id="precipitation-sum-badge" class="badge bg-advertising rounded-pill ms-auto">-</span>
                                                         </div>
 
-                                                        <img src="images/topics/undraw_online_ad_re_ol62.png" class="custom-block-image img-fluid" alt="">
+                                                    <img src="<?= base_url('assets/images/PrecipitationSummary.png'); ?>" class="custom-block-image img-fluid" alt="Weather Code">
                                                     </a>
                                                 </div>
                                             </div>
 
                                             <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3">
                                                 <div class="custom-block bg-white shadow-lg">
-                                                    <a href="topics-detail.html">
+                                                <a href="<?= base_url('flood/daily') ?>">
                                                         <div class="d-flex">
                                                             <div>
                                                                 <h5 class="mb-2">Precipitation Hours</h5>
 
-                                                                <p class="mb-0">Total hours with rainfall recorded in the last week.</p>
+                                                                <p class="mb-0">Total Hours with rainfall recorded in the last week.</p>
                                                             </div>
 
-                                                            <span id="precipitation-hours-badge" class="badge bg-advertising rounded-pill ms-auto">-</span>
+                                                            <span id="precipitation-sum-badge" class="badge bg-advertising rounded-pill ms-auto">-</span>
                                                         </div>
 
-                                                        <img src="images/topics/undraw_Group_video_re_btu7.png" class="custom-block-image img-fluid" alt="">
+                                                    <img src="<?= base_url('assets/images/PrecipitationHours.png'); ?>" class="custom-block-image img-fluid" alt="Weather Code">
                                                     </a>
                                                 </div>
                                             </div>
 
-                                            <div class="col-lg-4 col-md-6 col-12">
+                                            <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3">
                                                 <div class="custom-block bg-white shadow-lg">
-                                                    <a href="topics-detail.html">
+                                                <a href="<?= base_url('flood/daily') ?>">
                                                         <div class="d-flex">
                                                             <div>
                                                                 <h5 class="mb-2">Precipitation Probability</h5>
 
-                                                                <p class="mb-0">Chance of rain occurring in the next 24 hours.</p>
+                                                                <p class="mb-0">Chance of rain Occuring in the next 24 Hours</p>
                                                             </div>
 
-                                                            <span id="precipitation-probability-badge" class="badge bg-advertising rounded-pill ms-auto">-</span>
+                                                            <span id="precipitation-sum-badge" class="badge bg-advertising rounded-pill ms-auto">-</span>
                                                         </div>
 
-                                                        <img src="images/topics/undraw_viral_tweet_gndb.png" class="custom-block-image img-fluid" alt="">
+                                                    <img src="<?= base_url('assets/images/PrecipitationProbability.png'); ?>" class="custom-block-image img-fluid" alt="Weather Code">
                                                     </a>
                                                 </div>
                                             </div>
@@ -380,7 +382,7 @@
                                 <div class="tab-pane fade" id="finance-tab-pane" role="tabpanel" aria-labelledby="finance-tab" tabindex="0">   <div class="row">
                                         <div class="col-lg-6 col-md-6 col-12 mb-4 mb-lg-0">
                                             <div class="custom-block bg-white shadow-lg">
-                                                <a href="topics-detail.html">
+                                                <a href="<?= base_url('flood/daily') ?>">
                                                     <div class="d-flex">
                                                         <div>
                                                             <h5 class="mb-2">Flood Prediction</h5>
