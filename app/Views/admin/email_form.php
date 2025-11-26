@@ -22,30 +22,74 @@
 <div class="container-fluid">
     <div class="row">
         <!-- Sidebar -->
-        <nav class="col-md-2 d-none d-md-block bg-dark sidebar text-white" style="height: 100vh; padding-top: 30px;">
-            <div class="text-center mb-4">
-                <h4><i class="bi bi-speedometer2"></i> Admin</h4>
-            </div>
-            <ul class="nav flex-column text-center">
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="<?= site_url('admin/admin_dashboard') ?>"><i class="bi bi-house-door-fill me-2"></i> Dashboard</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="<?= site_url('admin/users') ?>"><i class="bi bi-people-fill me-2"></i> Users</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="<?= site_url('admin/posts') ?>"><i class="bi bi-card-text me-2"></i> Posts</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white active" href="<?= site_url('email') ?>"><i class="bi bi-envelope-fill me-2"></i> Email</a>
-                </li>
-                <li class="nav-item mt-5">
-                    <a class="btn btn-outline-light w-75" href="<?= site_url('auth/logout') ?>">
-                    <i class="bi bi-box-arrow-right me-2"></i> Logout
-                    </a>
-                </li>
-            </ul>
-        </nav>
+<nav class="col-md-2 d-none d-md-block sidebar text-white">
+    <div class="text-center mb-5">
+        <h4><i class="bi bi-speedometer2 me-2"></i>Admin</h4>
+    </div>
+    <ul class="nav flex-column text-center">
+        <li class="nav-item">
+            <a class="nav-link" href="<?= site_url('admin/admin_dashboard') ?>"><i class="bi bi-house-door-fill me-2"></i> Dashboard</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="<?= site_url('admin/users') ?>"><i class="bi bi-people-fill me-2"></i> Users</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="<?= site_url('admin/posts') ?>"><i class="bi bi-card-text me-2"></i> Posts</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" href="<?= site_url('email') ?>"><i class="bi bi-envelope-fill me-2"></i> Email</a>
+        </li>
+        <li class="nav-item mt-5">
+            <a class="btn btn-outline-light w-75 btn-logout" href="<?= site_url('auth/logout') ?>">
+                <i class="bi bi-box-arrow-right me-2"></i> Logout
+            </a>
+        </li>
+    </ul>
+</nav>
+
+<!-- CSS for the Sidebar -->
+<style>
+.sidebar {
+    background: #0a1015; /* dark sidebar */
+    color: white;
+    height: 100vh;
+    padding-top: 2rem;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.5);
+}
+
+.sidebar h4 {
+    font-weight: 600;
+}
+
+.nav-link {
+    color: rgba(255,255,255,0.8);
+    margin: 0.3rem 0;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.nav-link:hover, .nav-link.active {
+    background-color: #203a43;
+    border-radius: 8px;
+    color: #fff;
+}
+
+.nav-link i {
+    font-size: 1.2rem;
+}
+
+.btn-logout {
+    margin-top: 3rem;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.btn-logout:hover {
+    background-color: #ff4b5c;
+    color: white;
+    border-color: #ff4b5c;
+}
+</style>
 
         <!-- Main Content -->
         <main class="col-md-10 ms-sm-auto px-4">

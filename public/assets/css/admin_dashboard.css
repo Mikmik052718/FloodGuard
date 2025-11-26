@@ -31,13 +31,14 @@ body {
     border-radius: 20px;
     padding: 30px;
     text-align: left;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
     height: 100%;
 }
 
 .custom-block:hover {
     transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
 }
 
 .custom-block h5 {
@@ -56,6 +57,7 @@ body {
     margin-top: 15px;
 }
 
+/* Badges */
 .badge {
     font-size: 14px;
     font-weight: bold;

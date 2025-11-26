@@ -6,7 +6,8 @@
     <title>FloodPredict User • FloodPredict</title>
 
     <!-- Point this to wherever you placed the CSS file -->
-    <link rel="stylesheet" href="<?= base_url('assets/css/user_login.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/css/uslogin.css') ?>">
+
 </head>
 <body>
 
@@ -79,7 +80,7 @@
             <h3>Welcome Marikeno</h3>
             <p>View Latest Updates on Marikina River</p>
             <br>
-                            <a href="<?= site_url('auth/register') ?>" class="action-chip">Sign Up!</a>
+            <a href="<?= site_url('auth/register') ?>" class="signup-chip">Sign Up!</a>
         </section>
     </div>
 

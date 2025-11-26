@@ -96,7 +96,7 @@ input[type="password"]::placeholder {
 
 .btn-login {
     padding: 12px;
-    background: #138f75;
+    background: #1cc7a0;
     color: white;
     border: none;
     border-radius: 8px;
@@ -170,12 +170,31 @@ input[type="password"]::placeholder {
     justify-content: flex-start;
 }
 
+.signup-chip {
+    background-color: #1cc7a0; /* button background */
+    color: white; /* text color */
+    border: 2px solid #1cc7a0; /* border around the button */
+    border-radius: 6px; /* keeps rounded corners */
+    padding: 4px 8px;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+/* Hover effect */
+.signup-chip:hover {
+    background-color: white; /* background turns white on hover */
+    color: #1cc7a0; /* text color changes */
+    border-color: #1cc7a0; /* border stays same */
+}
+
 .action-chip {
     display: inline-flex;
     align-items: center;
     padding: 4px 8px; /* smaller */
     border-radius: 6px;
-    border: 1px solid black;
+    border: 1px solid #1cc7a0;
     font-size: 12px;  /* smaller font */
     font-weight: 600;
     text-decoration: none;
@@ -201,6 +220,7 @@ input[type="password"]::placeholder {
     transform: none;
     box-shadow: 0 2px 4px rgba(0, 0, 0, .15);
 }
+
 
 a.home-button {
     background-color: #1cc7a0 !important;
