@@ -10,6 +10,7 @@ class UserModel extends Model
     protected $allowedFields = [
         'username',
         'email',
+        'phone',
         'email_verified_at',
         'password',
         'role',
@@ -17,6 +18,7 @@ class UserModel extends Model
         'updated_at',
         'is_active',
         'alert_email_enabled',
+        'alert_sms_enabled',
         'alert_min_probability',
         'alert_restrict_to_red',
         'last_login_at',

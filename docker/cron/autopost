@@ -1,0 +1,2 @@
+# Run autopost every 5 minutes
+*/30 * * * * root cd /app && /usr/local/bin/php public/index.php autopost >> /app/writable/logs/autopost.log 2>&1

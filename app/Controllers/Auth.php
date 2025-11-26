@@ -74,9 +74,11 @@ class Auth extends BaseController
         // Get data from the form
         $username = $this->request->getPost('username');
         $email = $this->request->getPost('email');
+        $phone = $this->request->getPost('phone');
         $password = $this->request->getPost('password');
         $confirm = $this->request->getPost('confirm_password');
-        $alert_email_enabled = $this->request->getPost('alert_email_enabled') ?? 1; // Default to 1 if not set
+        $alert_method = $this->request->getPost('alert_method');
+        $alert_min_probability = $this->request->getPost('alert_min_probability') ?? 50;
 
         // Basic validation
         if ($password !== $confirm) {
@@ -93,13 +95,28 @@ class Auth extends BaseController
             return redirect()->back()->withInput()->with('error', 'Email already registered.');
         }
 
+        // Set alert flags based on alert_method
+        $alert_email_enabled = 0;
+        $alert_sms_enabled = 0;
+        if ($alert_method === 'email') {
+            $alert_email_enabled = 1;
+        } elseif ($alert_method === 'mobile') {
+            $alert_sms_enabled = 1;
+        } elseif ($alert_method === 'both') {
+            $alert_email_enabled = 1;
+            $alert_sms_enabled = 1;
+        }
+
         // Save new user data to the database
         $model->save([
             'username' => $username,
             'email' => $email,
+            'phone' => $phone,
             'password' => password_hash($password, PASSWORD_DEFAULT),
             'role' => 'user',  // Default role is 'user'
-            'alert_email_enabled' => $alert_email_enabled
+            'alert_email_enabled' => $alert_email_enabled,
+            'alert_sms_enabled' => $alert_sms_enabled,
+            'alert_min_probability' => $alert_min_probability
         ]);
 
         // Send registration confirmation email

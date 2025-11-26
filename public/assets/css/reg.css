@@ -7,30 +7,68 @@
 }
 
 body {
-    height: 100vh;
+    /* Use min-height to allow content to push the height */
+    min-height: 100vh; /* Changed from height: 100vh */
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #f0f2f5;
+    padding: 20px 0; /* Add padding for breathing room if the content is very long */
 }
 
+#probabilitySection label {
+    margin-top: 10px;
+    display: inline-block;
+}
+
+#contactFields {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;   /* change 10px → 15px (or 20px if you want bigger spacing) */
+}
+
+
+
+/* Remove fixed height and let content dictate the size */
 .container {
     width: 900px;
-    height: 550px;
+    /* REMOVE: height: 550px; */
     display: flex;
     background: #fff;
     border-radius: 10px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     overflow: hidden;
+    /* ADD: min-height to prevent it from collapsing and provide a minimum size */
+    min-height: 550px; 
 }
 
 .left-section, .right-section {
     flex: 1;
     padding: 60px 40px;
+    /* ADD: Setting position relative is sometimes helpful for absolute children */
+    position: relative; 
 }
 
 .left-section {
+    /* ADD: Flex container to manage the layout of children (header, form-content, footer) */
+    display: flex;
+    flex-direction: column; 
+    font-size: 15px; 
     background: #fff;
+    /* Set a max height so it can scroll if content exceeds the container's max height */
+    max-height: calc(100vh - 40px); /* Adjust based on body padding/margin if needed */
+}
+
+.form-content {
+    /* This makes the form section take up all available space in the left-section */
+    flex-grow: 1; 
+    /* Enable vertical scrolling */
+    overflow-y: auto; 
+    /* Add a little padding to the right for the scrollbar and bottom */
+    padding-right: 15px; 
+    padding-bottom: 10px;
+    /* Use margin-top to separate it from the title */
+    margin-top: 15px; 
 }
 
 .right-section {
@@ -67,14 +105,27 @@ h3 {
 form {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 10px;
 }
 
-input[type="text"], input[type="email"], input[type="password"] {
+input[type="text"], input[type="email"], input[type="password"], input[type="tel"], select {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 8px;
     width: 100%;
+}
+
+select:disabled {
+    background-color: #f5f5f5;
+    color: #999;
+    cursor: not-allowed;
+}
+
+.note {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+    font-style: italic;
 }
 
 .btn-register {
@@ -177,7 +228,7 @@ a.home-button:hover {
     position: relative;
     padding-left: 30px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 14px;
     color: #333;
     user-select: none;
 }
@@ -256,4 +307,10 @@ a.home-button:hover {
 
 .btn-google svg {
     flex-shrink: 0;
+}
+
+#contactFields {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }

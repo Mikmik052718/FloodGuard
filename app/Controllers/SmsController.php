@@ -66,24 +66,29 @@ class SmsController extends Controller
                 curl_close($ch);
 
                 $result = json_decode($response, true);
+                log_message('info', 'TextBee API Response for ' . $user['phone'] . ': HTTP ' . $httpCode . ', Response: ' . $response);
                 if ($httpCode == 200 && isset($result['data']['status']) && $result['data']['status'] == 'PENDING') {
                     $status = '✅ Sent (Pending)';
                     $sentCount++;
                 } else {
                     $status = '❌ Failed: ' . ($result['message'] ?? 'Unknown error');
-                    log_message('error', 'TextBee SMS Failed for ' . $user['phone'] . ': ' . $response);
+                    log_message('error', 'TextBee SMS Failed for ' . $user['phone'] . ': HTTP ' . $httpCode . ', Response: ' . $response);
                 }
             } catch (\Exception $e) {
                 $status = '❌ Error: ' . $e->getMessage();
                 log_message('error', 'TextBee Exception for ' . $user['phone'] . ': ' . $e->getMessage());
             }
 
-            $results[] = ['phone' => $user['phone'], 'status' => $status];
+            $results[] = ['username' => $user['username'], 'phone' => $user['phone'], 'status' => $status];
         }
 
-        // Set flashdata for popup
-        session()->setFlashdata('sms_alert_results', $results);
-        session()->setFlashdata('sms_alert_sent_count', $sentCount);
+        // Set flashdata for popup only if SMS were sent
+        if ($sentCount > 0) {
+            session()->setFlashdata('sms_alert_results', $results);
+            session()->setFlashdata('sms_alert_sent_count', $sentCount);
+} else {
+    session()->setFlashdata('sms_queued', 'SMS Message Alert Warning Queued and will be sent to registered users');
+}
 
         return redirect()->to(site_url('email'));
     }

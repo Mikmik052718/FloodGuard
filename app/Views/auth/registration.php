@@ -5,11 +5,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Registration - AlertoMarikeno</title>
     <link rel="stylesheet" href="<?= base_url('assets/css/reg.css') ?>">  <!-- Add your CSS file link -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const alertRadios = document.querySelectorAll('input[name="alert_method"]');
+            const probabilitySection = document.getElementById('probabilitySection');
+            const alertMinProbability = document.getElementById('alert_min_probability');
+            const emailField = document.getElementById('emailField');
+            const phoneField = document.getElementById('phoneField');
+            const emailInput = document.querySelector('input[name="email"]');
+            const phoneInput = document.querySelector('input[name="phone"]');
+
+            function updateForm() {
+                const selectedValue = document.querySelector('input[name="alert_method"]:checked').value;
+
+                if (selectedValue === 'no') {
+                    probabilitySection.style.display = 'none';
+                    alertMinProbability.disabled = true;
+                    emailField.style.display = 'none';
+                    phoneField.style.display = 'none';
+                    emailInput.required = false;
+                    phoneInput.required = false;
+                } else {
+                    probabilitySection.style.display = 'block';
+                    alertMinProbability.disabled = false;
+
+                    if (selectedValue === 'email') {
+                        emailField.style.display = 'block';
+                        phoneField.style.display = 'none';
+                        emailInput.required = true;
+                        phoneInput.required = false;
+                    } else if (selectedValue === 'mobile') {
+                        emailField.style.display = 'none';
+                        phoneField.style.display = 'block';
+                        emailInput.required = false;
+                        phoneInput.required = true;
+                    } else if (selectedValue === 'both') {
+                        emailField.style.display = 'block';
+                        phoneField.style.display = 'block';
+                        emailInput.required = true;
+                        phoneInput.required = true;
+                    }
+                }
+            }
+
+            alertRadios.forEach(radio => {
+                radio.addEventListener('change', updateForm);
+            });
+
+            // Initial call to set the form state
+            updateForm();
+        });
+    </script>
 </head>
 <body>
 
 <!-- Home button -->
-<a href="<?= site_url('/landing') ?>" class="home-button">Home</a>
+<a href="<?= site_url('/') ?>" class="home-button">Home</a>
 
 <div class="container">
     <!-- Left section (Form) -->
@@ -31,30 +82,94 @@
         <?php endif; ?>
 
         <!-- Registration Form -->
-        <form method="post" action="<?= site_url('auth/register') ?>">
+        <form method="post" action="<?= site_url('auth/register') ?>" id="registrationForm">
             <?= csrf_field() ?> <!-- CSRF protection -->
 
             <input type="text" name="username" placeholder="Username" required>
-            <input type="email" name="email" placeholder="Email" required>
             <input type="password" name="password" placeholder="Password" required>
             <input type="password" name="confirm_password" placeholder="Confirm Password" required>
 
-            <label class="radio-label">Enable Alert Emails:</label>
+            <label class="radio-label">Enable Alerts:</label>
             <div class="radio-group">
                 <label class="custom-radio">
-                    <input type="radio" name="alert_email_enabled" value="1" checked>
-                    <span class="radio-mark"></span>
-                    Yes
-                </label>
-                <label class="custom-radio">
-                    <input type="radio" name="alert_email_enabled" value="0">
+                    <input type="radio" name="alert_method" value="no" checked>
                     <span class="radio-mark"></span>
                     No
                 </label>
+                <label class="custom-radio">
+                    <input type="radio" name="alert_method" value="mobile">
+                    <span class="radio-mark"></span>
+                    Mobile Number
+                </label>
+                <label class="custom-radio">
+                    <input type="radio" name="alert_method" value="email">
+                    <span class="radio-mark"></span>
+                    Email
+                </label>
+                <label class="custom-radio">
+                    <input type="radio" name="alert_method" value="both">
+                    <span class="radio-mark"></span>
+                    Both
+                </label>
             </div>
 
-            <button type="submit" class="btn-register">Register</button>
+            <div id="probabilitySection" style="display: none;">
+                <p class="note">This part determines which probability percentage will the system notify you</p>
+                <label for="alert_min_probability">Minimum Alert Probability:</label>
+                <select name="alert_min_probability" id="alert_min_probability" disabled>
+                    <option value="25">25%</option>
+                    <option value="50" selected>50%</option>
+                    <option value="70">70%</option>
+                </select>
+            </div>
+
+            <div id="contactFields">
+                <div id="emailField" style="display: none;">
+                    <input type="email" name="email" placeholder="Email Address">
+                </div>
+                <div id="phoneField" style="display: none;">
+                    <input type="tel" name="phone" placeholder="Phone Number">
+                </div>
+            </div>
+
+            <button type="submit" class="btn-register" id="registerBtn">Register</button>
         </form>
+
+        <script>
+            document.getElementById('registrationForm').addEventListener('submit', function(e) {
+                const selectedMethod = document.querySelector('input[name="alert_method"]:checked').value;
+                const emailInput = document.querySelector('input[name="email"]');
+                const phoneInput = document.querySelector('input[name="phone"]');
+
+                let isValid = true;
+                let errorMessage = '';
+
+                if (selectedMethod === 'email' || selectedMethod === 'both') {
+                    if (!emailInput.value.trim()) {
+                        isValid = false;
+                        errorMessage = 'Please enter your email address.';
+                        emailInput.focus();
+                    }
+                }
+
+                if (selectedMethod === 'mobile' || selectedMethod === 'both') {
+                    if (!phoneInput.value.trim()) {
+                        isValid = false;
+                        if (errorMessage) {
+                            errorMessage += ' Please enter your phone number.';
+                        } else {
+                            errorMessage = 'Please enter your phone number.';
+                        }
+                        if (!emailInput.value.trim()) phoneInput.focus();
+                    }
+                }
+
+                if (!isValid) {
+                    e.preventDefault();
+                    alert(errorMessage);
+                }
+            });
+        </script>
 
 
         <!-- Custom Buttons -->

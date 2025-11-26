@@ -106,11 +106,27 @@
                 </div>
             <?php endif; ?>
 
+            <?php if (session()->getFlashdata('sms_queued')): ?>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <?= session()->getFlashdata('sms_queued') ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            <?php endif; ?>
+
             <?php if (session()->getFlashdata('alert_results')): ?>
                 <script>
                     document.addEventListener('DOMContentLoaded', function() {
                         var alertModal = new bootstrap.Modal(document.getElementById('alertResultsModal'));
                         alertModal.show();
+                    });
+                </script>
+            <?php endif; ?>
+
+            <?php if (session()->getFlashdata('sms_alert_results')): ?>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        var smsAlertModal = new bootstrap.Modal(document.getElementById('smsAlertResultsModal'));
+                        smsAlertModal.show();
                     });
                 </script>
             <?php endif; ?>
