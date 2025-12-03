@@ -268,4 +268,58 @@ class SmsController extends Controller
                 return "Please take necessary precautions.\n\n";
         }
     }
+
+    /**
+     * Send flood prediction alert SMS to a user
+     * @param array $user User data
+     * @param array $tomorrow Tomorrow's prediction data ['date', 'percent', 'prediction']
+     * @return bool Success status
+     */
+    public function sendFloodPredictionAlertSMS($user, $tomorrow)
+    {
+        // Create SMS message (NO URLs - prohibited in Philippines)
+        $message = "Hello {$user['username']},\n\n";
+        $message .= "FLOOD ALERT: {$tomorrow['prediction']} predicted tomorrow.\n";
+        $message .= "Probability: " . number_format($tomorrow['percent'], 1) . "%\n";
+        $message .= "Your threshold: {$user['alert_min_probability']}%\n\n";
+
+        if ($tomorrow['prediction'] === 'FLOOD') {
+            $message .= "HIGH RISK: Take precautions and prepare for possible evacuation.\n\n";
+        } else {
+            $message .= "Monitor conditions and stay alert.\n\n";
+        }
+
+        $message .= "Stay safe!\nAlertoMarikeno Team";
+
+        try {
+            // Send SMS via TextBee API
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, "https://api.textbee.dev/api/v1/gateway/devices/{$this->textbeeDeviceId}/send-sms");
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, [
+                'x-api-key: ' . $this->textbeeApiKey,
+                'Content-Type: application/json'
+            ]);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode([
+                'recipients' => [$user['phone']], // Must be in +63 format
+                'message' => $message
+            ]));
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $response = curl_exec($ch);
+            $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+            curl_close($ch);
+
+            $result = json_decode($response, true);
+            if ($httpCode == 200 && isset($result['data']['status']) && $result['data']['status'] == 'PENDING') {
+                log_message('info', 'Flood prediction SMS sent to ' . $user['phone']);
+                return true;
+            } else {
+                log_message('error', 'Flood prediction SMS failed for ' . $user['phone'] . ': HTTP ' . $httpCode . ', Response: ' . $response);
+                return false;
+            }
+        } catch (\Exception $e) {
+            log_message('error', 'Flood prediction SMS exception for ' . $user['phone'] . ': ' . $e->getMessage());
+            return false;
+        }
+    }
 }

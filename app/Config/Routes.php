@@ -100,3 +100,7 @@ $routes->post('sms/send-water-alert', 'SmsController::sendWaterAlertManual');
 $routes->get('sms/water-alerts', 'SmsController::sendWaterAlertsSMS'); // sms water alerts
 $routes->match(['get', 'post'], 'sms/gateway', 'SmsController::gateway');
 
+// Flood prediction alert routes
+$routes->get('alerts/test-daily', 'Alerts::testDaily');
+$routes->get('alerts/send-daily', 'Alerts::sendDaily');
+

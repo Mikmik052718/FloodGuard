@@ -26,7 +26,9 @@ class UserModel extends Model
         'google_name',
         'google_picture',
         'last_water_alert_date',
-        'last_water_alert_level'
+        'last_water_alert_level',
+        'last_flood_alert_date',
+        'last_flood_alert_probability'
     ];
     protected $useTimestamps = false;
 
