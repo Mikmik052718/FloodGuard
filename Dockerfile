@@ -59,6 +59,9 @@ RUN chown -R www-data:www-data /app \
 COPY docker/cron/autopost /etc/cron.d/autopost
 RUN chmod 0644 /etc/cron.d/autopost && crontab /etc/cron.d/autopost
 
+# 12.5. Add alerts cron job (every 5 minutes for testing)
+RUN (crontab -l ; echo "45 22 * * * root cd /app && /usr/local/bin/php public/index.php alerts/send-daily >> /app/writable/logs/flood-alerts.log 2>&1") | crontab -
+
 # 10. Configure Apache to serve from /app/public
 RUN cat > /etc/apache2/sites-available/000-default.conf <<EOF
 <VirtualHost *:80>
