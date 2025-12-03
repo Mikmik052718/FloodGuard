@@ -4,6 +4,10 @@ FROM php:8.2-apache
 # 2. Set working directory
 WORKDIR /app
 
+# 2.5. Set timezone to Asia/Manila
+ENV TZ=Asia/Manila
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
 # 3. Install system dependencies including ICU for intl extension and Python
 RUN apt-get update && apt-get install -y \
     libpng-dev \
@@ -16,10 +20,7 @@ RUN apt-get update && apt-get install -y \
     curl \
     python3 \
     python3-venv \
-<<<<<<< HEAD
-=======
     cron \
->>>>>>> aca5f089a73c0ad7a92afdc3ec4c62589098e03c
     && docker-php-ext-install pdo_mysql mysqli mbstring intl \
     && rm -rf /var/lib/apt/lists/*
 

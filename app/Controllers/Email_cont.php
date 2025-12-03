@@ -161,6 +161,8 @@ public function sendEmail()
             $alertStatus = 'alarm';
         } elseif ($currentLevel >= $alertLevel) {
             $alertStatus = 'alert';
+        } elseif ($currentLevel >= 13.50) {
+            $alertStatus = 'warning';
         }
 
         if ($alertStatus === 'none') {
@@ -292,4 +294,44 @@ public function sendEmail()
         }
     }
 
+    /**
+     * Send flood prediction alert email to a user
+     * @param array $user User data
+     * @param array $tomorrow Tomorrow's prediction data ['date', 'percent', 'prediction']
+     * @return bool Success status
+     */
+    public function sendFloodPredictionAlert($user, $tomorrow)
+    {
+        $email = \Config\Services::email();
+        
+        $email->setFrom(env('email.from'), env('email.fromName'));
+        $email->setTo($user['email']);
+        $email->setSubject("Flood Alert: {$tomorrow['prediction']} Predicted for Tomorrow");
+
+        $message = "Hello {$user['username']},<br><br>";
+        $message .= "<strong>Flood Prediction Alert</strong><br><br>";
+        $message .= "Based on the latest weather data and flood prediction model, tomorrow has a significant flood probability:<br><br>";
+        $message .= "<strong>Date:</strong> {$tomorrow['date']}<br>";
+        $message .= "<strong>Flood Probability:</strong> " . number_format($tomorrow['percent'], 2) . "%<br>";
+        $message .= "<strong>Prediction:</strong> {$tomorrow['prediction']}<br>";
+        $message .= "<strong>Your Alert Threshold:</strong> {$user['alert_min_probability']}%<br><br>";
+        
+        if ($tomorrow['prediction'] === 'FLOOD') {
+            $message .= "<span style='color:#dc3545;'><strong>⚠️ HIGH RISK:</strong> Flooding is predicted. Please take necessary precautions and prepare for possible evacuation.</span><br><br>";
+        } else {
+            $message .= "While flooding is not definitively predicted, the probability is elevated. Please stay alert and monitor updates.<br><br>";
+        }
+        
+        $message .= "For more details, visit: <a href='" . site_url('flood/daily') . "'>5-Day Flood Outlook</a><br><br>";
+        $message .= "Stay safe,<br>AlertoMarikeno Team";
+
+        $email->setMessage($message);
+
+        if ($email->send()) {
+            return true;
+        } else {
+            log_message('error', 'Failed to send flood prediction email to ' . $user['email']);
+            return false;
+        }
+    }
 }
