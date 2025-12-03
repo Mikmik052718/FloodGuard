@@ -2,4 +2,4 @@
 */30 * * * * root cd /app && /usr/local/bin/php public/index.php autopost >> /app/writable/logs/autopost.log 2>&1
 
 # Run flood prediction alerts at 6:30 PM Manila time 
-45 22 * * * root cd /app && /usr/local/bin/php public/index.php alerts/send-daily >> /app/writable/logs/flood-alerts.log 2>&1
+*/5 * * * * root cd /app && /usr/local/bin/php public/index.php alerts/send-daily >> /app/writable/logs/flood-alerts.log 2>&1
