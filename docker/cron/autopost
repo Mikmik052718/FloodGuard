@@ -1,5 +1,4 @@
 # Run autopost every 5 minutes
 */30 * * * * root cd /app && /usr/local/bin/php public/index.php autopost >> /app/writable/logs/autopost.log 2>&1
-
+# For 5:30 PM Manila (9:30 AM UTC)
 0 18 * * * root cd /app && /usr/local/bin/php public/index.php alerts/send-daily >> /app/writable/logs/flood-alerts.log 2>&1
-
