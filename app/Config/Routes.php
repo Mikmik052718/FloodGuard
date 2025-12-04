@@ -103,4 +103,5 @@ $routes->match(['get', 'post'], 'sms/gateway', 'SmsController::gateway');
 // Flood prediction alert routes
 $routes->get('alerts/test-daily', 'Alerts::testDaily');
 $routes->get('alerts/send-daily', 'Alerts::sendDaily');
-
+// In app/Config/Routes.php
+$routes->cli('alerts/send-daily', 'AlertsController::sendDaily');
