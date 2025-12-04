@@ -104,4 +104,4 @@ $routes->match(['get', 'post'], 'sms/gateway', 'SmsController::gateway');
 $routes->get('alerts/test-daily', 'Alerts::testDaily');
 $routes->get('alerts/send-daily', 'Alerts::sendDaily');
 // In app/Config/Routes.php
-$routes->cli('alerts/send-daily', 'AlertsController::sendDaily');
+$routes->cli('alerts/send-daily', 'Alerts::sendDaily');
