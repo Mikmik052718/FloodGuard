@@ -128,7 +128,7 @@ document.addEventListener("DOMContentLoaded", function() {
                               hDateTime.getHours() === currentHour;
             row.innerHTML = `
               <td style="color: ${isCurrent ? 'red' : 'inherit'}">${h.datetime}</td>
-              <td class="probability">${(h.probability*10000).toFixed(4)}</td>
+              <td class="probability">${(h.probability*100).toFixed(3)}</td>
               <td class="prediction">${h.prediction}</td>
               <td>${h.weather_code}</td>
               <td>${h.rain}</td>
