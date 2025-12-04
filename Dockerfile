@@ -56,11 +56,14 @@ RUN chown -R www-data:www-data /app \
     && chmod -R 777 /app/writable
 
 # 12. Set up cron job for autopost
+# FIX: Copied directly to /etc/cron.d/ without running 'crontab' command
 COPY docker/cron/autopost /etc/cron.d/autopost
-RUN chmod 0644 /etc/cron.d/autopost && crontab /etc/cron.d/autopost
+RUN chmod 0644 /etc/cron.d/autopost
 
 # 12.5. Add alerts cron job (every 5 minutes for testing)
-RUN (crontab -l ; echo "*/5 * * * * root cd /app && /usr/local/bin/php public/index.php alerts/send-daily >> /app/writable/logs/flood-alerts.log 2>&1") | crontab -
+# FIX: Created file in /etc/cron.d/ to support 'root' user syntax
+RUN echo "*/5 * * * * root cd /app && /usr/local/bin/php public/index.php alerts/send-daily >> /app/writable/logs/flood-alerts.log 2>&1" > /etc/cron.d/flood-alerts \
+    && chmod 0644 /etc/cron.d/flood-alerts
 
 # 10. Configure Apache to serve from /app/public
 RUN cat > /etc/apache2/sites-available/000-default.conf <<EOF
