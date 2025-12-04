@@ -62,7 +62,7 @@ RUN chmod 0644 /etc/cron.d/autopost
 
 # 12.5. Add alerts cron job (every 5 minutes for testing)
 # FIX: Created file in /etc/cron.d/ to support 'root' user syntax
-RUN echo "*/5 * * * * root cd /app && /usr/local/bin/php public/index.php alerts/send-daily >> /app/writable/logs/flood-alerts.log 2>&1" > /etc/cron.d/flood-alerts \
+RUN echo "1 17 * * * root cd /app && /usr/local/bin/php public/index.php alerts/send-daily >> /app/writable/logs/flood-alerts.log 2>&1" > /etc/cron.d/flood-alerts \
     && chmod 0644 /etc/cron.d/flood-alerts
 
 # 10. Configure Apache to serve from /app/public
