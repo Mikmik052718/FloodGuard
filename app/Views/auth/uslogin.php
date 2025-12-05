@@ -52,7 +52,7 @@
                 <button class="btn-login" type="submit">Sign In</button>
             </form>
 
-            <!-- Google Sign-In Button -->
+            <!-- Google Sign-In Button 
             <div class="google-login">
                 <p style="text-align: center; margin: 20px 0; color: #666;">or</p>
                 <a href="<?= site_url('auth/google') ?>" class="btn-google">
@@ -64,7 +64,7 @@
                     </svg>
                     Sign in with Google
                 </a>
-            </div>
+            </div>-->
 
             <!-- small links under the form -->
             <div class="link-actions">
