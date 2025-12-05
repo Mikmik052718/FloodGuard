@@ -58,9 +58,9 @@
 
     <!-- 🔹 Location Controls -->
     <div class="location-controls">
-        <button onclick="locateMe()" class="btn-primary">📍 Get My Location</button>
+        <button onclick="locateMe()" class="btn-primary"> Get My Location</button>
         <?php if (session()->get('logged_in')): ?>
-            <button onclick="loadSavedLocation()" class="btn-warning">📂 Load Saved Location</button>
+            <button onclick="loadSavedLocation()" class="btn-warning">Load Saved Location</button>
             <button onclick="saveCurrentLocation()" class="btn-success" id="saveLocationBtn" disabled>💾 Save Location</button>
         <?php endif; ?>
     </div>
@@ -78,7 +78,7 @@
     <!-- 🔹 Info Footer -->
     <?php if (session()->get('logged_in')): ?>
         <div class="info-footer">
-            <p><strong>Features:</strong> 📍 Get Current Location | 💾 Save | 📂 Load</p>
+            <p><strong>Features:</strong> Get Current Location | Save | Load</p>
             <p>Your location is securely stored and linked to your account.</p>
         </div>
     <?php endif; ?>
@@ -141,18 +141,18 @@
                     showStatus('✅ Location found: ' + currentLat.toFixed(6) + ', ' + currentLon.toFixed(6), 'success');
                 },
                 function (error) {
-                    showStatus('❌ Geolocation failed: ' + error.message, 'error');
+                    showStatus('Geolocation failed: ' + error.message, 'error');
                 }
             );
         } else {
-            showStatus('❌ Geolocation is not supported by this browser', 'error');
+            showStatus('Geolocation is not supported by this browser', 'error');
         }
     }
 
     function saveCurrentLocation() {
-        if (!isLoggedIn) { showStatus('❌ Please login to save your location', 'error'); return; }
-        if (!currentLat || !currentLon) { showStatus('❌ Please get your current location first', 'error'); return; }
-        showStatus('💾 Saving location...', 'info');
+        if (!isLoggedIn) { showStatus('Please login to save your location', 'error'); return; }
+        if (!currentLat || !currentLon) { showStatus('Please get your current location first', 'error'); return; }
+        showStatus('Saving location...', 'info');
         const formData = new FormData();
         formData.append('lat', currentLat);
         formData.append('lon', currentLon);
@@ -168,7 +168,7 @@
 
     function loadSavedLocation() {
         if (!isLoggedIn) { showStatus('❌ Please login to load saved location', 'error'); return; }
-        showStatus('📂 Loading saved location...', 'info');
+        showStatus('Loading saved location...', 'info');
         fetch('<?= site_url("flood/get-location") ?>')
         .then(response => response.json())
         .then(data => {
@@ -177,7 +177,7 @@
                 if (savedLocationMarker) { map.removeLayer(savedLocationMarker); }
                 savedLocationMarker = L.marker([location.lat, location.lon]).addTo(map);
                 savedLocationMarker.bindPopup(
-                    `💾 Saved Location<br>
+                    `Saved Location<br>
                      Hazard Level: ${location.hazard_level || 'Unknown'}<br>
                      Last Updated: ${location.last_checked_at}`
                 ).openPopup();
