@@ -209,14 +209,25 @@ public function riverStatus()
     }
 
     
-    public function predict_hourly_ajax()
+     public function predict_hourly_ajax()
     {
         $lat = 14.657293;
         $lon = 121.11524;
         $start = date('Y-m-d', strtotime('-1 day'));
         $end   = date('Y-m-d', strtotime('+1 day'));
 
-        $hourly_params = ['weather_code','rain','temperature_2m','soil_moisture_0_to_7cm','wind_gusts_10m'];
+        // TestFlood-style parameters with detailed soil moisture layers
+        $hourly_params = [
+            'weather_code',
+            'rain',
+            'temperature_2m',
+            'soil_moisture_0_to_1cm',
+            'soil_moisture_1_to_3cm',
+            'soil_moisture_3_to_9cm',
+            'soil_moisture_9_to_27cm',
+            'soil_moisture_27_to_81cm',
+            'wind_gusts_10m'
+        ];
         $hourly_list = implode(',', $hourly_params);
 
         $wxURL = "https://api.open-meteo.com/v1/forecast?latitude={$lat}&longitude={$lon}&hourly={$hourly_list}&timezone=auto&start_date={$start}&end_date={$end}";
@@ -241,13 +252,17 @@ public function riverStatus()
             if ($hour_only % 3 !== 0) continue;
 
             $batch[] = [
-                'datetime'                        => $dt,
-                'weather_code (wmo code)'         => $wx['weather_code'][$i] ?? 0,
-                'rain (mm)'                       => $wx['rain'][$i] ?? 0,
-                'temp (?C)'                       => $wx['temperature_2m'][$i] ?? 0,
-                'soil_moisture_0_to_7cm (m?/m?)'  => $wx['soil_moisture_0_to_7cm'][$i] ?? 0,
-                'river_discharge (m?/s)'          => $discharge_by_date[$date_only] ?? 0,
-                'wind_gusts_10m (km/h)'           => $wx['wind_gusts_10m'][$i] ?? 0,
+                'datetime'                           => $dt,
+                'precipitation (mm)'                 => $wx['rain'][$i] ?? 0,
+                'soil_moisture_0_1cm (m³/m³)'        => $wx['soil_moisture_0_to_1cm'][$i] ?? 0,
+                'soil_moisture_1_3cm (m³/m³)'        => $wx['soil_moisture_1_to_3cm'][$i] ?? 0,
+                'soil_moisture_3_9cm (m³/m³)'        => $wx['soil_moisture_3_to_9cm'][$i] ?? 0,
+                'soil_moisture_9_27cm (m³/m³)'       => $wx['soil_moisture_9_to_27cm'][$i] ?? 0,
+                'soil_moisture_27_81cm (m³/m³)'      => $wx['soil_moisture_27_to_81cm'][$i] ?? 0,
+                'wind_gusts_10m (km/h)'              => $wx['wind_gusts_10m'][$i] ?? 0,
+                'weather_code (wmo code)'            => $wx['weather_code'][$i] ?? 0,
+                'temp (°C)'                          => $wx['temperature_2m'][$i] ?? 0,
+                'river_discharge (m³/s)'             => $discharge_by_date[$date_only] ?? 0,
             ];
         }
         $cmd = $this->getPythonExe() . ' ' . $this->getScriptPath('predict_hourly.py');
@@ -273,15 +288,14 @@ public function riverStatus()
         $hours = [];
         foreach ($batch as $i => $row) {
             $hours[] = [
-                'datetime'   => $row['datetime'],
-                'probability'=> $preds[$i]['probability'],
-                'prediction' => $preds[$i]['prediction'],
-                'weather_code'=> $row['weather_code (wmo code)'],
-                'rain'       => $row['rain (mm)'],
-                'temp'       => $row['temp (?C)'],
-                'soil_0_7'   => $row['soil_moisture_0_to_7cm (m?/m?)'],
-                'discharge'  => $row['river_discharge (m?/s)'],
-                'wind_gusts' => $row['wind_gusts_10m (km/h)'],
+                'datetime'      => $row['datetime'],
+                'probability'   => $preds[$i]['probability'],
+                'prediction'    => $preds[$i]['prediction'],
+                'weather_code'  => $row['weather_code (wmo code)'],
+                'rain'          => $row['precipitation (mm)'],
+                'temp'          => $row['temp (°C)'],
+                'discharge'     => $row['river_discharge (m³/s)'],
+                'wind_gusts'    => $row['wind_gusts_10m (km/h)'],
             ];
         }
 

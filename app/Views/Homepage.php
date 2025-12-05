@@ -974,7 +974,7 @@ document.addEventListener("DOMContentLoaded", function() {
         .then(response => response.json())
         .then(data => {
             if (data.status === 'success' && data.days && data.days.length > 0) {
-                const todayProb = (data.days[0].probability * 10000).toFixed(2);
+                const todayProb = (data.days[0].probability * 100).toFixed(2);
                 document.getElementById("flood-probability-text").textContent = `Flood Probability: ${todayProb}%`;
             } else {
                 document.getElementById("flood-probability-text").textContent = "Flood Probability: N/A";

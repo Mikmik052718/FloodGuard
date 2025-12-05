@@ -64,6 +64,9 @@ column_mapping = {
     "soil_moisture_9_27cm": "soil_moisture_7_to_28cm",
     "soil_moisture_27_81cm": "soil_moisture_28_to_100cm",
     "soil_moisture_100_255cm": "soil_moisture_100_to_255cm",
+    "soil_moisture_0_to_7cm (m³/m³)": "soil_moisture_0_to_7cm",
+    "soil_moisture_7_to_28cm (m³/m³)": "soil_moisture_7_to_28cm",
+    "soil_moisture_28_to_100cm (m³/m³)": "soil_moisture_28_to_100cm",
     
     # Weather Code
     "weathercode": "weather_code",
@@ -77,7 +80,33 @@ for row in inputs:
     try:
         df = pd.DataFrame([row])
 
-        # A. Rename columns
+        # A. TestFlood-style soil moisture aggregation
+        soil_0_1 = row.get('soil_moisture_0_1cm (m³/m³)', 0)
+        soil_1_3 = row.get('soil_moisture_1_3cm (m³/m³)', 0)
+        soil_3_9 = row.get('soil_moisture_3_9cm (m³/m³)', 0)
+        soil_0_7 = (soil_0_1 + soil_1_3 + soil_3_9) / 3
+
+        soil_9_27 = row.get('soil_moisture_9_27cm (m³/m³)', 0)
+        soil_7_28 = soil_9_27
+
+        soil_27_81 = row.get('soil_moisture_27_81cm (m³/m³)', 0)
+        soil_28_100 = soil_27_81
+
+        # Create aggregated row
+        aggregated_row = {
+            'precipitation (mm)': row.get('precipitation (mm)', 0),
+            'soil_moisture_0_to_7cm (m³/m³)': soil_0_7,
+            'soil_moisture_7_to_28cm (m³/m³)': soil_7_28,
+            'soil_moisture_28_to_100cm (m³/m³)': soil_28_100,
+            'wind_gusts_10m (km/h)': row.get('wind_gusts_10m (km/h)', 0),
+            'weather_code (wmo code)': row.get('weather_code (wmo code)', 0),
+            'temp (°C)': row.get('temp (°C)', 0),
+            'river_discharge (m³/s)': row.get('river_discharge (m³/s)', 0),
+        }
+
+        df = pd.DataFrame([aggregated_row])
+
+        # B. Rename columns
         df.rename(columns=column_mapping, inplace=True)
 
         # B. Smart Reindexing (The Critical Fix)
@@ -104,8 +133,8 @@ for row in inputs:
         pred = int(boosted_prob >= 0.5)
 
         results.append({
-            "original_prob": round(float(raw_prob), 4),   # Useful for debugging
-            "probability":   round(float(boosted_prob), 4), # The boosted value
+            "original_prob": round(float(raw_prob), 5),   # Useful for debugging
+            "probability":   round(float(boosted_prob), 5), # The boosted value
             "factor_used":   SENSITIVITY_FACTOR,
             "prediction":    "FLOOD" if pred else "No Flood"
         })
