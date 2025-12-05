@@ -186,6 +186,7 @@
         <p>Already have an account? Sign in and continue your journey!</p>
         <br>
         <a href="<?= site_url('auth/uslogin') ?>" class="btn-signin">Sign In</a>
+        <!--
         <div class="google-login">
                         <p style="text-align: center; margin: 5px 0; color: #666;">or</p>
                         <a href="<?= site_url('auth/google') ?>" class="btn-google">
@@ -198,7 +199,7 @@
                             Continue with Google
                         </a>
                     </div>
-        
+        -->
     </div>
 </div>
 
