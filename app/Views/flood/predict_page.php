@@ -137,7 +137,7 @@ document.addEventListener("DOMContentLoaded", function () {
         data.days.forEach(d => {
             html += `<tr class="${d.prediction==='FLOOD'?'flood':'no-flood'}">
                 <td>${d.date}</td>
-                <td class="probability">${(d.probability*1000).toFixed(2)}</td>
+                <td class="probability">${(d.probability*100).toFixed(2)}</td>
                 <td class="prediction">${d.prediction}</td>
                 <td>${d.weather_code}</td>
                 <td>${d.rain_sum}</td>
