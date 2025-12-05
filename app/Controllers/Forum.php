@@ -27,6 +27,9 @@ class Forum extends BaseController
         return redirect()->to('/forum')->with('error', 'You must be logged in to create a post.');
     }
 
+    // Set timezone to Asia/Manila to match AutoPost behavior
+    date_default_timezone_set('Asia/Manila');
+
     $model = new PostModel();
 
     $authorName = session()->get('username');
@@ -54,6 +57,7 @@ class Forum extends BaseController
         'author_name' => $authorName,
         'title'       => $censoredTitle,
         'content'     => $censoredContent,
+        'created_at'  => date('Y-m-d H:i:s'), // Explicitly set timestamp with Asia/Manila timezone
     ];
 
     // Handle image upload
