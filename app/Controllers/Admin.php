@@ -51,6 +51,84 @@ class Admin extends BaseController
         return view('admin/users', $data);
     }
 
+    // Get user data for editing (AJAX endpoint)
+    public function getUser($id)
+    {
+        // Ensure the user is an admin
+        if (session()->get('role') !== 'admin') {
+            return $this->response->setJSON(['error' => 'Unauthorized'])->setStatusCode(403);
+        }
+
+        $model = new UserModel();
+        $user = $model->find($id);
+        
+        if (!$user) {
+            return $this->response->setJSON(['error' => 'User not found'])->setStatusCode(404);
+        }
+        
+        return $this->response->setJSON($user);
+    }
+
+    // Update a user
+    public function updateUser($id)
+    {
+        // Ensure the user is an admin before allowing the update
+        if (session()->get('role') !== 'admin') {
+            return redirect()->to('/auth/adlogin');
+        }
+
+        $model = new UserModel();
+        
+        // Get the data from the form and convert empty strings to NULL for nullable fields
+        $email = $this->request->getPost('email');
+        $phone = $this->request->getPost('phone');
+        
+        $data = [
+            'username' => $this->request->getPost('username'),
+            'email' => !empty($email) ? $email : null,  // Convert empty string to NULL
+            'phone' => !empty($phone) ? $phone : null,  // Convert empty string to NULL
+            'role' => $this->request->getPost('role'),
+            'is_active' => $this->request->getPost('is_active'),
+            'alert_email_enabled' => $this->request->getPost('alert_email_enabled'),
+            'alert_sms_enabled' => $this->request->getPost('alert_sms_enabled'),
+            'alert_min_probability' => $this->request->getPost('alert_min_probability'),
+            'alert_restrict_to_red' => $this->request->getPost('alert_restrict_to_red'),
+            'updated_at' => date('Y-m-d H:i:s')
+        ];
+
+        // Handle password update (only if provided)
+        $password = $this->request->getPost('password');
+        if (!empty($password)) {
+            $data['password'] = password_hash($password, PASSWORD_DEFAULT);
+        }
+
+        // Update the user
+        $model->update($id, $data);
+        
+        return redirect()->to('/admin/users')->with('success', 'User updated successfully.');
+    }
+
+    // Delete a user
+    public function deleteUser($id)
+    {
+        // Ensure the user is an admin before allowing deletion
+        if (session()->get('role') !== 'admin') {
+            return redirect()->to('/auth/adlogin');
+        }
+
+        $model = new UserModel();
+        
+        // Prevent admin from deleting themselves
+        if ($id == session()->get('id')) {
+            return redirect()->to('/admin/users')->with('error', 'You cannot delete your own account.');
+        }
+
+        // Delete the user
+        $model->delete($id);
+        
+        return redirect()->to('/admin/users')->with('success', 'User deleted successfully.');
+    }
+
     // Delete a post by ID
     public function delete($id)
     {
@@ -349,7 +427,7 @@ private function getPythonExe()
         if ($hourly) {
             $content .= "<table border='1'><tr><th>Datetime</th><th>Prob %</th><th>Prediction</th><th>Rain mm</th><th>Temp °C</th><th>Discharge m³/s</th></tr>";
             foreach ($hourly as $h) {
-                $content .= "<tr><td>{$h['datetime']}</td><td>" . number_format($h['probability']*10000, 4) . "</td><td>{$h['prediction']}</td><td>{$h['rain']}</td><td>{$h['temp']}</td><td>{$h['discharge']}</td></tr>";
+                $content .= "<tr><td>{$h['datetime']}</td><td>" . number_format($h['probability']*100, 4) . "</td><td>{$h['prediction']}</td><td>{$h['rain']}</td><td>{$h['temp']}</td><td>{$h['discharge']}</td></tr>";
             }
             $content .= "</table>";
         } else {
@@ -360,7 +438,7 @@ private function getPythonExe()
         if ($daily) {
             $content .= "<table border='1'><tr><th>Date</th><th>Prob %</th><th>Prediction</th><th>Rain mm</th><th>Discharge m³/s</th></tr>";
             foreach ($daily as $d) {
-                $content .= "<tr><td>{$d['date']}</td><td>" . number_format($d['probability']*1000, 2) . "</td><td>{$d['prediction']}</td><td>{$d['rain_sum']}</td><td>{$d['river_discharge']}</td></tr>";
+                $content .= "<tr><td>{$d['date']}</td><td>" . number_format($d['probability']*100, 2) . "</td><td>{$d['prediction']}</td><td>{$d['rain_sum']}</td><td>{$d['river_discharge']}</td></tr>";
             }
             $content .= "</table>";
         } else {
