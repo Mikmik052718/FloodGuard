@@ -63,6 +63,9 @@ $routes->get('/home/weather-data', 'Home::getWeatherData');
 // Admin routes
 $routes->get('/admin/admin_dashboard', 'Admin::dashboard');
 $routes->get('/admin/users', 'Admin::users');
+$routes->get('/admin/users/get/(:num)', 'Admin::getUser/$1');
+$routes->post('/admin/users/update/(:num)', 'Admin::updateUser/$1');
+$routes->get('/admin/users/delete/(:num)', 'Admin::deleteUser/$1');
 $routes->get('/admin/force-post', 'Admin::forcePost');
 
 //09/09/25
@@ -103,5 +106,6 @@ $routes->match(['get', 'post'], 'sms/gateway', 'SmsController::gateway');
 // Flood prediction alert routes
 $routes->get('alerts/test-daily', 'Alerts::testDaily');
 $routes->get('alerts/send-daily', 'Alerts::sendDaily');
-// In app/Config/Routes.php
+
+//cli route
 $routes->cli('alerts/send-daily', 'Alerts::sendDaily');
