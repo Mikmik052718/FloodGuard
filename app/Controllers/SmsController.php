@@ -153,7 +153,7 @@ class SmsController extends Controller
             $alertStatus = 'alarm';
         } elseif ($currentLevel >= $alertLevel) {
             $alertStatus = 'alert';
-        } elseif ($currentLevel >= 13.50) {
+        } elseif ($currentLevel >= 12.60) {
             $alertStatus = 'warning';
         }
 
@@ -257,7 +257,7 @@ class SmsController extends Controller
     {
         switch ($alertLevel) {
             case 'warning':
-                return "This is a warning for possible hazard as the water level has reached level 13.50\n\n";
+                return "This is a warning for possible hazard as the water level has reached level 12.60\n\n";
             case 'alert':
                 return "Please take necessary precautions.\n\n";
             case 'alarm':
