@@ -153,7 +153,7 @@ class SmsController extends Controller
             $alertStatus = 'alarm';
         } elseif ($currentLevel >= $alertLevel) {
             $alertStatus = 'alert';
-        } elseif ($currentLevel >= 13.50) {
+        } elseif ($currentLevel >= 12.60) {
             $alertStatus = 'warning';
         }
 
