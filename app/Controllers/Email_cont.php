@@ -161,7 +161,7 @@ public function sendEmail()
             $alertStatus = 'alarm';
         } elseif ($currentLevel >= $alertLevel) {
             $alertStatus = 'alert';
-        } elseif ($currentLevel >= 13.50) {
+        } elseif ($currentLevel >= 12.60) {
             $alertStatus = 'warning';
         }
 
@@ -282,7 +282,7 @@ public function sendEmail()
     {
         switch ($alertLevel) {
             case 'warning':
-                return "This is a warning for possible hazard as the water level is reaching level 13.50<br><br>";
+                return "This is a warning for possible hazard as the water level is reaching level 12.60<br><br>";
             case 'alert':
                 return "Please take necessary precautions.<br><br>";
             case 'alarm':
